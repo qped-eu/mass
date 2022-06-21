@@ -1,10 +1,10 @@
 name: publish page
 #Trigger for the workflow
   #Triggers only on push on master
-on:
-  push:
-    branches:
-      - master
+#on:
+#  push:
+#    branches:
+#      - master
       
 jobs:
   build-test-deploy:
