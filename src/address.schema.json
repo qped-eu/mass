@@ -1,0 +1,38 @@
+{
+  "$id": "http://qped.github.io/schemas/address.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "Configuration for an address.",
+  "title": "Address",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "street": {
+      "type": "string",
+      "title": "Street",
+      "description": "Enter a Street",
+      "default": "Street with no name"
+    },
+    "streetNumber": {
+      "type": "string",
+      "title": "Street Number",
+      "description": "Enter a Street Number"
+    },
+    "city": {
+      "type": "string",
+      "title": "City",
+      "description": "Enter a City"
+    },
+    "postalCode": {
+      "type": "string",
+      "maxLength": 5,
+      "title": "Postal Code",
+      "description": "Enter a Postal Code"
+    }
+  },
+  "required": [
+    "street",
+    "streetNumber",
+    "city",
+    "postalCode"
+  ]
+}
