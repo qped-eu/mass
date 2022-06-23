@@ -5,8 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import logo from './logo.svg';
 import './App.css';
-import schema from './sample.schema.json';
-import addressschema from './address.schema.json';
+import schema from './schema.json';
 import uischema from './uischema.json';
 import {
   materialCells,
@@ -104,14 +103,6 @@ const App = () => {
           <div className={classes.demoform}>
             <JsonForms
               schema={schema}
-              uischema={uischema}
-              data={data}
-              renderers={renderers}
-              cells={materialCells}
-              onChange={({ errors, data }) => setData(data)}
-            />
-			<JsonForms
-              schema={addressschema}
               uischema={uischema}
               data={data}
               renderers={renderers}

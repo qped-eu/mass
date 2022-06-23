@@ -30,9 +30,6 @@ jobs:
           npm install --save @jsonforms/material-renderers
           npm install --save @mui/material
           npm install --save @mui/icons-material
-          
-      - name: Build JSON-forms
-        run: npm run build
         
       - name: Install github pages
         run: npm install gh-pages --save-dev
