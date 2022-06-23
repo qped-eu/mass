@@ -50,7 +50,7 @@
       "description": "Specify if you want to provide your address"
     },
     "address": {
-      "$ref": "./address.schema.json",
+      "$ref": "file:./address.schema.json",
       "title": "Mail Address"
     },
     "vegetarianOptions": {
