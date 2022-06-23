@@ -4,28 +4,52 @@ name: publish page
 on:
   push:
     branches: [ "master" ]
-  pull-request:
+  pull_request:
     branches: [ "master" ]
       
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
-    strategy: 
-      node-version: [12.x, 14.x, 16.x]
+    strategy:
+      matrix:
+        node-version: [16.x]
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Set-up Node
+        
+      - name: Set-up Node.js version ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version:  ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm run build --if-present
-      - run: npm test
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Install JSON-forms
+        run: |
+          npm install --save @jsonforms/core
+          npm install --save @jsonforms/react
+          npm install --save @jsonforms/material-renderers
+          npm install --save @mui/material
+          npm install --save @mui/icons-material
+        
+      - name: Install github pages
+        run: npm install gh-pages --save-dev
+        
+      - name: Run tests
+        run: npm test
+
+      - name: Build project
+        run: npm run build 
+        
       - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v1
-        with:
-          target_branch: gh-pages
-          build_dir: build
+        run: |
+          git config --global user.name $user_name
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_REPO_TOKEN }}
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+          repository: ${{ github.repository }}
