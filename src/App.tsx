@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import logo from './logo.svg';
 import './App.css';
 import schema from './sample.schema.json';
-//import uischema from './uischema.json';
+import uischema from './uischema.json';
 import {
   materialCells,
   materialRenderers,
