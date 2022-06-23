@@ -38,6 +38,9 @@ jobs:
         
       - name: Run tests
         run: npm test
+        
+      - name: JSON-forms Start
+        run: npm start
 
       - name: Build project
         run: npm run build 
