@@ -24,6 +24,14 @@ jobs:
       - name: Install dependencies
         run: npm install
         
+      - name: Install JSON-forms
+        run: |
+          npm install --save @jsonforms/core
+          npm install --save @jsonforms/react
+          npm install --save @jsonforms/material-renderers
+          npm install --save @mui/material
+          npm install --save @mui/icons-material
+        
       - name: Install github pages
         run: npm install gh-pages --save-dev
         
