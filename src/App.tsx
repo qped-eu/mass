@@ -65,7 +65,7 @@ const App = () => {
   };
   
   const copyData = () => {
-	navigator.clipboard.writeText(this.state.data)}
+	navigator.clipboard.writeText(this.state.data)
   };
 
   return (
