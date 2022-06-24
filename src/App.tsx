@@ -3,10 +3,10 @@ import { JsonForms } from '@jsonforms/react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 import schema from './mass.schema.json';
-import uischema from './uischema.json';
+//import uischema from './uischema.json';
 import {
   materialCells,
   materialRenderers,
@@ -31,24 +31,19 @@ const useStyles = makeStyles({
     backgroundColor: '#cecece',
     marginBottom: '1rem',
   },
-  resetButton: {
-    margin: 'auto !important',
-	marginBottom: '10px',
+  actionButton: {
     display: 'block !important',
+  },
+  buttons: {
+	display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   demoform: {
     margin: 'auto',
     padding: '1rem',
   },
 });
-
-const initialData = {
-  name: 'Send email to Adrian',
-  description: 'Confirm if you have passed the subject\nHereby ...',
-  done: true,
-  recurrence: 'Daily',
-  rating: 3,
-};
 
 const renderers = [
   ...materialRenderers,
@@ -58,7 +53,7 @@ const renderers = [
 
 const App = () => {
   const classes = useStyles();
-  const [data, setData] = useState<any>(initialData);
+  const [data, setData] = useState<any>();
   const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 
   const clearData = () => {
@@ -82,17 +77,17 @@ const App = () => {
       <Grid
         container
         justifyContent={'center'}
-        spacing={1}
+        spacing={2}
         className={classes.container}
       >
-	    <Grid item sm={6}>
+	    <Grid item xs={8}>
           <Typography variant={'h4'} className={classes.title}>
             Configuration Editor
           </Typography>
           <div className={classes.demoform}>
             <JsonForms
               schema={schema}
-              uischema={uischema}
+           //   uischema={uischema}
               data={data}
               renderers={renderers}
               cells={materialCells}
@@ -100,29 +95,40 @@ const App = () => {
             />
           </div>
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs>
           <Typography variant={'h4'} className={classes.title}>
             Configuration Data
           </Typography>
           <div className={classes.dataContent}>
             <pre id='boundData'>{stringifiedData}</pre>
           </div>
-          <Button
-            className={classes.resetButton}
-            onClick={copyData}
-            color='primary'
-            variant='contained'
-          >
-            Copy to clipboard
-          </Button>
-		  <Button
-            className={classes.resetButton}
-            onClick={clearData}
-            color='primary'
-            variant='contained'
-          >
-            Clear data
-          </Button>
+		  <Grid
+			container
+			justifyContent={'center'}
+			className={classes.container}
+			spacing={2}
+		  >
+			<Grid item xs>
+			<Button
+				className={classes.actionButton}
+				onClick={copyData}
+				color='primary'
+				variant='contained'
+			>
+				Copy to clipboard
+			</Button>
+			</Grid>
+			<Grid item xs>
+			<Button
+				className={classes.actionButton}
+				onClick={clearData}
+				color='primary'
+				variant='contained'
+			>
+				Clear data
+			</Button>
+			</Grid>
+		  </Grid>
         </Grid>
         
       </Grid>
