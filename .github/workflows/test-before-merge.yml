@@ -35,4 +35,4 @@ jobs:
         run: npm test
         
       - name: Try building
-        run: npm build
+        run: npm run build
