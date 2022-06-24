@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import logo from './logo.svg';
 import './App.css';
-import schema from './schema.json';
+import schema from './mass.schema.json';
 import uischema from './uischema.json';
 import {
   materialCells,
