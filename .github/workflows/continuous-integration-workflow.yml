@@ -3,7 +3,7 @@ name: publish page
   #Triggers only on push on master
 on:
   push:
-    branches: [ "development" ]
+    branches: [ "master" ]
       
 jobs:
   build-test-deploy:
