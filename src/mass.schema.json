@@ -1,0 +1,59 @@
+{
+  "$id": "http://alucard2112.github.io/qped.github.io/schemas/mass.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "Enter the description configuration of the Marburg university Auto Assess System (MASS), part of the QPED project.",
+  "documentation": "The [Marburg university Auto Assess System (MASS)](http://qped.github.io) is part of the project [Quality-focussed Programming Education (QPED)](https://qped.eu), co-funded by the [Erasmus+-Program of the European Union](https://erasmus-plus.ec.europa.eu) (2020-1-NL01-KA203-064626).\n\nMASS performs checks on student solutions to programming assignents in the Java language, with respect to different aspects: syntax, style, solution approach, testing and design. Only the syntax check is mandatory, all other checks are optional. In this configuration, lectures can specify which checks that want to be performed on student solutions and configure these checks according to the requirements of their assignment.",
+  "type": "object",
+  "title": "QPED-MASS Configuration",
+  "additionalProperties": false,
+  "properties": {
+    "syntax": {
+      "title": "Syntax Check Configuration",
+      "description": "Configure the properties of a Syntax Check.",
+      "documentation": "This is a long documentation of Syntax Check properties.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "BEGINNER",
+            "INTERMEDIATE",
+            "ADVANCED"
+          ],
+          "title": "Student Level",
+          "description": "Select the level of programming experience for the target student audience."
+        }
+      },
+      "required": [
+        "level"
+      ]
+    },
+      "style": {
+        "title": "Style Check Configuation",
+        "description": "Configure the properties of a Style Check.",
+        "documentation": "This is a long documentation of Style Check properties.",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED"
+            ],
+            "title": "Student Level",
+            "description": "Select the level of programming experience for the target student audience."
+          }
+        },
+        "required": [
+          "level"
+        ]
+      }
+
+  },
+  "required": [
+    "syntax"
+  ]
+}
