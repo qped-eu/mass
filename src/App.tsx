@@ -36,9 +36,9 @@ const useStyles = makeStyles({
     display: 'block !important',
   },
   buttons: {
-	display: flex,
-    justify-content: center,
-    align-items: center,
+	display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   demoform: {
     margin: 'auto',
