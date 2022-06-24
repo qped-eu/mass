@@ -29,7 +29,7 @@
         "level"
       ]
     },
-    "styleSettings": {
+    "style": {
       "type": "object",
       "title": "Style Configuration",
       "description": "The Configuration for Style Checker",
@@ -121,7 +121,7 @@
         }
       }
     },
-    "semanticSettings": {
+    "semantics": {
       "type": "array",
       "items": {
         "type": "object",
@@ -130,7 +130,7 @@
             "type": "string",
             "title": "path for target file",
             "description": "must be fully qualified file path: src.package.another-package.class.java",
-            "documentation": "**The filw of the path to be checked using this configurations**"
+            "documentation": "**The file of the path to be checked using this configurations**"
           },
           "methodName": {
             "type": "string",
@@ -200,12 +200,6 @@
       "type": "object",
       "title": "COVERAGE CHECKER CONFIGURATION",
       "properties": {
-        "checkerClass": {
-          "type": "string",
-          "enum": ["eu.qped.java.checkers.coverage.CoverageChecker"],
-          "title": "USED CHECKER",
-          "description": "Defines the used checker tool."
-        },
         "covSetting": {
           "type": "object",
           "properties": {
@@ -220,12 +214,17 @@
               "description": "Defines the used feedback.",
               "documentation": "Defines what feedback this tool can generate. <br>\nCustom feedback has always a higher priority then default feedback.<br>   \n\nPossible values: \n\n| Value                                              | Meaning | \n|----------------------------------------------------|--- |  \n| :TEST                                              | Generates Default Test Feedback for all test classes |\n| :COVERAGE                                          | Generates Default Coverage Feedback for all classes|\n| < class name >:TEST                                | Generates default Feedback for a test class|\n| < class name >:COVERAGE                            | Generates default Feedback for a class|\n| < class name >:CUSTOM:< indentifier >:< feedback > | Generates your costom Feedback for a given class and identifier (Index or Method Name)|\n\n<br>\nExample: <br>\nGenerate feedback for:\n\n- all test in class ExampleTest1\n- one test in class ExampleTest2\n- one statement in class Example\n\n```\nfeedback : {\n        \"ExampleTest1:Test\",\n        \"ExampleTest2:Test:myTest:\",\n        \"Example:CUSTOM:11:Hello World\"\n}\n```"
             },
-            "format": {
+            "convention": {
               "type": "string",
               "enum": ["JAVA", "MAVEN"],
               "title": "PROGRAM FORMAT",
               "description": "Defines what a class name and a test class is.",
-              "documentation":"Defines what a class name and a test class is. \n\n| Format | Meaning                                                                                                             |\n|--------|---------------------------------------------------------------------------------------------------------------------| \n| JAVA   | Test classes end with test. <br>Full class name is the total folder path.                                           |\n| MAVEN  | Test Classes are in the folder path test/java.<br>Full class name is the folder path after test/java ore main/java. |\n"
+              "documentation":"Defines what a class name and a test class is. \n\n| Convention | Meaning                                                                                                             |\n|--------|---------------------------------------------------------------------------------------------------------------------| \n| JAVA   | Test classes end with test. <br>Full class name is the total folder path.                                           |\n| MAVEN  | Test Classes are in the folder path test/java.<br>Full class name is the folder path after test/java ore main/java. |\n"
+            },
+            "format": {
+              "type": "string",
+              "description": "Defines how your feedback is formatted.",
+              "documentation": "Over the field *format* it's possible to provide a template to format and enrich your feedback\nwith additional information.\nThe framework velocity is used to format the created feedback.\nFor more information visit the github page."
             },
             "excludeByTypeSet": {
               "type": "array",
@@ -255,7 +254,7 @@
             }
           },
           "required": [
-            "format",
+            "convention",
             "feedback"
           ]
         },
@@ -313,7 +312,7 @@
             "type": "string",
             "description": "Modifiers, type and name of the current class.",
             "default": "class TestClass",
-            "documentation": "All expected keywords of the current class declaration. This only concerns the current class and follows the same pattern as the Java class declaration. Format: [access modifier] [non access modifier] [class/interface] [name].\n\n### Examples: - public abstract class Number - interface Employee",
+            "documentation": "All expected keywords of the current class declaration. This only concerns the current class and follows the same pattern as the Java class declaration. Format: [access modifier] [non access modifier] [class/interface] [name].\n### Examples:\n- public abstract class Number\n- interface Employee",
             "pattern" : "\\s*(\\w*)\\s+(\\w+)"
           },
           "inheritsFrom": {
