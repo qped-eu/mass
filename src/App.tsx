@@ -65,7 +65,7 @@ const App = () => {
   };
   
   const copyData = () => {
-	navigator.clipboard.writeText(data);
+	navigator.clipboard.writeText(JSON.stringify(data));
   };
 
   return (
