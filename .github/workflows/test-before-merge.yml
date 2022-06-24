@@ -1,0 +1,35 @@
+name: publish page
+#Trigger for the workflow
+  #Triggers only on push on master
+on:
+  merge_request:
+    branches: [ "master" ]
+      
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set-up Node.js version ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Install JSON-forms
+        run: |
+          npm install --save @jsonforms/core
+          npm install --save @jsonforms/react
+          npm install --save @jsonforms/material-renderers
+          npm install --save @mui/material
+          npm install --save @mui/icons-material
+        
+      - name: Run tests
+        run: npm test
