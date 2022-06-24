@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import logo from './logo.svg';
 import './App.css';
-import schema from './schema.json';
+import schema from './mass.schema.json';
 import uischema from './uischema.json';
 import {
   materialCells,
@@ -33,6 +33,7 @@ const useStyles = makeStyles({
   },
   resetButton: {
     margin: 'auto !important',
+	marginBottom: '10px',
     display: 'block !important',
   },
   demoform: {
@@ -65,7 +66,7 @@ const App = () => {
   };
   
   const copyData = () => {
-	navigator.clipboard.writeText(data);
+	navigator.clipboard.writeText(JSON.stringify(data));
   };
 
   return (
