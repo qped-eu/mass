@@ -3,7 +3,7 @@ import { JsonForms } from '@jsonforms/react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 import schema from './mass.schema.json';
 //import uischema from './uischema.json';
@@ -32,7 +32,6 @@ const useStyles = makeStyles({
     marginBottom: '1rem',
   },
   actionButton: {
-	marginRight: '30px',
     display: 'block !important',
   },
   buttons: {
@@ -78,10 +77,10 @@ const App = () => {
       <Grid
         container
         justifyContent={'center'}
-        spacing={1}
+        spacing={2}
         className={classes.container}
       >
-	    <Grid item sm={6}>
+	    <Grid item xs={8}>
           <Typography variant={'h4'} className={classes.title}>
             Configuration Editor
           </Typography>
@@ -96,14 +95,20 @@ const App = () => {
             />
           </div>
         </Grid>
-        <Grid item sm={4}>
+        <Grid item xs>
           <Typography variant={'h4'} className={classes.title}>
             Configuration Data
           </Typography>
           <div className={classes.dataContent}>
             <pre id='boundData'>{stringifiedData}</pre>
           </div>
-		  <div className={classes.buttons}>
+		  <Grid
+			container
+			justifyContent={'center'}
+			className={classes.container}
+			spacing={2}
+		  >
+			<Grid item xs>
 			<Button
 				className={classes.actionButton}
 				onClick={copyData}
@@ -112,6 +117,8 @@ const App = () => {
 			>
 				Copy to clipboard
 			</Button>
+			</Grid>
+			<Grid item xs>
 			<Button
 				className={classes.actionButton}
 				onClick={clearData}
@@ -120,7 +127,8 @@ const App = () => {
 			>
 				Clear data
 			</Button>
-		  </div>
+			</Grid>
+		  </Grid>
         </Grid>
         
       </Grid>
