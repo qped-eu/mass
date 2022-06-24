@@ -35,7 +35,13 @@ jobs:
         run: npm install gh-pages --save-dev
 
       - name: Build project
-        run: npm run build 
+        run: npm run build
+        
+      - name: Install python dependencies
+        run: pip install json-schema-for-humans
+        
+      - name: Run JSON Schema for humans
+        run: sh src/doc2desc.sh
         
       - name: Deploy
         run: |
