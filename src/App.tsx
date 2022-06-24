@@ -33,6 +33,7 @@ const useStyles = makeStyles({
   },
   resetButton: {
     margin: 'auto !important',
+	margin-bottom: '10px',
     display: 'block !important',
   },
   demoform: {
