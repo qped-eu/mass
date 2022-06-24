@@ -1,0 +1,50 @@
+name: publish page
+#Trigger for the workflow
+  #Triggers only on push on master
+on:
+  push:
+    branches: [ "master" ]
+      
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set-up Node.js version ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Install JSON-forms
+        run: |
+          npm install --save @jsonforms/core
+          npm install --save @jsonforms/react
+          npm install --save @jsonforms/material-renderers
+          npm install --save @mui/material
+          npm install --save @mui/icons-material
+        
+      - name: Install github pages
+        run: npm install gh-pages --save-dev
+
+      - name: Build project
+        run: npm run build 
+        
+      - name: Deploy
+        run: |
+          git config --global user.name $user_name
+          git config --global user.email $user_email
+          git remote set-url origin https://${github_token}@github.com/${repository}
+          npm run deploy
+        env:
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+          repository: ${{ github.repository }}
