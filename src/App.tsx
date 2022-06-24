@@ -33,7 +33,7 @@ const useStyles = makeStyles({
   },
   resetButton: {
     margin: 'auto !important',
-	marginBottom: '10px',
+	marginBottom: '30px',
     display: 'block !important',
   },
   demoform: {
@@ -92,7 +92,7 @@ const App = () => {
           <div className={classes.demoform}>
             <JsonForms
               schema={schema}
-              uischema={uischema}
+           //   uischema={uischema}
               data={data}
               renderers={renderers}
               cells={materialCells}
