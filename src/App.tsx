@@ -63,6 +63,10 @@ const App = () => {
   const clearData = () => {
     setData({});
   };
+  
+  const copyData = () => {
+	navigator.clipboard.writeText(this.state.data)}
+  };
 
   return (
     <Fragment>
@@ -82,7 +86,7 @@ const App = () => {
       >
 	    <Grid item sm={6}>
           <Typography variant={'h4'} className={classes.title}>
-            Rendered form
+            Configuration Editor
           </Typography>
           <div className={classes.demoform}>
             <JsonForms
@@ -97,12 +101,20 @@ const App = () => {
         </Grid>
         <Grid item sm={6}>
           <Typography variant={'h4'} className={classes.title}>
-            Bound data
+            Configuration Data
           </Typography>
           <div className={classes.dataContent}>
             <pre id='boundData'>{stringifiedData}</pre>
           </div>
           <Button
+            className={classes.resetButton}
+            onClick={copyData}
+            color='primary'
+            variant='contained'
+          >
+            Copy to clipboard
+          </Button>
+		  <Button
             className={classes.resetButton}
             onClick={clearData}
             color='primary'
