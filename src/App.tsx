@@ -36,10 +36,10 @@ const useStyles = makeStyles({
     display: 'block !important',
   },
   buttons: {
-	display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+	display: flex,
+    justify-content: center,
+    align-items: center,
+  },
   demoform: {
     margin: 'auto',
     padding: '1rem',
