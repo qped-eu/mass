@@ -40,8 +40,15 @@ const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) 
 				rehypePlugins={[rehypeRaw]}
 				components={markdownComponent}
 				children={input}
-				transformImageUri={uri =>
-					uri.startsWith("http") ? uri : `${window.location.href}/${uri}` 
+				transformImageUri={uri => {
+						if(uri.startsWith("http")){
+							return uri;
+						}
+						let url = window.location.href;
+						let newurl = url.split(/\?|#/).shift();
+						url = newurl === undefined ? "" :newurl;
+						return `${url}${uri}` 
+					}
 				}
 			/>
 };
