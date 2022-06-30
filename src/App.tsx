@@ -89,7 +89,7 @@ const App = () => {
 	const [data, setData] = useState<any>();
 	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 	const qped_mass = 'qped-mass.md';
-	const qped_doku = 'mass-doku.md';
+	const mass_doku = 'mass-doku.md';
 	const divRef = useRef<HTMLDivElement>(null);
     const maxWidth = useResize(divRef);
 	
@@ -184,7 +184,9 @@ const App = () => {
 				</Tab>
 				<Tab eventKey="doku" title="O3 Dokumentation">
 					<div className={classes.markdownContainer}>
-						WIP
+						<Markdown 
+							maxWidth={maxWidth}
+							mdFile={mass_doku}/>
 					</div>
 				</Tab>
 			</Tabs>
