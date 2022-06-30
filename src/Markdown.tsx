@@ -44,4 +44,4 @@ const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) 
 			/>
 };
 
-export default Markdown;
+ export default Markdown

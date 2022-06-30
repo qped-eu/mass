@@ -55,35 +55,34 @@ const useStyles = makeStyles({
   },
 });
 
+const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
+	const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
+
+	const [width, setWidth] = useState<number | undefined>(undefined);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setWidth(getWidth());
+		};	
+		if (myRef.current) {
+			setWidth(getWidth());
+		}
+	
+		window.addEventListener('resize', handleResize);
+
+		return () => {	
+			window.removeEventListener('resize', handleResize);
+		};
+	}, [myRef, getWidth]);
+	
+	return width && width > 25 ? width - 25 : width;
+};
+
 const renderers = [
   ...materialRenderers,
   //register custom renderers
   { tester: ratingControlTester, renderer: RatingControl },
 ];
-
-const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
-    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
-
-    const [width, setWidth] = useState<number | undefined>(undefined);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWidth(getWidth());
-        };
-
-        if (myRef.current) {
-            setWidth(getWidth());
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [myRef, getWidth]);
-
-    return width && width > 25 ? width - 25 : width;
-};
 
 const App = () => {
 	const classes = useStyles();
@@ -93,6 +92,8 @@ const App = () => {
 	const qped_doku = 'mass-doku.md';
 	const divRef = useRef<HTMLDivElement>(null);
     const maxWidth = useResize(divRef);
+	
+
 
   const clearData = () => {
     setData({});
