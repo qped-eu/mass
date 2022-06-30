@@ -1,0 +1,2 @@
+(this["webpackJsonpqped-github-pages"]=this["webpackJsonpqped-github-pages"]||[]).push([[9],{988:function(s,p,t){"use strict";t.r(p),p.default=t.p+"static/media/mass-doku.f13d9a67.md"}}]);
+//# sourceMappingURL=9.41f01372.chunk.js.map

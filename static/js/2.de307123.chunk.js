@@ -1,0 +1,2 @@
+(this["webpackJsonpqped-github-pages"]=this["webpackJsonpqped-github-pages"]||[]).push([[2],{631:function(e){e.exports=JSON.parse('{"type":"object","properties":{"name":{"type":"string","minLength":1},"description":{"title":"Long Description","type":"string"},"done":{"type":"boolean"},"due_date":{"type":"string","format":"date"},"rating":{"type":"integer","maximum":5},"recurrence":{"type":"string","enum":["Never","Daily","Weekly","Monthly"]},"recurrence_interval":{"type":"integer"}},"required":["name","due_date"]}')}}]);
+//# sourceMappingURL=2.de307123.chunk.js.map
