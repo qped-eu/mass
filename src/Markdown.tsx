@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw'
 import { useEffect, useState } from 'react';
 
 const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) => {
@@ -36,6 +37,7 @@ const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) 
 
     return <ReactMarkdown 
 				remarkPlugins={[remarkGfm]}
+				rehypePlugins={[rehypeRaw]}
 				components={markdownComponent}
 				children={input}
 				transformImageUri={uri =>
