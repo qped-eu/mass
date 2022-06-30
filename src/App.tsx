@@ -1,4 +1,4 @@
-import { Fragment, useState, useMemo, useEffect } from 'react';
+import { Fragment, useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { JsonForms } from '@jsonforms/react';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -6,10 +6,9 @@ import Typography from '@mui/material/Typography';
 import logo from './logo.png';
 import './App.css';
 import schema from './mass.schema.json';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { Tabs, Tab } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
+import Markdown from './Markdown'
 //import uischema from './uischema.json';
 import {
   materialCells,
@@ -23,6 +22,13 @@ const useStyles = makeStyles({
   container: {
     padding: '1em',
     width: '100%',
+  },
+  markdownContainer: {
+    width: '90%',
+	borderRadius: '10px',
+	border: '1px solid gray',
+	margin: 'auto',
+	padding: '20px',
   },
   title: {
     textAlign: 'center',
@@ -55,14 +61,38 @@ const renderers = [
   { tester: ratingControlTester, renderer: RatingControl },
 ];
 
+const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
+    const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
+
+    const [width, setWidth] = useState<number | undefined>(undefined);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(getWidth());
+        };
+
+        if (myRef.current) {
+            setWidth(getWidth());
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [myRef, getWidth]);
+
+    return width && width > 25 ? width - 25 : width;
+};
+
 const App = () => {
-  const classes = useStyles();
-  const [data, setData] = useState<any>();
-  const [mass, setMass] = useState<any>();
-  const [doku, setDoku] = useState<any>();
-  const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
-  const qped_mass = 'qped-mass.md';
-  const qped_doku = 'qped-doku.md';
+	const classes = useStyles();
+	const [data, setData] = useState<any>();
+	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
+	const qped_mass = 'qped-mass.md';
+	const qped_doku = 'qped-doku.md';
+	const divRef = useRef<HTMLDivElement>(null);
+    const maxWidth = useResize(divRef);
 
   const clearData = () => {
     setData({});
@@ -71,25 +101,6 @@ const App = () => {
   const copyData = () => {
 	navigator.clipboard.writeText(JSON.stringify(data));
   };
-  
-  useEffect(() => {
-        import(`./${qped_mass}`)
-            .then(res => {
-                fetch(res.default)
-                    .then(res => res.text())
-                    .then(res => setMass(res))
-                    .catch(err => console.log(err));
-            })
-            .catch(err => console.log(err));
-		import(`./${qped_doku}`)
-            .then(res => {
-                fetch(res.default)
-                    .then(res => res.text())
-                    .then(res => setDoku(res))
-                    .catch(err => console.log(err));
-            })
-            .catch(err => console.log(err));
-    });
 
 	return (
 		<Fragment>
@@ -102,13 +113,14 @@ const App = () => {
 			</div>
 			<Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
 				<Tab eventKey="home" title="Home">
-					<ReactMarkdown 
-						remarkPlugins={[remarkGfm]}
-						children={mass}
-						transformImageUri={uri =>
-							uri.startsWith("http") ? uri : `${window.location.href}/${uri}` 
-						}
-					/>
+					<div 
+						ref={divRef}
+						className={classes.markdownContainer}
+					>
+						<Markdown 
+							maxWidth={maxWidth}
+							mdFile={qped_mass}/>
+					</div>
 				</Tab>
 				<Tab eventKey="configurator" title="O3 Configurator">
 					<Grid
@@ -123,10 +135,10 @@ const App = () => {
 							</Typography>
 							<div className={classes.demoform}>
 								<JsonForms
+									renderers={renderers}
 									schema={schema}
 									//   uischema={uischema}
 									data={data}
-									renderers={renderers}
 									cells={materialCells}
 									onChange={({ errors, data }) => setData(data)}
 								/>
@@ -170,7 +182,9 @@ const App = () => {
 					</Grid>
 				</Tab>
 				<Tab eventKey="doku" title="O3 Dokumentation">
-					<h2>WIP</h2>
+					<div className={classes.markdownContainer}>
+						WIP
+					</div>
 				</Tab>
 			</Tabs>
     </Fragment>
