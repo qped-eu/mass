@@ -23,13 +23,11 @@ jobs:
       - name: Install dependencies
         run: npm install
         
-      - name: Install JSON-forms
-        run: |
-          npm install --save @jsonforms/core
-          npm install --save @jsonforms/react
-          npm install --save @jsonforms/material-renderers
-          npm install --save @mui/material
-          npm install --save @mui/icons-material
+      - name: Install python dependencies
+        run: pip install json-schema-for-humans
+        
+      - name: Run JSON Schema for humans
+        run: sh src/doc2desc.sh
         
       - name: Run tests
         run: npm test
