@@ -39,9 +39,9 @@ containing the configuration details.
 
 To generate this JSON object, you can use our [MASS Configuration web form](index.html).
 
-We also provide a full [documentation of the MASS configuration JSON object](mass.md).
+We also provide a full [documentation of the MASS configuration JSON object](mass.html).
 
-##Tutorials
+## Tutorials
 
 To get started, please try the tutorials for our different MASS feedback tools:
 
@@ -56,7 +56,7 @@ To get started, please try the tutorials for our different MASS feedback tools:
 
 The [Marburg university Auto Assess System (MASS)](http://qped.github.io) is part of the project [Quality-focussed Programming Education (QPED)](https://qped.eu), co-funded by the [Erasmus+-Program of the European Union](https://erasmus-plus.ec.europa.eu) (QPED 2020-1-NL01-KA203-064626).
 
-##QPED Partners
+## QPED Partners
 
 ![Logos of the partners in the QPED project are Phillip-University of Marburg, Germany;
 Open University of the Netherlands; Technical University of Eindhoven, The Netherlands;
