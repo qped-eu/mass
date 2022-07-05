@@ -7,7 +7,7 @@ This is a quick exemplary tutorial for setting up the design settings in order t
 1. [General Information](#general-information)
 2. [Used Example](#used-example)
    1. [Class Bag.java](#class-bag.java)
-   2. [Class Mapper.java](class-mapper.java)
+   2. [Class Mapper.java](#class-mapper.java)
 3. [Create The Design Settings File](#create-the-design-settings-file)
    1. [Settings We Want To Use](#settings-we-want-to-use)
    2. [Build The JSON File](#build-the-json-file)
@@ -17,7 +17,7 @@ This is a quick exemplary tutorial for setting up the design settings in order t
 5. [Submit to Quarterfall](#submit-to-quarterfall)
 6. [Generated Feedback](#generated-feedback)
 
-## General Information
+## <a name="general-information"></a>General Information
 The Design Checker is a sub-component to a Mass Checker that is able to execute all kinds of checkers (e.g. checkers for syntax, style, semantic, class, test):
 
 ```mermaid
@@ -32,10 +32,10 @@ E(_Checker)
 ```
 The Design Checker's main task is to check classes for their class design metrics. To generate feedback for these kinds of metrics, a configuration for every lower and upper threshold of a metric is necessary. If a threshold is not set, a default one will be used. For the checker to work properly, the configuration has to be submitted as a `.json` file.
 
-## Used Example
+## <a name="used-example"></a>Used Example
 As an example, we will be using a project containing two different classes:
 
-### Class `Bag.java`
+### <a name="class-bag.java"></a>Class `Bag.java`
 ```java
 package qf.tutorials.design;
   
@@ -74,7 +74,7 @@ public class Bag {
 	}  
 }
 ```
-### Class `Mapper.java`
+### <a name="class-mapper.java"></a>Class `Mapper.java`
 ```java
 package qf.tutorials.design;
 
@@ -109,10 +109,10 @@ public class Mapper {
 }
 ```
 
-## Create The Design Settings File
+## <a name="create-the-design-settings-file"></a>Create The Design Settings File
 In this tutorial, we configure a small selection of settings that will be used to run the checker (not a complete list, for further information of other settings see documentation).
 
-### Settings We Want To Use
+### <a name="settings-we-want-to-use"></a>Settings We Want To Use
 In this example, to keep things simple, we want to check our files for three different class design metrics:
 | Setting | Value |Meaning|
 |--|--|--|  
@@ -124,8 +124,8 @@ In this example, to keep things simple, we want to check our files for three dif
 - We check for Lines of Code (Is our class sizing alright?).
 - We check for Number of Children (shouldn't produce feedback since our classes do not use inheritance).
 
-### Build The JSON File
-#### Manually
+### <a name="build-the-json-file"></a>Build The JSON File
+#### <a name="manually"></a>Manually
 If we want to check a submission's design by these settings, firstly we have to build following `.json` file:
 ```json
 {
@@ -138,21 +138,21 @@ If we want to check a submission's design by these settings, firstly we have to 
 ```
 In this case, the file was written manually. Keep track to use this exact  `.json` / JSON Schema syntax.
 
-#### From Website
+#### <a name="from-website"></a>From Website
 Alternatively, you can build your `.json`file from this website using JSON Schema: https://www.link-to-json-schema-generator
 This results in the same output file as in [previous subsection](#manually).
 ![Screenshot of JSON Schema website.](public/images/design_website-json-schema.png)
 
-## Enable The Design Checker
+## <a name="enable-the-design-checker"></a>Enable The Design Checker
 The generated or manually created settings file should be added to the `qf.mass` object and be named `"design"`. By doing so, the mass checker knows that the class design has to be checked when submitting the main file later.
 
 
-## Submit to Quarterfall
+## <a name="submit-to-quarterfall"></a>Submit to Quarterfall
 This file can then be used to configure the Design Checker's settings. On Quarterfall's feedback tab, submit this file with the created design settings as `.json` formatted file.<br>
 ![Screenshot of submitting the answer zip file in Quarterfall.](public/images/design_submit-settings.png)<br><br>
 Also the students are able to submit their answer as a `.zip` folder on Quarterfall. To run the checker, simply click **CHECK ANSWER**.<br>
 ![Screenshot of submitting the design settings JSON file in Quarterfall.](images/design_submit-answer.png)
-## Generated Feedback
+## <a name="generated-feedback"></a>Generated Feedback
 ### Feedback for Class `Bag`
 #### Cyclomatic Complexity
 ```txt

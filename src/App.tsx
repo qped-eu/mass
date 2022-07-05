@@ -102,11 +102,20 @@ const App = () => {
 	const classes = useStyles();
 	const [data, setData] = useState<any>(initialData);
 	const [tab, setTab] = useState<any>('home');
+	const [tut, setTut] = useState<any>('syntax');
 	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 	const qped_mass = 'qped-mass.md';
 	const mass_doku = 'mass-doku.md';
+	//const tut_syntax = 'tutorials/qped-syntax.md';
+	//const tut_style = 'tutorials/qped-style.md';
+	//const tut_semantic = 'tutorials/qped-semantic.md';
+	const tut_class = 'tutorials/qped-class.md';
+	const tut_coverage = 'tutorials/qped-coverage.md';
+	const tut_design = 'tutorials/qped-design.md';
 	const divRef = useRef<HTMLDivElement>(null);
     const maxWidth = useResize(divRef);
+	const defaultTab = "home";
+	const defaultTutorial = "syntax";
 
 	const clearData = () => {
 		setData(initialData);
@@ -118,13 +127,16 @@ const App = () => {
 	
 	useEffect(() => {
 		const url = new URLSearchParams(window.location.search);
-		const activeTab = url.get('tab');
+		let activeTab = url.get('tab');
+		let activeTutorial = url.get('tut');
 		if(activeTab === null){
-			setTab("home");
+			activeTab = defaultTab;
 		}
-		else{
-			setTab(activeTab);
+		if(activeTutorial === null){
+			activeTutorial = defaultTutorial;
 		}
+		setTab(activeTab);
+		setTut(activeTutorial);
 	}, []);
 
 	return (
@@ -137,13 +149,13 @@ const App = () => {
 				</header>
 			</div>
 			<Tabs
-				defaultActiveKey="home"
+				defaultActiveKey={defaultTab}
 				id="uncontrolled-tab-example"
 				className="mb-3"
 				activeKey={tab}
 				onSelect={(k) => setTab(k)}
 			>
-				<Tab eventKey="home" title="Home">
+				<Tab eventKey={defaultTab} title="Home">
 					<div 
 						ref={divRef}
 						className={classes.markdownContainer}
@@ -217,13 +229,58 @@ const App = () => {
 					<div className={classes.markdownContainer}>
 						<Markdown 
 							maxWidth={maxWidth}
-							mdFile={mass_doku}/>
+							mdFile={mass_doku}
+							transformLinks={false}/>
 					</div>
 				</Tab>
-				<Tab eventKey="tut" title="O3 Tutorials">
-					<div className={classes.markdownContainer}>
-						WIP
-					</div>
+				<Tab eventKey="tuts" title="O3 Tutorials">
+					<Tabs
+						defaultActiveKey={defaultTutorial}
+						id="uncontrolled-tab-example"
+						className="mb-3"
+						activeKey={tut}
+						onSelect={(k) => setTut(k)}
+					>	
+						<Tab eventKey={defaultTutorial} title="Syntax Checker">
+							<div className={classes.markdownContainer}>
+								WIP
+							</div>
+						</Tab>
+						<Tab eventKey="style" title="Style Checker">
+							<div className={classes.markdownContainer}>
+								WIP
+							</div>
+						</Tab>
+						<Tab eventKey="semantic" title="Solution Approach Checker">
+							<div className={classes.markdownContainer}>
+								WIP
+							</div>
+						</Tab>
+						<Tab eventKey="coverage" title="Coverage Checker">
+							<div className={classes.markdownContainer}>
+								<Markdown 
+									maxWidth={maxWidth}
+									mdFile={tut_coverage}
+									transformLinks={false}/>
+							</div>
+						</Tab>
+						<Tab eventKey="class" title="Class Checker">
+							<div className={classes.markdownContainer}>
+								<Markdown 
+									maxWidth={maxWidth}
+									mdFile={tut_class}
+									transformLinks={false}/>
+							</div>
+						</Tab>							
+						<Tab eventKey="design" title="Design Checker">
+							<div className={classes.markdownContainer}>
+								<Markdown 
+									maxWidth={maxWidth}
+									mdFile={tut_design}
+									transformLinks={false}/>
+							</div>
+						</Tab>
+					</Tabs>
 				</Tab>
 			</Tabs>
     </Fragment>
