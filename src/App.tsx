@@ -1,15 +1,16 @@
 import { Fragment, useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { JsonForms } from '@jsonforms/react';
+import { createAjv } from '@jsonforms/core';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import logo from './logo.png';
 import './App.css';
 import schema from './mass.schema.json';
+import uischema from './mass.uischema.json';
 import { Tabs, Tab } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 import Markdown from './Markdown'
-//import uischema from './uischema.json';
 import {
   materialCells,
   materialRenderers,
@@ -78,30 +79,41 @@ const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
 	return width && width > 25 ? width - 25 : width;
 };
 
+const initialData = {
+  "styleSelected": false,
+  "semanticsSelected": false,
+  "coverageSelected": false,
+  "classSelected": false,
+  "metricsSelected": false,
+  "syntax": {
+    "level": "BEGINNER"
+  }
+};
+
 const renderers = [
   ...materialRenderers,
   //register custom renderers
   { tester: ratingControlTester, renderer: RatingControl },
 ];
 
+const handleDefaultsAjv = createAjv({useDefaults: true});
+
 const App = () => {
 	const classes = useStyles();
-	const [data, setData] = useState<any>();
+	const [data, setData] = useState<any>(initialData);
 	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 	const qped_mass = 'qped-mass.md';
 	const mass_doku = 'mass-doku.md';
 	const divRef = useRef<HTMLDivElement>(null);
     const maxWidth = useResize(divRef);
-	
 
-
-  const clearData = () => {
-    setData({});
-  };
+	const clearData = () => {
+		setData({});
+	};
   
-  const copyData = () => {
-	navigator.clipboard.writeText(JSON.stringify(data));
-  };
+	const copyData = () => {
+		navigator.clipboard.writeText(JSON.stringify(data));
+	};
 
 	return (
 		<Fragment>
@@ -138,10 +150,11 @@ const App = () => {
 								<JsonForms
 									renderers={renderers}
 									schema={schema}
-									//   uischema={uischema}
+									uischema={uischema}
 									data={data}
 									cells={materialCells}
 									onChange={({ errors, data }) => setData(data)}
+									ajv={handleDefaultsAjv}
 								/>
 							</div>
 						</Grid>

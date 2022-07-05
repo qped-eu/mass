@@ -39,7 +39,7 @@ containing the configuration details.
 
 To generate this JSON object, you can use our [MASS Configuration web form](index.html).
 
-We also provide a full [documentation of the MASS configuration JSON object](mass.md).
+We also provide a full [documentation of the MASS configuration JSON object](mass.html).
 
 ## Tutorials
 
