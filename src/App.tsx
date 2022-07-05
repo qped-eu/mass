@@ -109,7 +109,7 @@ const App = () => {
     const maxWidth = useResize(divRef);
 
 	const clearData = () => {
-		setData({});
+		setData(initialData);
 	};
   
 	const copyData = () => {
