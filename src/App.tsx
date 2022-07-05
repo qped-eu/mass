@@ -115,6 +115,17 @@ const App = () => {
 	const copyData = () => {
 		navigator.clipboard.writeText(JSON.stringify(data));
 	};
+	
+	useEffect(() => {
+		const url = new URLSearchParams(window.location.search);
+		const activeTab = url.get('tab');
+		if(activeTab === null){
+			setTab("home");
+		}
+		else{
+			setTab(activeTab);
+		}
+	}, []);
 
 	return (
 		<Fragment>
