@@ -1,0 +1,135 @@
+{
+	"type": "Categorization",
+	"elements": [
+		{
+			"type": "Category",
+			"label": "Main Settings",
+			"elements": [
+				{
+					"type": "Control",
+					"scope": "#/properties/syntax"
+				},
+				{
+					"type": "HorizontalLayout",
+					"elements": [
+						{
+							"type": "Control",
+							"scope": "#/properties/styleSelected"
+						},
+						{
+							"type": "Control",
+							"scope": "#/properties/semanticsSelected"
+						},
+						{
+							"type": "Control",
+							"scope": "#/properties/coverageSelected"
+						},
+						{
+							"type": "Control",
+							"scope": "#/properties/classSelected"
+						},
+						{
+							"type": "Control",
+							"scope": "#/properties/metricsSelected"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Category",
+			"label": "Style Checker",
+			"elements": [
+				{
+					"type": "Control",
+					"scope": "#/properties/style"
+				}
+			],
+			"rule": {
+				"effect": "SHOW",
+				"condition": {
+					"scope": "#/properties/styleSelected",
+					"schema": {
+						"const": true
+					}
+				}
+			}
+		},
+		{
+			"type": "Category",
+			"label": "Semantics Checker",
+			"elements": [
+				{
+					"type": "Control",
+					"scope": "#/properties/semantics"
+				}
+			],
+			"rule": {
+				"effect": "SHOW",
+				"condition": {
+					"scope": "#/properties/semanticsSelected",
+					"schema": {
+						"const": true
+					}
+				}
+			}
+		},
+		{
+			"type": "Category",
+			"label": "Coverage Checker",
+			"elements": [
+				{
+					"type": "Control",
+					"scope": "#/properties/coverage"
+				}
+			],
+			"rule": {
+				"effect": "SHOW",
+				"condition": {
+					"scope": "#/properties/coverageSelected",
+					"schema": {
+						"const": true
+					}
+				}
+			}
+		},
+		{
+			"type": "Category",
+			"label": "Class Checker",
+			"elements": [
+				{
+					"type": "Control",
+					"scope": "#/properties/class"
+				}
+			],
+			"rule": {
+				"effect": "SHOW",
+				"condition": {
+					"scope": "#/properties/classSelected",
+					"schema": {
+						"const": true
+					}
+				}
+			}
+		},
+		{
+			"type": "Category",
+			"label": "Metrics Checker",
+			"elements": [
+				{
+					"type": "Control",
+					"scope": "#/properties/metrics"
+				}
+			],
+			"rule": {
+				"effect": "SHOW",
+				"condition": {
+					"scope": "#/properties/metricsSelected",
+					"schema": {
+						"const": true
+					}
+				}
+			}
+		}
+	]
+}
