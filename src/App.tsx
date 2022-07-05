@@ -230,7 +230,7 @@ const App = () => {
 						<Markdown 
 							maxWidth={maxWidth}
 							mdFile={mass_doku}
-							transformLinks={false}/>
+							linkToPage="index.html?tab=doku"/>
 					</div>
 				</Tab>
 				<Tab eventKey="tuts" title="O3 Tutorials">
@@ -261,7 +261,7 @@ const App = () => {
 								<Markdown 
 									maxWidth={maxWidth}
 									mdFile={tut_coverage}
-									transformLinks={false}/>
+									linkToPage="index.html?tab=tuts&tut=coverage"/>
 							</div>
 						</Tab>
 						<Tab eventKey="class" title="Class Checker">
@@ -269,7 +269,7 @@ const App = () => {
 								<Markdown 
 									maxWidth={maxWidth}
 									mdFile={tut_class}
-									transformLinks={false}/>
+									linkToPage="index.html?tab=tuts&tut=class"/>
 							</div>
 						</Tab>							
 						<Tab eventKey="design" title="Design Checker">
@@ -277,7 +277,7 @@ const App = () => {
 								<Markdown 
 									maxWidth={maxWidth}
 									mdFile={tut_design}
-									transformLinks={false}/>
+									linkToPage="index.html?tab=tuts&tut=design"/>
 							</div>
 						</Tab>
 					</Tabs>

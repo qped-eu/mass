@@ -3,44 +3,47 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw'
 import { useEffect, useState } from 'react';
 
-const transformUri = function(uri: string){
-	if(uri.startsWith("http")){
-		return uri;
-	}
-	let url = window.location.href;
-	let newurl = url.split(/\?|#/).shift();
-	url = newurl === undefined ? "" :newurl;
-	if(url.endsWith("/")){
-		return `${url}${uri}`;							
-	}
-	if(url.endsWith("html")){
-		url = url.slice(0, url.lastIndexOf('/'));
-	}
-	return `${url}/${uri}`;
-}
-
-const Markdown = ({ mdFile, maxWidth, transformLinks }: { mdFile?: string, maxWidth?: number, transformLinks?: boolean }) => {
+const Markdown = ({ mdFile, maxWidth, linkToPage }: { mdFile?: string, maxWidth?: number, linkToPage?: string }) => {
     const [input, setInput] = useState<any>();
 	const markdownComponent = {
-	img: ({
-		alt,
-		src,
-		title,
-	}: {
-		alt?: string;
-		src?: string;
-		title?: string;
-	}) => (
-		<img 
-			alt={alt} 
-			src={src} 
-			title={title} 
-			style={{ maxWidth: maxWidth }} 
-		/>
-	)
-  };
+		img: ({
+			alt,
+			src,
+			title,
+		}: {
+			alt?: string;
+			src?: string;
+			title?: string;
+		}) => (
+			<img 
+				alt={alt} 
+				src={src} 
+				title={title} 
+				style={{ maxWidth: maxWidth }} 
+			/>
+		)
+	};
+	
+	const transformUri = function(uri: string){
+		if(uri.startsWith("http")){
+			return uri;
+		}
+		let url = window.location.href;
+		let newurl = url.split(/\?|#/).shift();
+		url = newurl === undefined ? "" :newurl;
+		if(url.endsWith("/")){
+			return `${url}${uri}`;							
+		}
+		if(url.endsWith("html")){
+			url = url.slice(0, url.lastIndexOf('/'));
+		}
+		if(uri.startsWith("#")){
+			return `${url}/${linkToPage}${uri}`
+		}
+		return `${url}/${uri}`;
+	}
 
-    useEffect(() => {
+	useEffect(() => {
         import(`./${mdFile}`)
             .then(res => {
                 fetch(res.default)
@@ -57,10 +60,7 @@ const Markdown = ({ mdFile, maxWidth, transformLinks }: { mdFile?: string, maxWi
 				components={markdownComponent}
 				children={input}
 				transformImageUri={uri => {
-						if(transformLinks){
-							return transformUri(uri);
-						}
-						return uri;
+						return transformUri(uri);
 					}
 				}
 				transformLinkUri={uri => {
