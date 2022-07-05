@@ -101,6 +101,7 @@ const handleDefaultsAjv = createAjv({useDefaults: true});
 const App = () => {
 	const classes = useStyles();
 	const [data, setData] = useState<any>(initialData);
+	const [tab, setTab] = useState<any>('home');
 	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 	const qped_mass = 'qped-mass.md';
 	const mass_doku = 'mass-doku.md';
@@ -108,12 +109,23 @@ const App = () => {
     const maxWidth = useResize(divRef);
 
 	const clearData = () => {
-		setData({});
+		setData(initialData);
 	};
   
 	const copyData = () => {
 		navigator.clipboard.writeText(JSON.stringify(data));
 	};
+	
+	useEffect(() => {
+		const url = new URLSearchParams(window.location.search);
+		const activeTab = url.get('tab');
+		if(activeTab === null){
+			setTab("home");
+		}
+		else{
+			setTab(activeTab);
+		}
+	}, []);
 
 	return (
 		<Fragment>
@@ -124,7 +136,13 @@ const App = () => {
 					<p className='App-intro'>Easily configure our checkers for Quarterfall.</p>
 				</header>
 			</div>
-			<Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+			<Tabs
+				defaultActiveKey="home"
+				id="uncontrolled-tab-example"
+				className="mb-3"
+				activeKey={tab}
+				onSelect={(k) => setTab(k)}
+			>
 				<Tab eventKey="home" title="Home">
 					<div 
 						ref={divRef}
@@ -135,7 +153,7 @@ const App = () => {
 							mdFile={qped_mass}/>
 					</div>
 				</Tab>
-				<Tab eventKey="configurator" title="O3 Configurator">
+				<Tab eventKey="config" title="O3 Configurator">
 					<Grid
 						container
 						justifyContent={'center'}
@@ -188,7 +206,7 @@ const App = () => {
 										color='primary'
 										variant='contained'
 									>
-										Clear data
+										Reset data
 									</Button>
 								</Grid>
 							</Grid>
@@ -200,6 +218,11 @@ const App = () => {
 						<Markdown 
 							maxWidth={maxWidth}
 							mdFile={mass_doku}/>
+					</div>
+				</Tab>
+				<Tab eventKey="tut" title="O3 Tutorials">
+					<div className={classes.markdownContainer}>
+						WIP
 					</div>
 				</Tab>
 			</Tabs>
