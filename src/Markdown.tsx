@@ -47,7 +47,13 @@ const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) 
 						let url = window.location.href;
 						let newurl = url.split(/\?|#/).shift();
 						url = newurl === undefined ? "" :newurl;
-						return `${url}${uri}` 
+						if(url.endsWith("/")){
+							return `${url}${uri}`;							
+						}
+						if(url.endsWith("html")){
+							url = url.slice(0, url.lastIndexOf('/'));
+						}
+						return `${url}/${uri}`;
 					}
 				}
 			/>
