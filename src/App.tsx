@@ -195,7 +195,7 @@ const App = () => {
 										color='primary'
 										variant='contained'
 									>
-										Clear data
+										Reset data
 									</Button>
 								</Grid>
 							</Grid>
