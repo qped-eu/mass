@@ -60,6 +60,10 @@ const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) 
 						return transformUri(uri);
 					}
 				}
+				transformLinkUri={uri => {
+						return transformUri(uri);
+					}
+				}
 			/>
 };
 
