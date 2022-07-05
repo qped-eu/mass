@@ -101,6 +101,7 @@ const handleDefaultsAjv = createAjv({useDefaults: true});
 const App = () => {
 	const classes = useStyles();
 	const [data, setData] = useState<any>(initialData);
+	const [key, setKey] = useState<any>('home');
 	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 	const qped_mass = 'qped-mass.md';
 	const mass_doku = 'mass-doku.md';
@@ -124,7 +125,13 @@ const App = () => {
 					<p className='App-intro'>Easily configure our checkers for Quarterfall.</p>
 				</header>
 			</div>
-			<Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
+			<Tabs
+				defaultActiveKey="home"
+				id="uncontrolled-tab-example"
+				className="mb-3"
+				activeKey={key}
+				onSelect={(k) => setKey(k)}
+			>
 				<Tab eventKey="home" title="Home">
 					<div 
 						ref={divRef}
@@ -202,6 +209,7 @@ const App = () => {
 							mdFile={mass_doku}/>
 					</div>
 				</Tab>
+				
 			</Tabs>
     </Fragment>
   );
