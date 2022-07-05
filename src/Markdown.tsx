@@ -3,6 +3,22 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw'
 import { useEffect, useState } from 'react';
 
+const transformUri = function(uri: string){
+	if(uri.startsWith("http")){
+		return uri;
+	}
+	let url = window.location.href;
+	let newurl = url.split(/\?|#/).shift();
+	url = newurl === undefined ? "" :newurl;
+	if(url.endsWith("/")){
+		return `${url}${uri}`;							
+	}
+	if(url.endsWith("html")){
+		url = url.slice(0, url.lastIndexOf('/'));
+	}
+	return `${url}/${uri}`;
+}
+
 const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) => {
     const [input, setInput] = useState<any>();
 	const markdownComponent = {
@@ -41,19 +57,7 @@ const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) 
 				components={markdownComponent}
 				children={input}
 				transformImageUri={uri => {
-						if(uri.startsWith("http")){
-							return uri;
-						}
-						let url = window.location.href;
-						let newurl = url.split(/\?|#/).shift();
-						url = newurl === undefined ? "" :newurl;
-						if(url.endsWith("/")){
-							return `${url}${uri}`;							
-						}
-						if(url.endsWith("html")){
-							url = url.slice(0, url.lastIndexOf('/'));
-						}
-						return `${url}/${uri}`;
+						return transformUri(uri);
 					}
 				}
 			/>
