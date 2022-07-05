@@ -224,7 +224,8 @@ const App = () => {
 					<div className={classes.markdownContainer}>
 						<Markdown 
 							maxWidth={maxWidth}
-							mdFile={mass_doku}/>
+							mdFile={mass_doku}
+							transformLinks={false}/>
 					</div>
 				</Tab>
 				<Tab eventKey="tuts" title="O3 Tutorials">
@@ -254,21 +255,24 @@ const App = () => {
 							<div className={classes.markdownContainer}>
 								<Markdown 
 									maxWidth={maxWidth}
-									mdFile={tut_coverage}/>
+									mdFile={tut_coverage}
+									transformLinks={false}/>
 							</div>
 						</Tab>
 						<Tab eventKey="class" title="Class Checker">
 							<div className={classes.markdownContainer}>
 								<Markdown 
 									maxWidth={maxWidth}
-									mdFile={tut_class}/>
+									mdFile={tut_class}
+									transformLinks={false}/>
 							</div>
 						</Tab>							
 						<Tab eventKey="design" title="Design Checker">
 							<div className={classes.markdownContainer}>
 								<Markdown 
 									maxWidth={maxWidth}
-									mdFile={tut_design}/>
+									mdFile={tut_design}
+									transformLinks={false}/>
 							</div>
 						</Tab>
 					</Tabs>

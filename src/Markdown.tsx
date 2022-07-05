@@ -19,7 +19,7 @@ const transformUri = function(uri: string){
 	return `${url}/${uri}`;
 }
 
-const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) => {
+const Markdown = ({ mdFile, maxWidth, transformLinks }: { mdFile?: string, maxWidth?: number, transformLinks?: boolean }) => {
     const [input, setInput] = useState<any>();
 	const markdownComponent = {
 	img: ({
@@ -57,7 +57,10 @@ const Markdown = ({ mdFile, maxWidth }: { mdFile?: string, maxWidth?: number }) 
 				components={markdownComponent}
 				children={input}
 				transformImageUri={uri => {
-						return transformUri(uri);
+						if(transformLinks){
+							return transformUri(uri);
+						}
+						return uri;
 					}
 				}
 				transformLinkUri={uri => {
