@@ -102,9 +102,13 @@ const App = () => {
 	const classes = useStyles();
 	const [data, setData] = useState<any>(initialData);
 	const [tab, setTab] = useState<any>('home');
+	const [tut, setTut] = useState<any>('syntax');
 	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 	const qped_mass = 'qped-mass.md';
 	const mass_doku = 'mass-doku.md';
+	const tut_class = 'tutorials/qped-class.md';
+	const tut_coverage = 'tutorials/qped-coverage.md';
+	const tut_design = 'tutorials/qped-design.md';
 	const divRef = useRef<HTMLDivElement>(null);
     const maxWidth = useResize(divRef);
 
@@ -220,10 +224,51 @@ const App = () => {
 							mdFile={mass_doku}/>
 					</div>
 				</Tab>
-				<Tab eventKey="tut" title="O3 Tutorials">
-					<div className={classes.markdownContainer}>
-						WIP
-					</div>
+				<Tab eventKey="tuts" title="O3 Tutorials">
+					<Tabs
+						defaultActiveKey="syntax"
+						id="uncontrolled-tab-example"
+						className="mb-3"
+						activeKey={tut}
+						onSelect={(k) => setTut(k)}
+					>	
+						<Tab eventKey="syntax" title="Syntax Checker">
+							<div className={classes.markdownContainer}>
+								WIP
+							</div>
+						</Tab>
+						<Tab eventKey="style" title="Style Checker">
+							<div className={classes.markdownContainer}>
+								WIP
+							</div>
+						</Tab>
+						<Tab eventKey="semantic" title="Solution Approach Checker">
+							<div className={classes.markdownContainer}>
+								WIP
+							</div>
+						</Tab>
+						<Tab eventKey="coverage" title="Coverage Checker">
+							<div className={classes.markdownContainer}>
+								<Markdown 
+									maxWidth={maxWidth}
+									mdFile={tut_coverage}/>
+							</div>
+						</Tab>
+						<Tab eventKey="class" title="Class Checker">
+							<div className={classes.markdownContainer}>
+								<Markdown 
+									maxWidth={maxWidth}
+									mdFile={tut_class}/>
+							</div>
+						</Tab>							
+						<Tab eventKey="design" title="Design Checker">
+							<div className={classes.markdownContainer}>
+								<Markdown 
+									maxWidth={maxWidth}
+									mdFile={tut_design}/>
+							</div>
+						</Tab>
+					</Tabs>
 				</Tab>
 			</Tabs>
     </Fragment>
