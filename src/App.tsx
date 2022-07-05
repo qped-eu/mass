@@ -114,6 +114,8 @@ const App = () => {
 	const tut_design = 'tutorials/qped-design.md';
 	const divRef = useRef<HTMLDivElement>(null);
     const maxWidth = useResize(divRef);
+	const defaultTab = "home";
+	const defaultTutorial = "syntax";
 
 	const clearData = () => {
 		setData(initialData);
@@ -125,13 +127,16 @@ const App = () => {
 	
 	useEffect(() => {
 		const url = new URLSearchParams(window.location.search);
-		const activeTab = url.get('tab');
+		let activeTab = url.get('tab');
+		let activeTutorial = url.get('tut');
 		if(activeTab === null){
-			setTab("home");
+			activeTab = defaultTab;
 		}
-		else{
-			setTab(activeTab);
+		if(activeTutorial === null){
+			activeTutorial = defaultTutorial;
 		}
+		setTab(activeTab);
+		setTut(activeTutorial);
 	}, []);
 
 	return (
@@ -144,13 +149,13 @@ const App = () => {
 				</header>
 			</div>
 			<Tabs
-				defaultActiveKey="home"
+				defaultActiveKey={defaultTab}
 				id="uncontrolled-tab-example"
 				className="mb-3"
 				activeKey={tab}
 				onSelect={(k) => setTab(k)}
 			>
-				<Tab eventKey="home" title="Home">
+				<Tab eventKey={defaultTab} title="Home">
 					<div 
 						ref={divRef}
 						className={classes.markdownContainer}
@@ -230,13 +235,13 @@ const App = () => {
 				</Tab>
 				<Tab eventKey="tuts" title="O3 Tutorials">
 					<Tabs
-						defaultActiveKey="syntax"
+						defaultActiveKey={defaultTutorial}
 						id="uncontrolled-tab-example"
 						className="mb-3"
 						activeKey={tut}
 						onSelect={(k) => setTut(k)}
 					>	
-						<Tab eventKey="syntax" title="Syntax Checker">
+						<Tab eventKey={defaultTutorial} title="Syntax Checker">
 							<div className={classes.markdownContainer}>
 								WIP
 							</div>
