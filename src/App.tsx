@@ -101,7 +101,7 @@ const handleDefaultsAjv = createAjv({useDefaults: true});
 const App = () => {
 	const classes = useStyles();
 	const [data, setData] = useState<any>(initialData);
-	const [key, setKey] = useState<any>('home');
+	const [tab, setTab] = useState<any>('home');
 	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 	const qped_mass = 'qped-mass.md';
 	const mass_doku = 'mass-doku.md';
@@ -129,8 +129,8 @@ const App = () => {
 				defaultActiveKey="home"
 				id="uncontrolled-tab-example"
 				className="mb-3"
-				activeKey={key}
-				onSelect={(k) => setKey(k)}
+				activeKey={tab}
+				onSelect={(k) => setTab(k)}
 			>
 				<Tab eventKey="home" title="Home">
 					<div 
@@ -142,7 +142,7 @@ const App = () => {
 							mdFile={qped_mass}/>
 					</div>
 				</Tab>
-				<Tab eventKey="configurator" title="O3 Configurator">
+				<Tab eventKey="config" title="O3 Configurator">
 					<Grid
 						container
 						justifyContent={'center'}
