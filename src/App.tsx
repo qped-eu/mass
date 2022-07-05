@@ -209,7 +209,11 @@ const App = () => {
 							mdFile={mass_doku}/>
 					</div>
 				</Tab>
-				
+				<Tab eventKey="tut" title="O3 Tutorials">
+					<div className={classes.markdownContainer}>
+						WIP
+					</div>
+				</Tab>
 			</Tabs>
     </Fragment>
   );
