@@ -1996,4 +1996,4 @@ The constructors and static initializations are taking into accounts as separate
 **Description:** Specify the metric's upper bound.
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2022-07-05 at 14:41:11 +0000
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2022-07-05 at 14:51:23 +0000
