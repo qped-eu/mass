@@ -106,6 +106,9 @@ const App = () => {
 	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 	const qped_mass = 'qped-mass.md';
 	const mass_doku = 'mass-doku.md';
+	//const tut_syntax = 'tutorials/qped-syntax.md';
+	//const tut_style = 'tutorials/qped-style.md';
+	//const tut_semantic = 'tutorials/qped-semantic.md';
 	const tut_class = 'tutorials/qped-class.md';
 	const tut_coverage = 'tutorials/qped-coverage.md';
 	const tut_design = 'tutorials/qped-design.md';
