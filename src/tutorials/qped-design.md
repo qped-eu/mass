@@ -141,7 +141,7 @@ In this case, the file was written manually. Keep track to use this exact  `.jso
 #### <a name="from-website"></a>From Website
 Alternatively, you can build your `.json`file from this website using JSON Schema: https://www.link-to-json-schema-generator
 This results in the same output file as in [previous subsection](#manually).
-![Screenshot of JSON Schema website.](public/images/design_website-json-schema.png)
+![Screenshot of JSON Schema website.](images/design_website-json-schema.png)
 
 ## <a name="enable-the-design-checker"></a>Enable The Design Checker
 The generated or manually created settings file should be added to the `qf.mass` object and be named `"design"`. By doing so, the mass checker knows that the class design has to be checked when submitting the main file later.
@@ -149,7 +149,7 @@ The generated or manually created settings file should be added to the `qf.mass`
 
 ## <a name="submit-to-quarterfall"></a>Submit to Quarterfall
 This file can then be used to configure the Design Checker's settings. On Quarterfall's feedback tab, submit this file with the created design settings as `.json` formatted file.<br>
-![Screenshot of submitting the answer zip file in Quarterfall.](public/images/design_submit-settings.png)<br><br>
+![Screenshot of submitting the answer zip file in Quarterfall.](images/design_submit-settings.png)<br><br>
 Also the students are able to submit their answer as a `.zip` folder on Quarterfall. To run the checker, simply click **CHECK ANSWER**.<br>
 ![Screenshot of submitting the design settings JSON file in Quarterfall.](images/design_submit-answer.png)
 ## <a name="generated-feedback"></a>Generated Feedback

@@ -57,16 +57,17 @@ const useStyles = makeStyles({
 });
 
 const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
-	const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
-
+	const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);	
 	const [width, setWidth] = useState<number | undefined>(undefined);
 
 	useEffect(() => {
+		let maxWidth = getWidth();
+		maxWidth = maxWidth === undefined ? 20 : maxWidth - 20;
 		const handleResize = () => {
-			setWidth(getWidth());
+			setWidth(maxWidth);
 		};	
 		if (myRef.current) {
-			setWidth(getWidth());
+			setWidth(maxWidth);
 		}
 	
 		window.addEventListener('resize', handleResize);
@@ -165,7 +166,7 @@ const App = () => {
 							mdFile={qped_mass}/>
 					</div>
 				</Tab>
-				<Tab eventKey="config" title="O3 Configurator">
+				<Tab eventKey="config" title="Mass Configurator">
 					<Grid
 						container
 						justifyContent={'center'}
@@ -225,7 +226,7 @@ const App = () => {
 						</Grid>
 					</Grid>
 				</Tab>
-				<Tab eventKey="doku" title="O3 Dokumentation">
+				<Tab eventKey="doku" title="Mass Dokumentation">
 					<div className={classes.markdownContainer}>
 						<Markdown 
 							maxWidth={maxWidth}
@@ -233,7 +234,7 @@ const App = () => {
 							linkToPage="index.html?tab=doku"/>
 					</div>
 				</Tab>
-				<Tab eventKey="tuts" title="O3 Tutorials">
+				<Tab eventKey="tuts" title="Mass Tutorials">
 					<Tabs
 						defaultActiveKey={defaultTutorial}
 						id="uncontrolled-tab-example"

@@ -44,7 +44,7 @@ Lucky you can use this Tool on this homepage  to generate your configurations fi
 
 You should see a page locking similar to this screenshot.
 
-![TOOL_INDEX.](../public/images/cov_homepage.png)
+![TOOL_INDEX.](images/cov_homepage.png)
 
 This is the starting page of the tool.
 On the left side you can see a button called 
@@ -94,7 +94,7 @@ To configure this feedback we have provide folloeing information:
 
 The tool should look like the following image:
 
-![feedback](../public/images/cov_feedback.png)
+![feedback](images/cov_feedback.png)
 
 The next step is to add the location of your additional resources like a zip-folder.
 In this folder you should add the class Even.java.
@@ -105,9 +105,9 @@ ADDITIONAL RESOURCE
 ```
 The following image shows an example with invented values.
 
-![add](../public/images/cov_additional.png)
+![add](images/cov_additional.png)
 
 At last we can copy the json object on the right side and add it to the 
 code block on the side of quarterfall.
 
-![add](../public/images/cov_finished.png)
+![add](images/cov_finished.png)
