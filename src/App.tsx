@@ -166,7 +166,7 @@ const App = () => {
 							mdFile={qped_mass}/>
 					</div>
 				</Tab>
-				<Tab eventKey="config" title="O3 Configurator">
+				<Tab eventKey="config" title="Mass Configurator">
 					<Grid
 						container
 						justifyContent={'center'}
@@ -226,7 +226,7 @@ const App = () => {
 						</Grid>
 					</Grid>
 				</Tab>
-				<Tab eventKey="doku" title="O3 Dokumentation">
+				<Tab eventKey="doku" title="Mass Dokumentation">
 					<div className={classes.markdownContainer}>
 						<Markdown 
 							maxWidth={maxWidth}
@@ -234,7 +234,7 @@ const App = () => {
 							linkToPage="index.html?tab=doku"/>
 					</div>
 				</Tab>
-				<Tab eventKey="tuts" title="O3 Tutorials">
+				<Tab eventKey="tuts" title="Mass Tutorials">
 					<Tabs
 						defaultActiveKey={defaultTutorial}
 						id="uncontrolled-tab-example"
