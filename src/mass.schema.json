@@ -18,10 +18,9 @@
           "type": "string",
           "title": "Student Level",
           "description": "Select the level of programming experience for the target student audience.",
-          "documentation": "Select the level of programming experience for the target student audience.",
+          "documentation": "Select the level of programming experience for the target student audience. BEGINNER for programming beginner. ADVANCED for programmer with experience.",
           "enum": [
             "BEGINNER",
-            "INTERMEDIATE",
             "ADVANCED"
           ],
           "default": "BEGINNER"
@@ -143,14 +142,14 @@
           "methodName": {
             "type": "string",
             "title": "Method Name",
-            "description": "Specify the name of the method to be checked.",
-            "documentation": "Specify the name of the method to be checked."
+            "description": "Specify the method name for which the constraints are checked.",
+            "documentation": "Specify the method name for which the constraints are checked."
           },
           "returnType": {
             "type": "string",
             "title": "Method Return Type",
-            "description": "Specify the return type of the method to be checked.",
-            "documentation": "Specify the return type of the method to be checked."
+            "description": "Specify the expected return type of the method for which the constraints are checked, e.g., void, int,...",
+            "documentation": "Specify the expected return type of the method for which the constraints are checked, e.g., void, int,..."
           },
           "recursive": {
             "type": "boolean",
