@@ -57,16 +57,17 @@ const useStyles = makeStyles({
 });
 
 const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
-	const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);
-
+	const getWidth = useCallback(() => myRef?.current?.offsetWidth, [myRef]);	
 	const [width, setWidth] = useState<number | undefined>(undefined);
 
 	useEffect(() => {
+		let maxWidth = getWidth();
+		maxWidth = maxWidth === undefined ? 20 : maxWidth - 20;
 		const handleResize = () => {
-			setWidth(getWidth());
+			setWidth(maxWidth);
 		};	
 		if (myRef.current) {
-			setWidth(getWidth());
+			setWidth(maxWidth);
 		}
 	
 		window.addEventListener('resize', handleResize);
