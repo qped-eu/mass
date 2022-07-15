@@ -1,5 +1,5 @@
-# Semantic checker Tutorial
-This is a quick exemplary tutorial for setting up the Semantic checker in **Quarterfall**.
+# Solution Approach Checker Tutorial
+This is a quick exemplary tutorial for setting up the Solution Approach Checker in **Quarterfall**.
 
 ## <a name="general-information"></a>General Information
 
@@ -7,7 +7,7 @@ The settings should be added to the qf.mass object and named semantic.
 You can find and build the JSON settings with the JSON schema website.
 In this tutorial, we will be handling an example with specific settings for this particular example.
 
-Our Example is a project with two classes.
+Our example is a project with two classes.
 ### <a name="class-bag.java"></a>Class `Bag.java`
 
 ```java
@@ -81,8 +81,8 @@ private String value;
 }
 ```
 
-The Setting we are using are intended to pervent the student from using while loops in the first class
-``Bag.java`` and from using recurive in the second class ``Mapper.java``
+The settings we are using are intended to prevent students from using while loops in the first class
+``Bag.java`` and from using recursion in the second class ``Mapper.java``
 ```json
 {
 "semantic"  :  [
@@ -101,7 +101,7 @@ The Setting we are using are intended to pervent the student from using while lo
   ]
 }
 ```
-After define the Settings click the student have to upload the answer in quarterfall and waith for a feedback.
-The feedback should look like this for the student:
+After the settings are defined, students have to upload the answer in Quarterfall and wait for a feedback.
+The feedback should look similar to this:
 
 ![semantic Feedback ](images/semantic_Feedback.png)

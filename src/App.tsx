@@ -108,8 +108,8 @@ const App = () => {
 	const qped_mass = 'qped-mass.md';
 	const mass_doku = 'mass-doku.md';
 	//const tut_syntax = 'tutorials/qped-syntax.md';
-	//const tut_style = 'tutorials/qped-style.md';
-	//const tut_semantic = 'tutorials/qped-semantic.md';
+	const tut_style = 'tutorials/qped-style.md';
+	const tut_semantics = 'tutorials/qped-semantics.md';
 	const tut_class = 'tutorials/qped-class.md';
 	const tut_coverage = 'tutorials/qped-coverage.md';
 	const tut_design = 'tutorials/qped-design.md';
@@ -249,12 +249,18 @@ const App = () => {
 						</Tab>
 						<Tab eventKey="style" title="Style Checker">
 							<div className={classes.markdownContainer}>
-								WIP
+								<Markdown 
+									maxWidth={maxWidth}
+									mdFile={tut_style}
+									linkToPage="index.html?tab=tuts&tut=style"/>
 							</div>
 						</Tab>
 						<Tab eventKey="semantic" title="Solution Approach Checker">
 							<div className={classes.markdownContainer}>
-								WIP
+								<Markdown 
+									maxWidth={maxWidth}
+									mdFile={tut_semantics}
+									linkToPage="index.html?tab=tuts&tut=semantics"/>
 							</div>
 						</Tab>
 						<Tab eventKey="coverage" title="Coverage Checker">

@@ -25,7 +25,7 @@ below. The Cloud Check action must be configured as follows:
 
 | property            | value                                  |
 |---------------------|----------------------------------------|
-| Git url             | https://github.com/Alucard2112/QPED-O3 |
+| Git url             | https://github.com/qped-eu/MASS-checker|
 | Git branch          | master                                 |
 | Path                |                                        |
 | Git private SSH key |                                        |
@@ -54,7 +54,7 @@ To get started, please try the tutorials for our different MASS feedback tools:
 
 ---
 
-The [Marburg university Auto Assess System (MASS)](http://qped.github.io) is part of the project [Quality-focussed Programming Education (QPED)](https://qped.eu), co-funded by the [Erasmus+-Program of the European Union](https://erasmus-plus.ec.europa.eu) (QPED 2020-1-NL01-KA203-064626).
+The [Marburg university Auto Assess System (MASS)](http://qped-eu.github.io/mass) is part of the project [Quality-focussed Programming Education (QPED)](https://qped.eu), co-funded by the [Erasmus+-Program of the European Union](https://erasmus-plus.ec.europa.eu) (QPED 2020-1-NL01-KA203-064626).
 
 ## QPED Partners
 

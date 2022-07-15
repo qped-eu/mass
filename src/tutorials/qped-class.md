@@ -1,5 +1,4 @@
-
-## Tutorial for Class Checker
+# Class Checker Tutorial
 This tutorial concerns itself with the use of the **class checker**, specifically how to set it up and use. The class checker has the ability to check for class properties, such as present class members and inherited classes. Furthermore it can check for the keywords that should be present in class elements, such as access and non access modifiers. 
 We will use an example task to illustrate different features of the checker, demonstrate what an example set up would look like and what the checker is going to look for in the provided student solution. Based on the information given and the student solution, possible mismatches are marked and generated feedback for.
 ## Task
@@ -16,7 +15,7 @@ The ``class Programmer`` implements the ``interface Employee`` and has a ``priva
 employee. The field is set with the implemented methods ``void sleeping()`` and ``void working()``, either with the status **sleeping** or **working**.
 Programmer also possesses a method ``public String getStatus()``, which outputs the current status of the programmer.
 
-## Example .json Input
+### Example .json Input
 ```json
 {
 	[
@@ -46,7 +45,7 @@ Programmer also possesses a method ``public String getStatus()``, which outputs 
 }
 ```
 
-## .json Input Explanation
+### .json Input Explanation
 The input allows us to specify, what we can expect from the solution. In particular, the input .json file is used to check against the student solution and generate feedback based on discrepancies.
 For each class we define an object, that holds all expected information that the class should contain, including the class declaration itself. Here we defined two objects for ``interface Employee`` and ``class Programmer``.
 In general, the only field required to be filled is *classKeywords*, such that it can be matched up with the students solution in the checker. The default value for *classKeywords* is ``class TestClass``.
@@ -58,9 +57,9 @@ The general structure of the keywords for  *classKeywords*, *fieldKeywords*, *in
 If you wish to allow any keyword in place of a concrete keyword in *fieldKeywords* or *methodKeywords*, you can replace the keyword placeholder with  a \* (asterisk).
 Note that it is important to use **valid** keywords for expected declarations, as the input file is not checked for its ability to compile and  and is treated as the **model solution**. If there are any mismatches between this solution and the student solution, the input solution is treated as the correct one and the checker generates feedback based on that.
 
-## .json Input Walkthrough
+### .json Input Walkthrough
 
-### Employee
+#### Employee
 This section concerns itself with what we can expect from the student solution for ``interface Employee``.
 
 #### classKeywords
@@ -137,7 +136,3 @@ As we can see for the field ``status`` inside of ``Programmer``, the expected ac
 The checker now generates the following feedback for the field ``status``:
 "AccessModifierError: Different access modifier for **status** in **class Programmer** expected. 
 Is the access modifier (e.g. public, private, protected, ...) of **status** set according to the task description?"
-
-
-
-

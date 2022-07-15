@@ -1,8 +1,8 @@
-# style checker Tutorial
-This is a quick exemplary tutorial for setting up the style checker in **Quarterfall**.
+# Style Checker Tutorial
+This is a quick exemplary tutorial for setting up the Style Checker in **Quarterfall**.
 
 ## <a name="general-information"></a>General Information
-Style checker checks the code for code style violations with pre-defined rules in Mass.
+Style Checker checks the code for code style violations with pre-defined rules in MASS.
 Although some rules can be from the user customized. Every rule has a default value, so you can pick just the editable rules that you want to edit.
 
 ## <a name="used-example"></a>Used Example
@@ -51,5 +51,5 @@ Use the following JSON to config the style checker
 
 The setting should be added to the `qf.mass` object and be named `"style"`. By doing so, the mass checker knows that the style checker has to be used when submitting solution later.
 
-After define the Settings click the student have to upload the answer in quarterfall and waith for a feedback.
-The feedback should look like this for the student
+After the settings are defined, students have to upload the answer in Quarterfall and wait for a feedback.
+The feedback should look similar to this:
