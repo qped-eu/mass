@@ -1,9 +1,9 @@
-### Tutorial: Coverage Checker
+# Coverage Checker Tutorial
 
 In this tutorial you will learn how to configure the coverage checker.
 There for we will configure feedback for following assignment.
 
-#### Assignment:
+## Assignment:
 ```
 private class Even {
 	public boolean isTrue(int num) {
@@ -24,7 +24,7 @@ We will generate feedback for following case:
 - the answer only tested an uneven number
 
 
-#### Configuration:
+## Configuration:
 The first step is to add following link in to the **Cloud Check**:
 ```
 https://github.com/Alucard2112/QPED-O3.git
@@ -35,12 +35,12 @@ The checker uses a json format for this purpose.
 There are two ways to generate this files.
 The first one is to manually write them info the field:
 
-![Quarterfall conf.](../public/images/cov_cloud-check-conf.png)
+![Quarterfall conf.](images/cov_cloud-check-conf.png)
 
 
 Lucky you can use this Tool on this homepage  to generate your configurations files.
 
-[HOMEPAGE ](https://alucard2112.github.io/qped.github.io/index.html)
+[HOMEPAGE ](https://qped-eu.github.io/mass/index.html)
 
 You should see a page locking similar to this screenshot.
 

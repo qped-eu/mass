@@ -1,4 +1,3 @@
-
 # Design Checker Tutorial
 
 This is a quick exemplary tutorial for setting up the design settings in order to use **QPED**'s Design Checker in **Quarterfall**.
