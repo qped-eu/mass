@@ -57,7 +57,7 @@
 		},
 		{
 			"type": "Category",
-			"label": "Semantics Checker",
+			"label": "Solution Approach Checker",
 			"elements": [
 				{
 					"type": "Control",
@@ -76,7 +76,7 @@
 		},
 		{
 			"type": "Category",
-			"label": "Coverage Checker",
+			"label": "Test Coverage Checker",
 			"elements": [
 				{
 					"type": "Control",
