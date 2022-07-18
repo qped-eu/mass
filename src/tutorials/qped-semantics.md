@@ -1,14 +1,21 @@
 # Solution Approach Checker Tutorial
 This is a quick exemplary tutorial for setting up the Solution Approach Checker in **Quarterfall**.
+## Table of Contents
+1. [General Information](#solution-general-information)
+2. [Used Example](#solution-used-example)
+   1. [Class Bag.java](#solution-class-bag.java)
+   2. [Class Mapper.java](#solution-class-mapper.java)
 
-## <a name="general-information"></a>General Information
+## <a id="solution-general-information"></a>General Information
 
 The settings should be added to the qf.mass object and named semantic.
 You can find and build the JSON settings with the JSON schema website.
 In this tutorial, we will be handling an example with specific settings for this particular example.
 
+## <a id="solution-used-example"></a>Used Example
+As an example, we will be using a project containing two different classes:
 Our example is a project with two classes.
-### <a name="class-bag.java"></a>Class `Bag.java`
+### <a id="solution-class-bag.java"></a>Class `Bag.java`
 
 ```java
 package ..  
@@ -48,7 +55,7 @@ public class Bag {
   }  
 }
 ```
-### <a name="class-mapper.java"></a>Class `Mapper.java`
+### <a id="solution-class-mapper.java"></a>Class `Mapper.java`
 ```java
 package ..  
 
