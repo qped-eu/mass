@@ -3,6 +3,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw'
 import { useEffect, useState } from 'react';
 
+
 const Markdown = ({ mdFile, maxWidth, linkToPage }: { mdFile?: string, maxWidth?: number, linkToPage?: string }) => {
     const [input, setInput] = useState<any>();
 	const markdownComponent = {
@@ -29,7 +30,7 @@ const Markdown = ({ mdFile, maxWidth, linkToPage }: { mdFile?: string, maxWidth?
 			return uri;
 		}
 		let url = window.location.href;
-		let newurl = url.split(/\?|#/).shift();
+		const newurl = url.split(/\?|#/).shift();
 		url = newurl === undefined ? "" :newurl;
 		if(url.endsWith("/")){
 			return `${url}${uri}`;							
@@ -42,6 +43,11 @@ const Markdown = ({ mdFile, maxWidth, linkToPage }: { mdFile?: string, maxWidth?
 		}
 		return `${url}/${uri}`;
 	}
+	
+	function getHashtag() {
+		const url = new URL(window.location.href);
+		return url.hash.substring(1);
+	}
 
 	useEffect(() => {
         import(`./${mdFile}`)
@@ -52,6 +58,13 @@ const Markdown = ({ mdFile, maxWidth, linkToPage }: { mdFile?: string, maxWidth?
                     .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
+			const id = getHashtag();
+			console.log(id);
+			const jump = document.getElementById(id) as HTMLInputElement;
+			if(jump != null){
+				jump.scrollIntoView();
+			}
+			
     });
 
     return <ReactMarkdown 
