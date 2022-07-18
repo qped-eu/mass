@@ -45,12 +45,12 @@ We also provide a full [documentation of the MASS configuration JSON object](ind
 
 To get started, please try the tutorials for our different MASS feedback tools:
 
-* [Syntax](index.html?tab=tuts&tut=syntax)
-* [Style](index.html?tab=tuts&tut=style)
-* [Solution Approach](index.html?tab=tuts&tut=semantic)
-* [Testing](index.html?tab=tuts&tut=coverage)
-* [Design](index.html?tab=tuts&tut=design)
-* [Complexity](index.html?tab=tuts&tut=class)
+* [Syntax Checker](index.html?tab=tuts&tut=syntax)
+* [Style Checker](index.html?tab=tuts&tut=style)
+* [Solution Approach Checker](index.html?tab=tuts&tut=semantic)
+* [Test Coverage Checker](index.html?tab=tuts&tut=coverage)
+* [Metrics Checker](index.html?tab=tuts&tut=design)
+* [Complexity Checker](index.html?tab=tuts&tut=class)
 
 ---
 

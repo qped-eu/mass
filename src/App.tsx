@@ -263,7 +263,7 @@ const App = () => {
 									linkToPage="index.html?tab=tuts&tut=semantics"/>
 							</div>
 						</Tab>
-						<Tab eventKey="coverage" title="Coverage Checker">
+						<Tab eventKey="coverage" title="Test Coverage Checker">
 							<div className={classes.markdownContainer}>
 								<Markdown 
 									maxWidth={maxWidth}
@@ -279,7 +279,7 @@ const App = () => {
 									linkToPage="index.html?tab=tuts&tut=class"/>
 							</div>
 						</Tab>							
-						<Tab eventKey="design" title="Design Checker">
+						<Tab eventKey="design" title="Metrics Checker">
 							<div className={classes.markdownContainer}>
 								<Markdown 
 									maxWidth={maxWidth}
