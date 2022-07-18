@@ -3,7 +3,10 @@
 In this tutorial you will learn how to configure the coverage checker.
 There for we will configure feedback for following assignment.
 
-## Assignment:
+## Table of Contents
+1. [](#)
+
+## <a id="coverage-assignment"></a>Assignment:
 ```
 private class Even {
 	public boolean isTrue(int num) {
@@ -24,10 +27,10 @@ We will generate feedback for following case:
 - the answer only tested an uneven number
 
 
-## Configuration:
+## <a id="coverage-config"></a>Configuration:
 The first step is to add following link in to the **Cloud Check**:
 ```
-https://github.com/Alucard2112/QPED-O3.git
+https://github.com/qped-eu/MASS-checker.git
 ```
 
 After this step we can start to configure the coverage checker.
