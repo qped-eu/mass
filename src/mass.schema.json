@@ -43,6 +43,18 @@
       "description": "Configure the Style Checker.",
       "documentation": "Configure the Style Checker.",
       "properties": {
+        "basisLevel": {
+          "type": "string",
+          "title": "Naming Conventions Level",
+          "description": "Select the level of programming experience for the target student audience.",
+          "documentation": "Select the level of programming experience for the target student audience.\\n\\nChecks for observance of naming conventions for methods, fields, local variables and classes, and whether required  comments for methods, classes, and fields are present.",
+          "enum": [
+            "BEGINNER",
+            "INTERMEDIATE",
+            "ADVANCED"
+          ],
+          "default": "BEGINNER"
+        },
         "complexityLevel": {
           "type": "string",
           "title": "Complexity Level",
@@ -128,76 +140,91 @@
       "documentation": "Enable the configuration of the Semantics Checker.",
       "default": false
     },
-    "semantics": {
-      "type": "array",
-      "title": "Semantics Check Configuration",
-      "description": "Configure the Semantics Checker (Solution Approach).",
-      "documentation": "Configure the Semantics Checker (Solution Approach).\\n\\nThis checker can give feedback on whether requirements for the solution approach (e.g., usage of loops or recursion) are met.",
-      "items": {
-        "type": "object",
-        "title": "Requirements per Method",
-        "description": "Specify which methods have requirements on the solution approach and which requirements that are. ",
-        "documentation": "Specify which methods have requirements on the solution approach and which requirements that are. ",
-        "properties": {
-          "methodName": {
-            "type": "string",
-            "title": "Method Name",
-            "description": "Specify the method name for which the constraints are checked.",
-            "documentation": "Specify the method name for which the constraints are checked."
-          },
-          "returnType": {
-            "type": "string",
-            "title": "Method Return Type",
-            "description": "Specify the expected return type of the method for which the constraints are checked, e.g., void, int,...",
-            "documentation": "Specify the expected return type of the method for which the constraints are checked, e.g., void, int,..."
-          },
-          "recursive": {
-            "type": "boolean",
-            "title": "Recursive Method",
-            "description": "Specify whether this method should be recursive.",
-            "documentation": "Specify whether this method should be recursive.",
-            "default": false
-          },
-          "whileLoop": {
-            "type": "integer",
-            "title": "Number of While Loops",
-            "description": "Specify the maximum number of while loops allowed in this method (-1 for no threshold).",
-            "documentation": "Specify the maximum number of while loops allowed in this method (-1 for no threshold).",
-            "default": -1
-          },
-          "forLoop": {
-            "type": "integer",
-            "title": "Number of For Loops",
-            "description": "Specify the maximum number of for loops (not counting forEach loops) allowed in this method (-1 for no threshold).",
-            "documentation": "Specify the maximum number of for loops (not counting forEach loops) allowed in this method (-1 for no threshold).",
-            "default": -1
-          },
-          "forEachLoop": {
-            "type": "integer",
-            "title": "Number of ForEach Loops",
-            "description": "Specify the maximum number of forEach loops allowed in this method (-1 for no threshold).",
-            "documentation": "Specify the maximum number of forEach loops allowed in this method (-1 for no threshold).",
-            "default": -1
-          },
-          "doWhileLoop": {
-            "type": "integer",
-            "title": "Number of Do-While Loops",
-            "description": "Specify the maximum number of do-while loops allowed in this method (-1 for no threshold).",
-            "documentation": "Specify the maximum number of do-while loops allowed in this method (-1 for no threshold).",
-            "default": -1
-          },
-          "ifElseStmt": {
-            "type": "integer",
-            "title": "Number of If Statments",
-            "description": "Specify the maximum number of if statements allowed in this method (-1 for no threshold).",
-            "documentation": "Specify the maximum number of if statements allowed in this method (-1 for no threshold).",
-            "default": -1
+    "semantic": {
+      "type": "object",
+      "title": "Semantic Check Configuration",
+      "description": "Configure for the Semantic Checker.",
+      "documentation": "Configure for the Semantic Checker.",
+      "additionalProperties": false,
+      "properties": {
+        "semantics": {
+          "type": "array",
+          "title": "Semantics Check Configuration",
+          "description": "Configure the Semantics Checker (Solution Approach).",
+          "documentation": "Configure the Semantics Checker (Solution Approach).\\n\\nThis checker can give feedback on whether requirements for the solution approach (e.g., usage of loops or recursion) are met.",
+          "items": {
+            "type": "object",
+            "title": "Requirements per Method",
+            "description": "Specify which methods have requirements on the solution approach and which requirements that are. ",
+            "documentation": "Specify which methods have requirements on the solution approach and which requirements that are. ",
+            "properties": {
+              "filePath": {
+                "type": "string",
+                "title": "File Path",
+                "description": "Specify the file path. The file path is fully qualified path for the file from source root.",
+                "documentation": "Specify the file path. The file path is fully qualified path for the file from source root."
+              },
+              "methodName": {
+                "type": "string",
+                "title": "Method Name",
+                "description": "Specify the method name for which the constraints are checked.",
+                "documentation": "Specify the method name for which the constraints are checked."
+              },
+              "returnType": {
+                "type": "string",
+                "title": "Method Return Type",
+                "description": "Specify the expected return type of the method for which the constraints are checked, e.g., void, int,...",
+                "documentation": "Specify the expected return type of the method for which the constraints are checked, e.g., void, int,..."
+              },
+              "recursive": {
+                "type": "boolean",
+                "title": "Recursive Method",
+                "description": "Specify whether this method should be recursive.",
+                "documentation": "Specify whether this method should be recursive.",
+                "default": false
+              },
+              "whileLoop": {
+                "type": "integer",
+                "title": "Number of While Loops",
+                "description": "Specify the maximum number of while loops allowed in this method (-1 for no threshold).",
+                "documentation": "Specify the maximum number of while loops allowed in this method (-1 for no threshold).",
+                "default": -1
+              },
+              "forLoop": {
+                "type": "integer",
+                "title": "Number of For Loops",
+                "description": "Specify the maximum number of for loops (not counting forEach loops) allowed in this method (-1 for no threshold).",
+                "documentation": "Specify the maximum number of for loops (not counting forEach loops) allowed in this method (-1 for no threshold).",
+                "default": -1
+              },
+              "forEachLoop": {
+                "type": "integer",
+                "title": "Number of ForEach Loops",
+                "description": "Specify the maximum number of forEach loops allowed in this method (-1 for no threshold).",
+                "documentation": "Specify the maximum number of forEach loops allowed in this method (-1 for no threshold).",
+                "default": -1
+              },
+              "doWhileLoop": {
+                "type": "integer",
+                "title": "Number of Do-While Loops",
+                "description": "Specify the maximum number of do-while loops allowed in this method (-1 for no threshold).",
+                "documentation": "Specify the maximum number of do-while loops allowed in this method (-1 for no threshold).",
+                "default": -1
+              },
+              "ifElseStmt": {
+                "type": "integer",
+                "title": "Number of If Statments",
+                "description": "Specify the maximum number of if statements allowed in this method (-1 for no threshold).",
+                "documentation": "Specify the maximum number of if statements allowed in this method (-1 for no threshold).",
+                "default": -1
+              }
+            },
+            "required": [
+              "methodName",
+              "filePath"
+            ]
           }
-        },
-        "required": [
-          "methodName",
-          "returnType"
-        ]
+        }
       }
     },
     "coverageSelected": {
