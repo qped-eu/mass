@@ -60,7 +60,7 @@ const Markdown = ({ mdFile, maxWidth, linkToPage }: { mdFile?: string, maxWidth?
             .catch(err => console.log(err));
 			const id = getHashtag();
 			console.log(id);
-			const jump = document.getElementById(id) as HTMLInputElement;
+			const jump = document.getElementById(id) as HTMLInputElement | null;
 			if(jump != null){
 				jump.scrollIntoView();
 			}
