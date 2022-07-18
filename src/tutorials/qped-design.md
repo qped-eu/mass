@@ -1,4 +1,4 @@
-# Design Checker Tutorial
+# Metrics Checker Tutorial
 
 This is a quick exemplary tutorial for setting up the design settings in order to use **QPED**'s Design Checker in **Quarterfall**.
 
@@ -17,7 +17,7 @@ This is a quick exemplary tutorial for setting up the design settings in order t
 6. [Generated Feedback](#design-generated-feedback)
 
 ## <a id="design-general-information"></a>General Information
-The Design Checker is a sub-component to a Mass Checker that is able to execute all kinds of checkers (e.g. checkers for syntax, style, semantic, class, test):
+The Metrics Checker is a sub-component to a Mass Checker that is able to execute all kinds of checkers (e.g. checkers for syntax, style, semantic, class, test):
 
 ```mermaid
 graph LR
@@ -25,11 +25,13 @@ A(Mass)  --> B
 B(Syntax Checker) --design settings--> C
 B(Syntax Checker) --style settings--> D
 B(Syntax Checker) --_settings--> E
-C(Design Checker)
+C(Metrics Checker)
 D(Style Checker)
 E(_Checker)
 ```
-The Design Checker's main task is to check classes for their class design metrics. To generate feedback for these kinds of metrics, a configuration for every lower and upper threshold of a metric is necessary. If a threshold is not set, a default one will be used. For the checker to work properly, the configuration has to be submitted as a `.json` file.
+The Metrics Checker's main task is to check classes for their class design metrics.
+To generate feedback for these kinds of metrics, a configuration for every lower and upper threshold of a metric is necessary.
+If a threshold is not set, a default one will be used. For the checker to work properly, the configuration has to be submitted as a `.json` file.
 
 ## <a id="design-used-example"></a>Used Example
 As an example, we will be using a project containing two different classes:

@@ -1,12 +1,21 @@
-# Coverage Checker Tutorial
+# Test Coverage Checker Tutorial
 
-In this tutorial you will learn how to configure the coverage checker.
+In this tutorial you will learn how to configure the Coverage Checker.
 There for we will configure feedback for following assignment.
 
 ## Table of Contents
-1. [](#)
+1. [General Information](#coverage-general-information)
+2. [Used Example](#coverage-used-example)
+3. [Configuration](#coverage-configuration)
+	1. [Manual Configuration](#coverage-manually)
+	2. [From Website](#coverage-from-website)
+	3. [Configuration Walkthrough](#coverage-configuration-walkthrough)
 
-## <a id="coverage-assignment"></a>Assignment:
+## <a id="coverage-general-information"></a>General Information
+The Test Coverage Checker is a part of the MASS Checker.
+It generates feedback regarding to the completeness of tests written by a learner.
+
+## <a id="coverage-used-example"></a>Used Example
 ```
 private class Even {
 	public boolean isTrue(int num) {
@@ -36,29 +45,27 @@ https://github.com/qped-eu/MASS-checker.git
 After this step we can start to configure the coverage checker.
 The checker uses a json format for this purpose.
 There are two ways to generate this files.
-The first one is to manually write them info the field:
+
+### <a id="coverage-manually"></a>Manual Configuration
+You can simply open up Quarterfall and manually enter the configuration into the field below.
 
 ![Quarterfall conf.](images/cov_cloud-check-conf.png)
 
+### <a id="coverage-from-website"></a>From Website
+Luckily, you can use our tool on this homepage to generate your configurations files.
 
-Lucky you can use this Tool on this homepage  to generate your configurations files.
-
-[HOMEPAGE ](https://qped-eu.github.io/mass/index.html)
+[HOMEPAGE ](https://qped-eu.github.io/mass/index.html?tab=config)
 
 You should see a page locking similar to this screenshot.
 
 ![TOOL_INDEX.](images/cov_homepage.png)
 
-This is the starting page of the tool.
-On the left side you can see a button called 
-"O3 Configurator". 
-After pressing this button 
-you can see all shared properties of different tools and
-how thay can be configured.
+The above link sends you directly to our configurator where you can configure every single checker in any way you'd like.
+For this checker, you need to check the ***Enable Test Coverage Checker*** checkbox.
+Now, you should be able to see that ***Test Coverage Checker*** appears in the blue bar above.
+If you click on that, it will let you configure this checker.
 
-```
-COVERAGE CHECKER CONFIGURATION
-```
+### <a id="coverage-configuration-walkthrough"></a>Configuration Walkthrough
 
 You should now see the following properties:
 
@@ -110,7 +117,6 @@ The following image shows an example with invented values.
 
 ![add](images/cov_additional.png)
 
-At last we can copy the json object on the right side and add it to the 
-code block on the side of quarterfall.
+Finally, we can copy the json object on the right side and add it to the code block on the side of quarterfall.
 
 ![add](images/cov_finished.png)
