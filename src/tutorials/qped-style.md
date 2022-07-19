@@ -11,8 +11,8 @@ This is a quick exemplary tutorial for setting up the Style Checker in **Quarter
 
 ## <a id="style-general-information"></a>General Information
 Style Checker checks the code for code style violations with pre-defined rules in MASS.
-Although some rules can be from the user customized.
-Every rule has a default value, so you can pick just the editable rules that you want to edit.
+Although some rules can be customized by the user.
+Every rule has a default value, so you can pick the rules that you want to edit.
 
 ## <a id="style-used-example"></a>Used Example
 As an example, we will be using a project containing Class Bag:
@@ -39,13 +39,13 @@ public class Bag {
 }
 ```
 ## <a id="style-create-the-design-settings-file"></a>Create The Style Checker config
-In this tutorial, we configure a small selection of settings that will be used to run the checker
+In this tutorial, we will configure a small selection of settings that will be used to run the checker.
 
 ### <a id="style-settings-we-want-to-use"></a>Settings We Want To Use
 
-In this example, to keep things simple, we want to check the class Bag for tow different coding style metrics:
+In this example, to keep things simple, we want to check the class Bag for two different coding style metrics:
 - Length of each method should be smaller than 10 lines.
-- Each class should maximal have three fields
+- Each class should have three fields at most
 
 ### <a id="style-build-the-json-file"></a>Config as JSON
 Use the following JSON to config the style checker
