@@ -226,7 +226,7 @@ const App = () => {
 						</Grid>
 					</Grid>
 				</Tab>
-				<Tab eventKey="doku" title="Mass Dokumentation">
+				<Tab eventKey="doku" title="Mass Documentation">
 					<div className={classes.markdownContainer}>
 						<Markdown 
 							maxWidth={maxWidth}
