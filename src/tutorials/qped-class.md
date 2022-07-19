@@ -29,7 +29,8 @@ This tutorial concerns itself with the use of the **class checker**, specificall
 ## <a id="class-general-information"></a>General Information
 The class checker has the ability to check for class properties, such as present class members and inherited classes.
 Furthermore it can check for the keywords that should be present in class elements, such as access and non access modifiers. 
-We will use an example task to illustrate different features of the checker, demonstrate what an example set up would look like and what the checker is going to look for in the provided student solution.
+We will be using an example task to illustrate different features of the checker.
+Furthermore, we will demonstrate what an example set up looks like and what the checker is going to look for in the provided student solution.
 Based on the information given and the student solution, possible mismatches are marked and generated feedback for.
 ## <a id="class-used-example"></a>Used Example
 Create an ``interface Employee`` and a ``class Programmer``.

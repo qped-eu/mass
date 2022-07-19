@@ -13,8 +13,7 @@ You can find and build the JSON settings with the JSON schema website.
 In this tutorial, we will be handling an example with specific settings for this particular example.
 
 ## <a id="solution-used-example"></a>Used Example
-As an example, we will be using a project containing two different classes:
-Our example is a project with two classes.
+As an example, we will be using a project with two different classes listed below.
 ### <a id="solution-class-bag.java"></a>Class `Bag.java`
 
 ```java

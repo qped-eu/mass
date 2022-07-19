@@ -135,9 +135,9 @@
     },
     "semanticsSelected": {
       "type": "boolean",
-      "title": "Enable Semantics Checker",
-      "description": "Enable the configuration of the Semantics Checker.",
-      "documentation": "Enable the configuration of the Semantics Checker.",
+      "title": "Enable Solution Approach Checker",
+      "description": "Enable the configuration of the Solution Approach Checker.",
+      "documentation": "Enable the configuration of the Solution Approach Checker.",
       "default": false
     },
     "semantic": {
@@ -149,9 +149,9 @@
       "properties": {
         "semantics": {
           "type": "array",
-          "title": "Semantics Check Configuration",
-          "description": "Configure the Semantics Checker (Solution Approach).",
-          "documentation": "Configure the Semantics Checker (Solution Approach).\\n\\nThis checker can give feedback on whether requirements for the solution approach (e.g., usage of loops or recursion) are met.",
+          "title": "Solution Approach Check Configuration",
+          "description": "Configure the Solution Approach Checker (Solution Approach).",
+          "documentation": "Configure the Solution Approach Checker (Solution Approach).\\n\\nThis checker can give feedback on whether requirements for the solution approach (e.g., usage of loops or recursion) are met.",
           "items": {
             "type": "object",
             "title": "Requirements per Method",

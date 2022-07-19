@@ -43,7 +43,7 @@ https://github.com/qped-eu/MASS-checker.git
 ```
 
 After this step we can start to configure the coverage checker.
-The checker uses a json format for this purpose.
+The checker uses JSON format for this purpose.
 There are two ways to generate this files.
 
 ### <a id="coverage-manually"></a>Manual Configuration
@@ -52,11 +52,11 @@ You can simply open up Quarterfall and manually enter the configuration into the
 ![Quarterfall conf.](images/cov_cloud-check-conf.png)
 
 ### <a id="coverage-from-website"></a>From Website
-Luckily, you can use our tool on this homepage to generate your configurations files.
+Luckily, you can use our tool on this homepage to generate your configuration.
 
 [HOMEPAGE ](https://qped-eu.github.io/mass/index.html?tab=config)
 
-You should see a page locking similar to this screenshot.
+You should see a page looking similar to this screenshot.
 
 ![TOOL_INDEX.](images/cov_homepage.png)
 
@@ -74,8 +74,8 @@ You should now see the following properties:
     - **additional**
 
 
-In the next step we can, coverage checkers setting.
-Fist we will configure the feedback we want to generate.
+In the next step we will be covering Test Coverage Checker's setting.
+Firstly, we will configure the feedback we want to generate.
 There are three types of feedback that should be generated.
 The first one is default feedback for failed test methods.
 There are several ways to configure this behavior:
@@ -87,20 +87,20 @@ or if you want to generate feedback for all test classes you can use
 ```
 ":TEST
 ```
-In this case both ways a possible.
-Now we can setup the our custom Feedback von uncovered statements.
-If the student only tests the funktion with a even number we will generate following feedback
+In this case both ways are possible.
+Now we can setup our custom Feedback of uncovered statements.
+If the student only tests the function with an even number we will generate following feedback:
 ```
 You only tested the method with an even value
 ```
-and in the case of a uneven value the feedback 
+However, in the case of an uneven value the feedback will look like this:
 ```
 You only tested the method with an uneven value
 ```
-To configure this feedback we have provide folloeing information:
+To configure this feedback we need to provide the following information:
 - The classname
-- The Index
-- The Feedbacktype
+- The index
+- The feedbacktype
 
 The tool should look like the following image:
 
@@ -117,6 +117,6 @@ The following image shows an example with invented values.
 
 ![add](images/cov_additional.png)
 
-Finally, we can copy the json object on the right side and add it to the code block on the side of quarterfall.
+Finally, we can copy the JSON object on the right side and add it to the code block on the side of quarterfall.
 
 ![add](images/cov_finished.png)
