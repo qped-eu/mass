@@ -317,70 +317,539 @@
       "documentation": "Enable the configuration of the Class-Info Checker.",
       "default": false
     },
-    "class": {
-      "type": "array",
-      "title": "Class-Info Check Configuration ",
-      "description": "Configure the Class-Info Checker",
-      "documentation": "Configure the Class-Info Checker",
-      "items": {
-        "type": "object",
-        "title": "Expected Class-Infos",
-        "description": "Specify requirements for all properties such as modifiers.",
-        "documentation": "Specify requirements for all properties such as modifiers.\n\nThis holds all information about all possible classes inside the given files. Note that not only outer but also inner classes should have infos created here, if you wish to check them for properties.",
-        "properties": {
-          "classKeywords": {
-            "type": "string",
-            "pattern": "\\s*(\\w*)\\s+(\\w+)",
-            "title": "Expected Class Keywords",
-            "description": "Modifiers, type and name of the current class.",
-            "documentation": "All expected keywords of the current class declaration. This only concerns the current class and follows the same pattern as the Java class declaration. Format: [access modifier] [non access modifier] [class/interface] [name].\n\n### Examples:\n\n- ```public abstract class Number```\n- ```interface Employee```",
-            "default": "class TestClass"
-          },
-          "inheritsFrom": {
-            "type": "array",
-            "title": "Expected Superclass Collection",
-            "description": "Contains all expected superclasses.",
-            "documentation": "All expected super classes of the current class declaration. Format:[class/interface] [name].\n\n### Examples:\n\n- ```interface Employee```\n- ```abstract class Number```",
-            "items": {
-              "type": "string",
-              "pattern": "\\s*(\\w*)\\s+(\\w+)",
-              "title": "Expected Superclass",
-              "description": "Type and name of an inherited super class.",
-              "documentation": "Type and name of an inherited super class."
-            }
-          },
-          "fieldKeywords": {
-            "type": "array",
-            "title": "Field Keywords Collection",
-            "description": "Contains all expected keywords for present fields.",
-            "documentation": "All expected keywords of the variable declarations. All keyword inputs should have the same format as the Java variable declarations. Format: [access modifier] [non access modifier] [type] [name] Note that anything after the name, such as initialisations, will not be considered and can be omitted. Additionally, if one wishes to allow any keyword for a particular keyword type, one can replace the keyword with a *(asterisk) to indicate that any value is allowed there. ### Examples: - private String name - private int * (indicating that the name can be any)",
-            "items": {
-              "type": "string",
-              "pattern": "\\s*(\\w*)\\s+(\\w+)(;|=)?",
-              "title": "Field Keywords",
-              "description": "Modifiers, type and name of a field declaration.",
-              "documentation": "Modifiers, type and name of a field declaration."
-            }
-          },
-          "methodKeywords": {
-            "type": "array",
-            "title": "Method Keywords Collection",
-            "description": "Contains all expected keywords for all present methods.",
-            "documentation": "All expected keywords of the method declarations. The input here follows the same format as the Java method declarations.\n\nFormat: [access modifier] [non access modifier] [return type] [name]. Anything after the name, such as further parameters, will not be considered and can be omitted. Additionally, if one wishes to allow any keyword, one can replace the keyword with a *(asterisk) to indicate that any value is allowed there.\n\n### Examples:\n\n- ```protected String getName```\n- ```* String getStatus``` (indicating that the access modifier can be any)",
-            "items": {
-              "type": "string",
-              "pattern": "\\s*(\\w*)\\s+(\\w+)\\(?\\)?",
-              "title": "Method Keywords",
-              "description": "Modifiers, type and name of a method declaration.",
-              "documentation": "Modifiers, type and name of a method declaration."
-            }
-          }
-        },
-        "required": [
-          "classKeywords"
-        ]
-      }
-    },
+    "classes": {
+	  "type": "object",
+	  "properties": {
+		"items": {
+		  "type": "object",
+		  "title": "Class Info Collection",
+		  "description": "Holds information for each expected classes.",
+		  "documentation": "This holds all information about all possible classes inside the given files. Note that not only outer but also inner classes should have infos created here, if you wish to check them for properties.",
+		  "required": [
+			"classKeywordConfig"
+		  ],
+		  "properties": {
+			"fullyQualifiedName": {
+			  "type": "string",
+			  "title": "Fully Qualified Name of the Class",
+			  "default": "",
+			  "description": "Package names and class name, separated by dots. If you expect the class to be in the default package, just the class name will suffice.",
+			  "documentation": "This is used for matching the classes given in the solution with the provided expected answers here in the configuration. Since this name is unique, this is the preferred way of matching up the classes. Example: com.myCompany.core.functions.AddFunction"
+			},
+			"classKeywordConfig": {
+			  "type": "object",
+			  "properties": {
+				"allowExactModifierMatching": {
+				  "type": "boolean",
+				  "title": "Allow Exact Modifier Matching",
+				  "description": "Set to true, if you wish to match the chosen modifiers exactly. If not, they will only be seen as a possible choice.",
+				  "default": false,
+				  "documentation": "Chosen modifiers can be seen as a possible choice or an exact configuration. By setting this to **true**, all chosen modifiers(marked with yes) will be matched with exactly. Only if all chosen modifiers are present in the solution, will no feedback be generated. If **false** has been chosen, the chosen modifiers will only be seen as an option and any subset of the chosen modifiers can be seen as valid in the solution."
+				},
+				"publicModifier": {
+				  "type": "string",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "title": "Public Modifier",
+				  "description": "Set to yes, if you expect the public modifier to be present in the solution. Set to no, if you don't want to see the public modifier in the solution.",
+				  "default": "don't care"
+				},
+				"protectedModifier": {
+				  "type": "string",
+				  "title": "Protected Modifier",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "description": "Set to yes, if you expect the protected modifier to be present in the solution. Set to no, if you don't want to see the protected modifier in the solution.",
+				  "default": "don't care"
+				},
+				"privateModifier": {
+				  "type": "string",
+				  "title": "Private Modifier",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "description": "Set to yes, if you expect the private modifier to be present in the solution. Set to no, if you don't want to see the private modifier in the solution.",
+				  "default": "don't care"
+				},
+				"packagePrivateModifier": {
+				  "type": "string",
+				  "title": "Package Private Modifier",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "description": "Set to yes, if you want to allow no modifier to be present in the solution. Set to no, if you don't want to allow no modifier in the solution.",
+				  "default": "don't care",
+				  "documentation": "With this option you can allow, that no modifier is present as an access modifier, indicating that the **package private** modifier can be used."
+				},
+				"emptyNonAccessModifier": {
+				  "type": "string",
+				  "title": "Empty Non Access Modifier",
+				  "description": "Set to yes, if you want to allow, that no non access modifier can be used in the solution. Set to no, if you expect at least one non access modifier to be present.",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "default": "don't care"
+				},
+				"abstractModifier": {
+				  "type": "string",
+				  "title": "Abstract Modifier",
+				  "description": "Set to yes, if you expect the abstract modifier to be present in the solution. Set to no, if you don't want to see the abstract modifier in the solution.",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "default": "don't care"
+				},
+				"staticModifier": {
+				  "type": "string",
+				  "title": "Static Modifier",
+				  "description": "Set to yes, if you expect the static modifier to be present in the solution. Set to no, if you don't want to see the static modifier in the solution.",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "default": "don't care"
+				},
+				"finalModifier": {
+				  "type": "string",
+				  "title": "Final Modifier",
+				  "description": "Set to yes, if you expect the final modifier to be present in the solution. Set to no, if you don't want to see the final modifier in the solution.",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "default": "don't care"
+				},
+				"classType": {
+				  "type": "string",
+				  "title": "Class Type",
+				  "description": "Set to yes, if you want to allow the type of the class to be class. Set to no, if you do not want to allow the class type to be used.",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "default": "don't care"
+				},
+				"interfaceType": {
+				  "type": "string",
+				  "title": "Interface Type",
+				  "description": "Set to yes, if you want to allow the type of the class to be an interface. Set to no, if you do not want to allow the interface type to be used.",
+				  "enum": [
+					"yes",
+					"no",
+					"don't care"
+				  ],
+				  "default": "don't care"
+				},
+				"name": {
+				  "type": "string",
+				  "title": "Class Name",
+				  "description": "Set the expected name of the class.",
+				  "default": "TestClass",
+				  "documentation": "This name can be used to match up the classes given with the here expected information. If no fully qualified name has been given beforehand, the checker will try to match up the configuration with this name instead. This may not find the class, if there are multiple classes with the same name, as the name here does not have to be unique."
+				}
+			  },
+			  "required": [
+				"name"
+			  ],
+			  "description": "Modifiers, type and name can be set here.",
+			  "title": "Class Keyword Config"
+			},
+			"inheritsFromConfigs": {
+			  "type": "array",
+			  "documentation": "All expected super classes of the current class declaration.  Format:[class/interface] [name]. ### Examples: - interface Employee - abstract class Number",
+			  "items": {
+				"type": "object",
+				"properties": {
+				  "classType": {
+					"type": "string",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"description": "Set to yes, if you want to allow this inherited class to be of type class. Set to no, if you do not want to allow this inherited class to be of type class.",
+					"title": "Expected Class Type",
+					"default": "don't care"
+				  },
+				  "interfaceType": {
+					"type": "string",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"description": "Set to yes, if you want to allow this inherited class to be of type interface. Set to no, if you do not want to allow this inherited class to be of type interface.",
+					"title": "Expected Interface Type",
+					"default": "don't care"
+				  },
+				  "name": {
+					"type": "string",
+					"title": "Class Name of Super Class",
+					"description": "Set to the expected name of super class, that this class is supposed to inherit."
+				  }
+				},
+				"required": [],
+				"title": "Configuration for Superclasses "
+			  },
+			  "title": "All Information about Expected Super Classes",
+			  "description": "Contains all expected information about the super classes, that this class inherits."
+			},
+			"fieldKeywordConfigs": {
+			  "type": "array",
+			  "items": {
+				"type": "object",
+				"properties": {
+				  "allowExactModifierMatching": {
+					"type": "boolean",
+					"title": "Allow Exact Modifier Matching",
+					"description": "Set to true, if you wish to match the chosen modifiers exactly. If not, they will only be seen as a possible choice.",
+					"default": false,
+					"documentation": "Chosen modifiers can be seen as a possible choice or an exact configuration. By setting this to **true**, all chosen modifiers(marked with yes) will be matched with exactly. Only if all chosen modifiers are present in the solution, will no feedback be generated. If **false** has been chosen, the chosen modifiers will only be seen as an option and any subset of the chosen modifiers can be seen as valid in the solution."
+				  },
+				  "publicModifier": {
+					"type": "string",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"title": "Public Modifier",
+					"description": "Set to yes, if you expect the public modifier to be present in the solution. Set to no, if you don't want to see the public modifier in the solution.",
+					"default": "don't care"
+				  },
+				  "protectedModifier": {
+					"type": "string",
+					"title": "Protected Modifier",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"description": "Set to yes, if you expect the protected modifier to be present in the solution. Set to no, if you don't want to see the protected modifier in the solution.",
+					"default": "don't care"
+				  },
+				  "privateModifier": {
+					"type": "string",
+					"title": "Private Modifier",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"description": "Set to yes, if you expect the private modifier to be present in the solution. Set to no, if you don't want to see the private modifier in the solution.",
+					"default": "don't care"
+				  },
+				  "packagePrivateModifier": {
+					"type": "string",
+					"title": "Package Private Modifier",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"description": "Set to yes, if you want to allow no modifier to be present in the solution. Set to no, if you don't want to allow no modifier in the solution.",
+					"default": "don't care",
+					"documentation": "With this option you can allow, that no modifier is present as an access modifier, indicating that the **package private** modifier can be used."
+				  },
+				  "emptyNonAccessModifier": {
+					"type": "string",
+					"title": "Empty Non Access Modifier",
+					"description": "Set to yes, if you want to allow, that no non access modifier can be used in the solution. Set to no, if you expect at least one non access modifier to be present.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "staticModifier": {
+					"type": "string",
+					"title": "Static Modifier",
+					"description": "Set to yes, if you expect the static modifier to be present in the solution. Set to no, if you don't want to see the static modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "finalModifier": {
+					"type": "string",
+					"title": "Final Modifier",
+					"description": "Set to yes, if you expect the final modifier to be present in the solution. Set to no, if you don't want to see the final modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "transientModifier": {
+					"type": "string",
+					"title": "Transient Modifier",
+					"description": "Set to yes, if you expect the transient modifier to be present in the solution. Set to no, if you don't want to see the transient modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "volatileModifier": {
+					"type": "string",
+					"title": "Volatile Modifier",
+					"description": "Set to yes, if you expect the volatile modifier to be present in the solution. Set to no, if you don't want to see the volatile modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "type": {
+					"type": "string",
+					"title": "Field Type",
+					"description": "Expected type of the field as a word."
+				  },
+				  "name": {
+					"type": "string",
+					"title": "Field Name",
+					"description": "Expected name of the field as a word."
+				  }
+				},
+				"title": "Field Keywords Configuration"
+			  },
+			  "description": "Contains all expected information about fields.",
+			  "title": "All Information about Expected Fields"
+			},
+			"methodKeywordConfigs": {
+			  "type": "array",
+			  "items": {
+				"type": "object",
+				"properties": {
+				  "allowExactModifierMatching": {
+					"type": "boolean",
+					"title": "Allow Exact Modifier Matching",
+					"description": "Set to true, if you wish to match the chosen modifiers exactly. If not, they will only be seen as a possible choice.",
+					"default": false,
+					"documentation": "Chosen modifiers can be seen as a possible choice or an exact configuration. By setting this to **true**, all chosen modifiers(marked with yes) will be matched with exactly. Only if all chosen modifiers are present in the solution, will no feedback be generated. If **false** has been chosen, the chosen modifiers will only be seen as an option and any subset of the chosen modifiers can be seen as valid in the solution."
+				  },
+				  "publicModifier": {
+					"type": "string",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"title": "Public Modifier",
+					"description": "Set to yes, if you expect the public modifier to be present in the solution. Set to no, if you don't want to see the public modifier in the solution.",
+					"default": "don't care"
+				  },
+				  "protectedModifier": {
+					"type": "string",
+					"title": "Protected Modifier",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"description": "Set to yes, if you expect the protected modifier to be present in the solution. Set to no, if you don't want to see the protected modifier in the solution.",
+					"default": "don't care"
+				  },
+				  "privateModifier": {
+					"type": "string",
+					"title": "Private Modifier",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"description": "Set to yes, if you expect the private modifier to be present in the solution. Set to no, if you don't want to see the private modifier in the solution.",
+					"default": "don't care"
+				  },
+				  "packagePrivateModifier": {
+					"type": "string",
+					"title": "Package Private Modifier",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"description": "Set to yes, if you want to allow no modifier to be present in the solution. Set to no, if you don't want to allow no modifier in the solution.",
+					"default": "don't care",
+					"documentation": "With this option you can allow, that no modifier is present as an access modifier, indicating that the **package private** modifier can be used."
+				  },
+				  "emptyNonAccessModifier": {
+					"type": "string",
+					"title": "Empty Non Access Modifier",
+					"description": "Set to yes, if you want to allow, that no non access modifier can be used in the solution. Set to no, if you expect at least one non access modifier to be present.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "abstractModifier": {
+					"type": "string",
+					"title": "Abstract Modifier",
+					"description": "Set to yes, if you expect the abstract modifier to be present in the solution. Set to no, if you don't want to see the abstract modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "staticModifier": {
+					"type": "string",
+					"title": "Static Modifier",
+					"description": "Set to yes, if you expect the static modifier to be present in the solution. Set to no, if you don't want to see the static modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "finalModifier": {
+					"type": "string",
+					"title": "Final Modifier",
+					"description": "Set to yes, if you expect the final modifier to be present in the solution. Set to no, if you don't want to see the final modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "defaultModifier": {
+					"type": "string",
+					"title": "Default Modifier",
+					"description": "Set to yes, if you expect the default modifier to be present in the solution. Set to no, if you don't want to see the default modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "synchronizedModifier": {
+					"type": "string",
+					"title": "Synchronized Modifier",
+					"description": "Set to yes, if you expect the synchronized modifier to be present in the solution. Set to no, if you don't want to see the synchronized modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "nativeModifier": {
+					"type": "string",
+					"title": "Native Modifier",
+					"description": "Set to yes, if you expect the native modifier to be present in the solution. Set to no, if you don't want to see the native modifier in the solution.",
+					"enum": [
+					  "yes",
+					  "no",
+					  "don't care"
+					],
+					"default": "don't care"
+				  },
+				  "type": {
+					"type": "string",
+					"title": "Method Type",
+					"description": "Expected return type of the method as a word."
+				  },
+				  "name": {
+					"type": "string",
+					"title": "Method Name",
+					"description": "Expected name of the method as a word."
+				  }
+				},
+				"title": "Method Keywords Configuration"
+			  },
+			  "description": "Contains all expected information about methods",
+			  "title": "All Information about Expected Methods"
+			},
+			"matchExactFieldAmount": {
+			  "type": "boolean",
+			  "description": "Set to true, if you wish to only allow the exact amount of fields specified here. Otherwise the solution can have more fields than here provided.",
+			  "title": "Match Exact Field Amount",
+			  "default": false
+			},
+			"matchExactMethodAmount": {
+			  "type": "boolean",
+			  "title": "Match Exact Method Amount",
+			  "default": false,
+			  "description": "Set to true, if you wish to only allow the exact amount of methods specified here. Otherwise the solution can have more methods than here provided."
+			},
+			"customFieldFeedback": {
+			  "type": "array",
+			  "items": {
+				"type": "string",
+				"title": "Field Feedback Message",
+				"description": "Any message for field mistakes."
+			  },
+			  "title": "Feedback for Field Errors",
+			  "description": "Include any custom feedback for field mistakes.",
+			  "documentation": "You can include custom feedback for field based mistakes, such as modifier, type or name errors. All messages provided here will be included in the feedback message for the student."
+			},
+			"customMethodFeedback": {
+			  "type": "array",
+			  "items": {
+				"type": "string",
+				"title": "Method Feedback Message",
+				"description": "Any message for method mistakes."
+			  },
+			  "title": "Feedback for Method Errors",
+			  "description": "Include any custom feedback for method mistakes.",
+			  "documentation": "You can include custom feedback for method based mistakes, such as modifier, type or name errors. All messages provided here will be included in the feedback message for the student."
+			},
+			"customClassFeedback": {
+			  "type": "array",
+			  "items": {
+				"type": "string",
+				"title": "Class Feedback Message",
+				"description": "Any message for class mistakes."
+			  },
+			  "title": "Feedback for Class Errors",
+			  "description": "Include any custom feedback for class mistakes.",
+			  "documentation": "You can include custom feedback for class based mistakes here, such as class type or class name errors. All messages provided here will be included in the feedback message for the student."
+			},
+			"customInheritanceFeedback": {
+			  "type": "array",
+			  "items": {
+				"type": "string",
+				"title": "Inheritance Feedback Message",
+				"description": "Any message for inheritance mistakes."
+			  },
+			  "title": "Feedback for Inheritance Errors",
+			  "description": "Include any custom feedback for inheritance mistakes.",
+			  "documentation": "You can include custom feedback for inheritance based mistakes here, such as inherited type errors or missing super class errors. All messages provided here will be included in the feedback message for the student."
+			}
+		  }
+		}
+	  },
+	  "title": "Class Infos"
+	},
     "metricsSelected": {
       "type": "boolean",
       "title": "Enable Metrics Checker",
