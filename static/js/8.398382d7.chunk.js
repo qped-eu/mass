@@ -1,0 +1,2 @@
+(this["webpackJsonpqped-github-pages"]=this["webpackJsonpqped-github-pages"]||[]).push([[8],{944:function(s,e,p){"use strict";p.r(e),e.default=p.p+"static/media/qped-mass.547de16d.md"}}]);
+//# sourceMappingURL=8.398382d7.chunk.js.map
