@@ -55,7 +55,7 @@ the level of detail provided by our Syntax Checker for compiler error messages.
 For the configuration of the other Checkers, should you want to use them for your assignment, please refer to the specific tutorials (see below).
 The minimal code to be placed into the Code action is shown below. 
 
-```
+```javascript
 qf.mass = {
   "styleSelected": false,
   "semanticsSelected": false,
