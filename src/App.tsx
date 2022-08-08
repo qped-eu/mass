@@ -163,7 +163,8 @@ const App = () => {
 					>
 						<Markdown 
 							maxWidth={maxWidth}
-							mdFile={qped_mass}/>
+							mdFile={qped_mass}
+                            linkToPage="index.html?tab=home"/>
 					</div>
 				</Tab>
 				<Tab eventKey="config" title="MASS Configurator">
