@@ -26,14 +26,14 @@ const App = () => {
 					</header>
 				</div>
 				<Routes>
-					<Route path='/' element={<Home/>} />
-					<Route path='/documentation' element={<Documentation />} />
-					<Route path='/configurator' element={<Configurator />} />
-					<Route path='/style' element={<StyleTutorial/>} />
-					<Route path='/semantics' element={<SemanticTutorial/>}/>
-					<Route path='/coverage' element={<CoverageTutorial/>} />
-					<Route path='/class' element={<ClassTutorial/>} />
-					<Route path='/metrics' element={<MetricTutorial/>} />
+					<Route path='/mass' element={<Home/>} />
+					<Route path='/mass/documentation' element={<Documentation />} />
+					<Route path='/mass/configurator' element={<Configurator />} />
+					<Route path='/mass/style' element={<StyleTutorial/>} />
+					<Route path='/mass/semantics' element={<SemanticTutorial/>}/>
+					<Route path='/mass/coverage' element={<CoverageTutorial/>} />
+					<Route path='/mass/class' element={<ClassTutorial/>} />
+					<Route path='/mass/metrics' element={<MetricTutorial/>} />
 				</Routes>
 				<Footer/>
 			</Router>
