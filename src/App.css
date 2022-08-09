@@ -3,11 +3,13 @@ html {
 }
 
 .App {
+  width: 100%;
   text-align: center;
   margin-bottom: 0.5em;
 }
 
 .App-logo {
+  margin-top: 0px;
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
   margin-bottom: 8px;
