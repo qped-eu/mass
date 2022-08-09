@@ -73,11 +73,11 @@ qf.mass = {
 To get started, please try the tutorials for our different MASS feedback tools:
 
 <!-- * [Syntax Checker](index.html?tab=tuts&tut=syntax) -->
-* [Style Checker](index.html?tab=tuts&tut=style)
-* [Solution Approach Checker](index.html?tab=tuts&tut=semantic)
-* [Test Coverage Checker](index.html?tab=tuts&tut=coverage)
-* [Metrics Checker](index.html?tab=tuts&tut=design)
-* [Complexity Checker](index.html?tab=tuts&tut=class)
+* [Style Checker](/style)
+* [Solution Approach Checker](/semantics)
+* [Test Coverage Checker](/test)
+* [Metrics Checker](/metrics)
+* [Complexity Checker](/class)
 
 ---
 

@@ -104,14 +104,14 @@ But we leave this out for the tutorial.
 Next, we need to configure the Mass checker. For this purpose, we select the "Feedback" tab and a Code action and a
 Cloud check action.
 For the basic steps to configure this feedback as well as the parameter values that need to be provided, please refer
-to the main [MASS documentation](index.html?tab=home)
+to the main [MASS documentation](/documentation)
 The specific configuration of the Coverage Checker will be explained in this tutorial.
 
 ![Question in Quartefall.](images/cov_quarterfall-question.png)
 
 
 ### <a id="coverage-from-website"></a>Configuration via MASS Configuration web form
-To specify the configuration, we use the [MASS Configuration web form](https://qped-eu.github.io/mass/index.html?tab=config).
+To specify the configuration, we use the [MASS Configuration web form](/configurator).
 The above link sends you directly to our configurator where you can configure all the Mass checkers.
 But for this tutorial, we only need the Test Coverage Checker. To enable configuring this, select the check box
 ***Enable Test Coverage Checker*** in the web form.
@@ -191,7 +191,7 @@ To configure this feedback you need to provide the following information, all se
 
 The feedback to show starts by one of the keywords `COVERAGE` or `CUSTOM`.
 In the first case, only the keyword is needed and a default message is shown, if the specified code line is not executed.
-For more information, yuou can refer to our [documentation of the format for these configurations](https://qped-eu.github.io/mass/index.html?tab=doku#coverage_feedback).
+For more information, you can refer to our [documentation of the format for these configurations](/documentation#coverage_feedback).
 
 For the example assignment, we want to provide dedicated messages, when the lines 4 (executed for even number) and 6 (executed for odd numbers) are missed.
 Therefore, we add two more items to the Feedback Configuration with the values:
