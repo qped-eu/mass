@@ -1,6 +1,3 @@
-
-
-
 ## Tutorial for Class Checker
 This tutorial concerns itself with the use of the **class checker**, specifically how to set it up and use. The class checker has the ability to check for class properties, such as present class members and inherited classes. Furthermore it can check for the keywords that should be present in class elements, such as access and non access modifiers.     
 We will use an example task to illustrate different features of the checker, demonstrate what an example set up would look like and what the checker is going to look for in the provided student solution. Based on the information given and the student solution, possible mismatches are marked and generated feedback for.
@@ -220,12 +217,12 @@ Similarly, for method, class declaration or inheritance issues you can include f
 
 The usage with Quarterfall is pretty straightforward.
 
-![Overall settings needed to set up Quarterfall](https://qped-eu.github.io/mass/public/images/class_settings_overall.png)
+![Overall settings needed to set up Quarterfall](images/class_settings_overall.png)
 
 The here created .json should be included to configure the class checker.
 On Quarterfall's feedback tab, you can include this .json file to indicate the expected class settings. Additionally, include the setting ``"classSelected": true`` to indicate that the checker should be enabled for the submitted solution.
 
-![Including the class checker .json in the MASS .json](https://qped-eu.github.io/mass/public/images/class_settings_json.png)
+![Including the class checker .json in the MASS .json](images/class_settings_json.png)
 
 With this, you can execute the checker like usual and feedback is going to be generated based on the provided .json file.
 
