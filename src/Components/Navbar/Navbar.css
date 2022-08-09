@@ -1,0 +1,245 @@
+@import url(../General/CSS/Colors.css);
+@import url(../General/CSS/FontFamilies.css);
+
+.navbar {
+  background-color: var(--backgroundCol);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  float: right;
+  width: 100%;
+  font-family: var(--roboto);
+  z-index: 999;
+  transition: 0.3 all ease;
+}
+
+.navbar.unscrolled {
+  background-color: transparent;
+  transition: 0.3 all ease;
+}
+  
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  height: 80px;
+}
+  
+.navbar-logo {
+  color: var(--highlightCol);
+  justify-self: start;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+  
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  width: 80vw;
+  justify-content: end;
+  margin-right: 2rem;
+}
+
+.nav-sub-menu {
+  display: none;
+  position: relative;
+  width: 100%;
+  grid-template-columns: repeat(1, auto);
+  background-color: var(--mobileBackgroundCol);
+  list-style: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+  
+.nav-item {
+  height: 80px;
+  color: var(--highlightCol);
+}
+
+.nav-sub-item {
+  height: 60px;
+}
+
+.mobileAwesome{
+  display: none;
+}
+
+@media screen and (min-width: 960px) {
+
+  .nav-item:hover > ul{
+    display: inline-block;
+  }
+}
+
+.mobileAwesome{
+  display: inline;
+  width: 42px;
+}
+  
+.nav-links {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+  border-bottom: 4px solid transparent;
+  justify-content: center;
+  cursor: pointer;
+  color: inherit;
+}
+  
+.nav-links:hover {
+  border-bottom: 4px solid var(--highlightCol);
+  transition: all 0.2s ease-out;
+}
+  
+.nav-links-mobile {
+  display: none;
+}
+
+.nav-sub-item {
+  height: 80px;
+}
+  
+.menu-icon {
+  display: none;
+}
+  
+@media screen and (max-width: 960px) {
+  .NavbarItems {
+    position: relative;
+  }
+
+  .nav-item{
+    justify-content: flex-start;
+    text-align: flex-start;
+  }
+
+  .nav-links {
+    display: flex;
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+    text-align: end;
+    height: calc(100% - 1rem - 4px);
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .nav-item.active{
+    height: auto;
+    background-color: var(--submenuActiveCol);
+  }
+  
+  .nav-menu {
+    display: inline-block;
+    justify-content: right;
+    position: fixed;
+    height: calc(100vh - 80px);
+    width: auto;
+    top: 80px;
+    right: -100%;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-menu.active {
+    background: var(--mobileBackgroundCol);
+    right: 0;
+    opacity: 1;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .nav-sub-menu {
+    display: none;
+    position: relative;
+    width: 100%;
+    grid-template-columns: repeat(1, auto);
+    background-color: var(--mobileBackgroundCol);
+    list-style: none;
+    text-align: center;
+    color: var(--highlightCol);
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-sub-menu.active {
+    display: block;
+    position: static;
+    width: 100%;
+    grid-template-columns: repeat(1, auto);
+    background-color: var(--submenuActiveCol);
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links {
+    display: block;
+    justify-content: end;
+    text-align: end;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    line-height: 80px;
+    height: 100%;
+    right: 0;
+  }
+  
+  .nav-links:hover {
+    background-color: var(--highlightCol);
+    color: var(--backgroundCol);
+  }
+  
+  .navbar-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(25%, 50%);
+  }
+  
+  .menu-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .mobile-nav-link{
+    padding: 0 20px;
+  }
+
+  .mobile-menu-cancel{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: -200%;
+    background-color: var(--mobileBackgroundCol);
+    opacity: 0.1;
+    z-index: 1;
+  }
+
+  .mobile-menu-cancel.active{
+    left: 0;
+  }
+}
