@@ -3,7 +3,6 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw'
 import { useEffect, useState , useCallback, useRef } from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
-import {dark} from 'react-syntax-highlighter/dist/esm/styles/prism';
 import "./Markdown.css";
 
 const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
@@ -85,6 +84,7 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 		  .then((text) => {
 			setInput(text);
 		  });
+		  // eslint-disable-next-line react-hooks/exhaustive-deps
 	  }, []);
 
     return (
