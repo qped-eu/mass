@@ -42,15 +42,15 @@ const Navbar = function() {
                        <FontAwesomeIcon icon={showMobileMenu ? timesIcon : barIcon} className="mobileAwesome" color='#fff'/>
                     </div>
                     <ul className={showMobileMenu ? 'nav-menu active' : 'nav-menu'}>
-                        <NavItem link='/mass' callback={closeMobileMenu}>Home</NavItem>
-                        <NavItem link='/mass/configurator' callback={closeMobileMenu}>MASS Configurator</NavItem>
-                        <NavItem link='/mass/documentation' callback={closeMobileMenu}>MASS Documentation </NavItem>
+                        <NavItem link='/' callback={closeMobileMenu}>Home</NavItem>
+                        <NavItem link='/configurator' callback={closeMobileMenu}>MASS Configurator</NavItem>
+                        <NavItem link='/documentation' callback={closeMobileMenu}>MASS Documentation </NavItem>
                         <Submenu title='MASS Checker Tutorials'>
-                            <NavItem link='/mass/style' callback={closeMobileMenu}>Style</NavItem>
-                            <NavItem link='/mass/semantics' callback={closeMobileMenu}>Solution Approach</NavItem>
-                            <NavItem link='/mass/coverage' callback={closeMobileMenu}>Test Coverage</NavItem>
-                            <NavItem link='/mass/class' callback={closeMobileMenu}>Class</NavItem>
-                            <NavItem link='/mass/metrics' callback={closeMobileMenu}>Metrics</NavItem>
+                            <NavItem link='/style' callback={closeMobileMenu}>Style</NavItem>
+                            <NavItem link='/semantics' callback={closeMobileMenu}>Solution Approach</NavItem>
+                            <NavItem link='/coverage' callback={closeMobileMenu}>Test Coverage</NavItem>
+                            <NavItem link='/class' callback={closeMobileMenu}>Class</NavItem>
+                            <NavItem link='/metrics' callback={closeMobileMenu}>Metrics</NavItem>
                         </Submenu>    
                     </ul>           
                 </div>
