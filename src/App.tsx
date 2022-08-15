@@ -1,7 +1,7 @@
 import { Fragment} from 'react';
 import logo from './logo.png';
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import Home from './Pages/Home/Home';
 import Documentation from './Pages/Documentation/Documentation';
@@ -34,14 +34,14 @@ const App = () => {
 					</header>
 				</div>
 				<Routes>
-					<Route path='/mass' element={home} />
-					<Route path='/mass/documentation' element={docu} />
-					<Route path='/mass/configurator' element={<Configurator />} />
-					<Route path='/mass/style' element={style} />
-					<Route path='/mass/semantics' element={sem}/>
-					<Route path='/mass/coverage' element={cov} />
-					<Route path='/mass/class' element={cla} />
-					<Route path='/mass/metrics' element={met} />
+					<Route path='/' element={home} />
+					<Route path='/documentation' element={docu} />
+					<Route path='/configurator' element={<Configurator />} />
+					<Route path='/style' element={style} />
+					<Route path='/semantics' element={sem}/>
+					<Route path='/coverage' element={cov} />
+					<Route path='/class' element={cla} />
+					<Route path='/metrics' element={met} />
 				</Routes>
 				<Footer/>
 			</Router>
