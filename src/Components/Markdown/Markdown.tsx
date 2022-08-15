@@ -67,7 +67,7 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 			  }
 	};
 	
-	const transformUri = function(uri: string){
+	const transformUri = function(uri: string, image:boolean){
 		if(uri.startsWith("http")){
 			return uri;
 		}
@@ -75,7 +75,10 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 		while(url.startsWith("/")){
 			url = url.substring(1);
 		}
-		return process.env.PUBLIC_URL + "/"+ url;
+		if(image){
+			return process.env.PUBLIC_URL + "/"+ url;
+		}
+		return process.env.PUBLIC_URL + "#/"+ url;
 	}
 
 	useEffect(() => {
@@ -99,7 +102,12 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 				children={input}
 				transformImageUri={
 					uri => {
-						return transformUri(uri);
+						return transformUri(uri, true);
+					}
+				}
+				transformLinkUri={
+					uri => {
+						return transformUri(uri, false);
 					}
 				}
 			/>
