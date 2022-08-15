@@ -191,7 +191,7 @@ To configure this feedback you need to provide the following information, all se
 
 The feedback to show starts by one of the keywords `COVERAGE` or `CUSTOM`.
 In the first case, only the keyword is needed and a default message is shown, if the specified code line is not executed.
-For more information, you can refer to our [documentation of the format for these configurations](/mass/documentation#coverage_feedback).
+For more information, you can refer to our [documentation of the format for these configurations](/documentation#coverage_feedback).
 
 For the example assignment, we want to provide dedicated messages, when the lines 4 (executed for even number) and 6 (executed for odd numbers) are missed.
 Therefore, we add two more items to the Feedback Configuration with the values:

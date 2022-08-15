@@ -140,7 +140,7 @@ If we want to check a submission's design by these settings, firstly we have to 
 In this case, the file was written manually. Keep track to use this exact  `.json` / JSON Schema syntax.
 
 #### <a id="design-from-website"></a>From Website
-Alternatively, you can build your `.json`file from this website using JSON Schema: [click me](/mass/configurator)
+Alternatively, you can build your `.json`file from this website using JSON Schema: [click me](/configurator)
 This results in the same output file as in [previous subsection](#design-manually).
 ![Screenshot of JSON Schema website.](images/design_website-json-schema.png)
 
