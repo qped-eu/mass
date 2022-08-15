@@ -79,12 +79,15 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 	}
 
 	useEffect(() => {
-		fetch(process.env.PUBLIC_URL +"/markdown/" + mdFile)
-		  .then((response) => response.text())
-		  .then((text) => {
-			setInput(text);
-		  });
-		  // eslint-disable-next-line react-hooks/exhaustive-deps
+		import(`../../markdown/${mdFile}`)
+		.then(res => {
+			fetch(res.default)
+			.then(res => res.text())
+			.then(res => setInput(res))
+			.catch(err => console.log(err));
+		})
+		.catch(err => console.log(err));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	  }, []);
 
     return (

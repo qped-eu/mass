@@ -13,6 +13,14 @@ import ClassTutorial from './Pages/Tutorials/ClassTutorial';
 import MetricTutorial from './Pages/Tutorials/MetricTutorial';
 import Footer from './Components/Footer/Footer';
 
+const home = <Home/>;
+const docu = <Documentation/>
+const style = <StyleTutorial/>;
+const sem = <SemanticTutorial/>;
+const cov = <CoverageTutorial/>;
+const cla = <ClassTutorial/>;
+const met = <MetricTutorial/>;
+
 const App = () => {
 	return (
 		<Fragment>
@@ -26,14 +34,14 @@ const App = () => {
 					</header>
 				</div>
 				<Routes>
-					<Route path='/mass' element={<Home/>} />
-					<Route path='/mass/documentation' element={<Documentation />} />
+					<Route path='/mass' element={home} />
+					<Route path='/mass/documentation' element={docu} />
 					<Route path='/mass/configurator' element={<Configurator />} />
-					<Route path='/mass/style' element={<StyleTutorial/>} />
-					<Route path='/mass/semantics' element={<SemanticTutorial/>}/>
-					<Route path='/mass/coverage' element={<CoverageTutorial/>} />
-					<Route path='/mass/class' element={<ClassTutorial/>} />
-					<Route path='/mass/metrics' element={<MetricTutorial/>} />
+					<Route path='/mass/style' element={style} />
+					<Route path='/mass/semantics' element={sem}/>
+					<Route path='/mass/coverage' element={cov} />
+					<Route path='/mass/class' element={cla} />
+					<Route path='/mass/metrics' element={met} />
 				</Routes>
 				<Footer/>
 			</Router>
