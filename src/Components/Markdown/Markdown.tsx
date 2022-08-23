@@ -3,6 +3,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw'
 import { useEffect, useState , useCallback, useRef } from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import { useLocation } from "react-router-dom";
 import "./Markdown.css";
 
 const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
@@ -31,6 +32,7 @@ const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
 
 const Markdown = ({ mdFile }: { mdFile: string, }) => {
     const [input, setInput] = useState<any>();
+	const location = useLocation();
 	const divRef = useRef<HTMLDivElement>(null);
     const maxWidth = useResize(divRef);
 	const markdownComponent = {
@@ -78,6 +80,14 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 		if(image){
 			return process.env.PUBLIC_URL + "/"+ url;
 		}
+		if(url.startsWith('#')){
+			let base = window.location.href;
+			const hashNum = (base.match(/#/g) || []).length;
+			if(hashNum > 1){
+				base = base.substring(0, base.lastIndexOf('#'));
+			}
+			return base + url;
+		}
 		return process.env.PUBLIC_URL + "#/"+ url;
 	}
 
@@ -90,8 +100,31 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 			.catch(err => console.log(err));
 		})
 		.catch(err => console.log(err));
+		scrollTo();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	  }, []);
+
+	  useEffect(() => {scrollTo()}, [location]);
+
+	const scrollTo = function(){
+		let base = window.location.href;
+		const hashNum = (base.match(/#/g) || []).length;
+		if(hashNum > 1){
+			const lastHash = base.substring(base.lastIndexOf('#')+1);
+			const jumps = document.getElementsByName(lastHash);
+			if(jumps.length > 0){
+				const jump = jumps[0];
+				jump.scrollIntoView();
+			}
+			else{
+				const jump = document.getElementById(lastHash);
+				if(jump !== undefined && jump !== null){
+					jump.scrollIntoView();
+				}
+			}
+			
+		}
+	}
 
     return (
 		<div className='markdownContainer' ref={divRef}>
