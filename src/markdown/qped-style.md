@@ -32,7 +32,6 @@ class Even {
    }
 }
 ```
-We will be using this solution as submitted solution from a student
 
 ## <a id="style-config"></a>Configuration in Quarterfall
 
