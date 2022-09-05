@@ -12,7 +12,6 @@ This is a quick exemplary tutorial for setting up the Solution Approach Checker 
 The Solution Approach Checker is part of the MASS Checker.
 The Solution Approach Checker performs an analysis of the code to check for task requirement violations and provides the student with feedback if these prerequisites are violated.
 
-
 ## <a id="solution-used-example"></a>Used Example
 Throughout this tutorial, we will be using the following example solution:
 ### <a id="solution-class-CalcSum.java"></a>Class `CalcSum.java`
@@ -68,13 +67,10 @@ For this particular tutorial, we will not be using this feature.
 
 ![Question in Quartefall.](images/solution_qe_question.PNG)
 
-
-
 Next, we need to configure the Mass checker.
 Firstly, we need to select the "Feedback" tab and add a Code action and a Cloud check action.
 For the basic configuration steps for feedback as well as the parameter values that need to be provided, please refer to the main [MASS documentation](/documentation).
 The specific configuration of the Solution Approach Checker will be explained in this tutorial.
-
 
 ### <a id="solution-from-website"></a>Configuration via MASS Configuration web form
 To configure tbe Solution Approach Checker, we use our [MASS Configuration web form](/configurator).
@@ -83,15 +79,14 @@ For this tutorial, we only need the Solution Approach Checker.
 If you want to configure any other checker, please refer to their respective tutorial.
 For the configuration to be enabled, you'll need to select the check box ***Enable Solution Approach Checker*** within the web form.
 After checking the check box, you should be able to see that ***SOLUTION APPROACH CHECKER*** appears in the blue bar at the top.
+
 Your web form should look something like this:
 
 ![Mass configuration web form.](images/solution_web-form-solution-enabled.PNG)
 
 ### <a id="solution-configuration-walkthrough"></a>Configuration Walkthrough
 
-Click on ***SOLUTION APPROACH CHECKER*** and the configurator will let you configure this checker.
-
-
+Click on ***SOLUTION APPROACH CHECKER*** inside the blue bar at the top of the configurator and you will be able to easily configure the Solution Approach Checker:
 
 ![Mass configuration web form page for the Style Checker.](images/solution_web-form-empty.PNG)
 
@@ -104,12 +99,14 @@ Lastly, we want to make sure, that this method is implemented recursively.
 To accomplish this, we set the number allowed to 0 for every of the loops.
 In this case, we don't want to limit the number of "if"-statements, so we set the value to "-1".
 
-![Mass configuration web form page for the Solution Approach Checker.](images/solution_web-form_dafault_values.PNG)
+Your configurator should now look like this:
 
+![Mass configuration web form page for the Solution Approach Checker.](images/solution_web-form_dafault_values.PNG)
 
 ### <a id="solution-transferring-to-quarterfall"></a>Transferring the Configuration to Quarterfall
 After configuring our checker, we can copy our configuration as a JSON object from the web form.
 You may find the finished configuration in the grey area next to or below of the configuration tool.
+
 Following our example, your JSON object should look like this:
 
 ```json
@@ -144,7 +141,7 @@ All we need to do now is copying the JSON object over to Quarterfall.
 You can either select the JSON object using your mouse and copy it that way or you can use the "Copy to Clipboard" button for your convenience.
 If you successfully copied the JSON object, you'll need to navigate to the Code feedback action of the question you have created previously.
 In this Code action, enter `qf.mass = ` and paste the configuration you just copied.
-The Quartefall Feedback actions should now look as follows.
-(Actually, the JSON object is copied without any pretty-printing consisting of just one line. For better readability of the screenshot, we have inserted newlines and indentation):
+
+The Quartefall Feedback actions should now look like this (depending on your method of copying, the JSON object may have not been copied with indentations or line breaks, so we included these for better readability):
 
 ![Mass configuration Quarterfall Cloud check action finished.](images/solution_quarterfall-finished.png)
