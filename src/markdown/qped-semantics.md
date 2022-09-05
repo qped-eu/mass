@@ -33,7 +33,8 @@ public class CalcSum {
 
 First, we need to create a question in Quarterfall.
 Because this example only concerns itself with one class, students will not need to submit multiple files.
-Instead, we decide to create a "Code question", which includes a text field where students can immediately enter their solution. 
+Instead, we decide to create a "Code question", which includes a text field where students can immediately enter their solution.
+
 As question text, we enter the following:
 
 ````markdown
@@ -52,7 +53,8 @@ class CalcSum {
 
 For the Programming Lanaguage, select "Java" which will enable proper syntax highlighting in the solution text editor available to the students.
 Depending on the level the students are at, it may be a good idea to provide a template in order to avoid a falsely named class or method.
-Therefore, we enter the following as the "Template":
+
+Therefore, we provide the student with the following as the "Template":
 
 ```java
 class CalcSum {
@@ -102,6 +104,9 @@ In this case, we don't want to limit the number of "if"-statements, so we set th
 Your configurator should now look like this:
 
 ![Mass configuration web form page for the Solution Approach Checker.](images/solution_web-form_dafault_values.PNG)
+
+You can add another method to analyze by clicking the "+" next to the title.
+However, this is not neccessary for this tutorial.
 
 ### <a id="solution-transferring-to-quarterfall"></a>Transferring the Configuration to Quarterfall
 After configuring our checker, we can copy our configuration as a JSON object from the web form.
