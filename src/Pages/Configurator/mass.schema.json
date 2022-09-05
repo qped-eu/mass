@@ -142,16 +142,16 @@
     },
     "semantic": {
       "type": "object",
-      "title": "Semantic Check Configuration",
+      "title": "Solution Approach Checker Configuration",
       "description": "Configure for the Semantic Checker.",
       "documentation": "Configure for the Semantic Checker.",
       "additionalProperties": false,
       "properties": {
         "semantics": {
           "type": "array",
-          "title": "Solution Approach Check Configuration",
-          "description": "Configure the Solution Approach Checker (Solution Approach).",
-          "documentation": "Configure the Solution Approach Checker (Solution Approach).\\n\\nThis checker can give feedback on whether requirements for the solution approach (e.g., usage of loops or recursion) are met.",
+          "title": "Per method configuration:",
+          "description": "Configure the Solution Approach Checker (Solution Approach) per method.",
+          "documentation": "Configure the Solution Approach Checker (Solution Approach) per method.\\n\\nThis checker can give feedback on whether requirements for the solution approach (e.g., usage of loops or recursion) are met.",
           "items": {
             "type": "object",
             "title": "Requirements per Method",
@@ -161,6 +161,7 @@
               "filePath": {
                 "type": "string",
                 "title": "File Path",
+                "default":"",
                 "description": "Specify the file path. The file path is fully qualified path for the file from source root.",
                 "documentation": "Specify the file path. The file path is fully qualified path for the file from source root."
               },
