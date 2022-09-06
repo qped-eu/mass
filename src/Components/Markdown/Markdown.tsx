@@ -31,7 +31,6 @@ const useResize = (myRef: React.RefObject<HTMLDivElement>) => {
 };
 
 const Markdown = ({ mdFile }: { mdFile: string, }) => {
-    const [input, setInput] = useState<any>();
 	const location = useLocation();
 	const divRef = useRef<HTMLDivElement>(null);
     const maxWidth = useResize(divRef);
@@ -92,14 +91,14 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 	}
 
 	useEffect(() => {
-		import(`../../markdown/${mdFile}`)
+		/*import(`../../markdown/${mdFile}`)
 		.then(res => {
 			fetch(res.default)
 			.then(res => res.text())
 			.then(res => setInput(res))
 			.catch(err => console.log(err));
 		})
-		.catch(err => console.log(err));
+		.catch(err => console.log(err));*/
 		scrollTo();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	  }, []);
@@ -132,7 +131,7 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 				remarkPlugins={[remarkGfm]}
 				rehypePlugins={[rehypeRaw]}
 				components={markdownComponent}
-				children={input}
+				children={mdFile}
 				transformImageUri={
 					uri => {
 						return transformUri(uri, true);
