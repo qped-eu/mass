@@ -1,27 +1,42 @@
-import { Fragment} from 'react';
+import { Fragment, useState, useEffect} from 'react';
 import logo from './logo.png';
 import './App.css';
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
-import Home from './Pages/Home/Home';
-import Documentation from './Pages/Documentation/Documentation';
 import Configurator from './Pages/Configurator/Configurator';
-import StyleTutorial from './Pages/Tutorials/StyleTutorial';
-import SemanticTutorial from './Pages/Tutorials/SemanticTutorial';
-import CoverageTutorial from './Pages/Tutorials/CoverageTutorial';
-import ClassTutorial from './Pages/Tutorials/ClassTutorial';
-import MetricTutorial from './Pages/Tutorials/MetricTutorial';
 import Footer from './Components/Footer/Footer';
+import MarkdownContent from './Pages/MarkdownContent';
 
-const home = <Home/>;
-const docu = <Documentation/>
-const style = <StyleTutorial/>;
-const sem = <SemanticTutorial/>;
-const cov = <CoverageTutorial/>;
-const cla = <ClassTutorial/>;
-const met = <MetricTutorial/>;
+const importMD = function(mdFile:String, setInput:Function){
+	import(`./markdown/${mdFile}`)
+		.then(res => {
+			fetch(res.default)
+			.then(res => res.text())
+			.then(res => setInput(res))
+			.catch(err => console.log(err));
+		})
+		.catch(err => console.log(err));
+}
 
 const App = () => {
+	const [home, setHome] = useState<string>("Loading");
+	const [docu, setDocu] = useState<string>("Loading");
+	const [style, setStyle] = useState<string>("Loading");
+	const [sem, setSem] = useState<string>("Loading");
+	const [cov, setCov] = useState<string>("Loading");
+	const [cla, setCla] = useState<string>("Loading");
+	const [met, setMet] = useState<string>("Loading");
+
+	useEffect(() => {
+		importMD("qped-mass.md", setHome);
+		importMD("mass-doku.md", setDocu);
+		importMD("qped-style.md", setStyle);
+		importMD("qped-semantics.md", setSem);
+		importMD("qped-coverage.md", setCov);
+		importMD("qped-class.md", setCla);
+		importMD("qped-metrics.md", setMet);
+	}, []);
+
 	return (
 		<Fragment>
 			<Router>
@@ -34,14 +49,14 @@ const App = () => {
 					</header>
 				</div>
 				<Routes>
-					<Route path='/' element={home} />
-					<Route path='/documentation' element={docu} />
+					<Route path='/' element={<MarkdownContent input={home}/>} />
+					<Route path='/documentation' element={<MarkdownContent input={docu}/>} />
 					<Route path='/configurator' element={<Configurator />} />
-					<Route path='/style' element={style} />
-					<Route path='/semantics' element={sem}/>
-					<Route path='/coverage' element={cov} />
-					<Route path='/class' element={cla} />
-					<Route path='/metrics' element={met} />
+					<Route path='/style' element={<MarkdownContent input={style}/>} />
+					<Route path='/semantics' element={<MarkdownContent input={sem}/>}/>
+					<Route path='/coverage' element={<MarkdownContent input={cov}/>} />
+					<Route path='/class' element={<MarkdownContent input={cla}/>} />
+					<Route path='/metrics' element={<MarkdownContent input={met}/>} />
 				</Routes>
 				<Footer/>
 			</Router>
