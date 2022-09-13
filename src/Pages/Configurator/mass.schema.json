@@ -849,7 +849,7 @@
 		  }
 		}
 	  },
-	  "title": "Class Infos"
+	  "title": "Class Info Checker Configuration"
 	},
     "metricsSelected": {
       "type": "boolean",
