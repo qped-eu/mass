@@ -95,11 +95,11 @@
 		},
 		{
 			"type": "Category",
-			"label": "Class Checker",
+			"label": "Class Info Checker",
 			"elements": [
 				{
 					"type": "Control",
-					"scope": "#/properties/class"
+					"scope": "#/properties/classes"
 				}
 			],
 			"rule": {
