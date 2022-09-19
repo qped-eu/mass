@@ -858,23 +858,37 @@
       "documentation": "Enable the Configuration of the Metrics Checker.",
       "default": false
     },
-    "metrics": {
+"metrics": {
       "type": "object",
       "title": "Metrics Check Configuration",
       "description": "The Configuration for the Metrics Checker",
       "documentation": "The Configuration for the Metrics Checker",
       "properties": {
+        "includeCallsToJdk": {
+          "type": "boolean",
+          "title": "Include Calls To JDK",
+          "description": "Specify whether calls to JDK should be included while running the metrics checker.",
+          "documentation": "Specify whether calls to JDK should be included while running the metrics checker. This could be reasonable when given classes have many dependencies to classes from the JDK and therefore should not be ignored.",
+          "default": false
+        },
+        "includeOnlyPublicClasses": {
+          "type": "boolean",
+          "title": "Include Only Public Classes",
+          "description": "Specify whether only public classes should be included while running the metrics checker.",
+          "documentation": "Specify whether only public classes should be included while running the metrics checker. This could be reasonable when students create helper classes that may not be obligatory or may not have that high of an importance to be checked.",
+          "default": false
+        },
         "amcThreshold": {
           "type": "object",
           "title": "Average Method Complexity",
           "description": "Configure Average Method Complexity",
-          "documentation": "This metric measures the average method size for each class. Size of a method is equal to the number of java binary codes in the method.",
+          "documentation": "Configure Average Method Complexity. This metric measures the average method size for each class. Size of a method is equal to the number of java binary codes in the method.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
-              "documentation": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
+              "documentation": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0
             },
@@ -883,33 +897,49 @@
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "documentation": "Specify the metric's upper bound.",
-              "default": 0
+              "description": "Specify the metric\'s upper bound.",
+              "documentation": "Specify the metric\'s upper bound.",
+              "default": 100
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "Increase your average method size, e.g. by joining multiple methods with mostly the same functionalities from over-engineering."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Decrease your average method size, e.g. by delegating functionalities to other newly created methods.",
+              "default": "Decrease your average method size, e.g. by delegating functionalities to other newly created methods."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "caThreshold": {
           "type": "object",
           "title": "Afferent Coupling",
           "description": "Configure Afferent Coupling",
-          "documentation": "A class's afferent couplings is a measure of how many other classes use the specific class. Coupling has the same definition in context of Ca as that used for calculating CBO.",
+          "documentation": "Configure Afferent Coupling. The metric represents the number of classes that depend upon the measured class. Coupling has the same definition in context of CA as that used for calculating CBO.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
-              "documentation": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
+              "documentation": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0
             },
@@ -918,33 +948,49 @@
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "documentation": "Specify the metric's upper bound.",
-              "default": 0
+              "description": "Specify the metric\'s upper bound.",
+              "documentation": "Specify the metric\'s upper bound.",
+              "default": 100
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class is used by too few other classes. Is this class even necessary? Can you implement this class\'s functionalities into already existing classes?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Decrease your average method size, e.g. by delegating functionalities to other newly created methods.",
+              "default": "This class is used by too many other classes. Can you outsource some functionalities into already existing or new classes?"
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "camThreshold": {
           "type": "object",
           "title": "Cohesion Among Methods of Class",
           "description": "Configure Cohesion Among Methods of Class",
-          "documentation": "This metric computes the relatedness among methods of a class based upon the parameter list of the methods. The metric is computed using the summation of number of different types of method parameters in every method divided by a multiplication of number of different method parameter types in whole class and number of methods. A metric value close to 1.0 is preferred. (Range 0 to 1).",
+          "documentation": "This metric computes the relatedness among methods of a class based upon the parameter list of the methods. The metric is computed using the summation of number of different types of method parameters in every method divided by a multiplication of number of different method parameter types in whole class and number of methods. A metric value close to 1.0 is preferred. (range 0 to 1).",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
-              "documentation": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
+              "documentation": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0
             },
@@ -953,105 +999,153 @@
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "documentation": "Specify the metric's upper bound.",
-              "default": 0
+              "description": "Specify the metric\'s upper bound.",
+              "documentation": "Specify the metric\'s upper bound.",
+              "default": 1
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class and their methods are or are close to being un-cohesive. Assimilate methods in your class in order to increase readability and decrease complexity at once."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Decrease your average method size, e.g. by delegating functionalities to other newly created methods.",
+              "default": "This class and their methods are too cohesive. Your implemented methods are too close to being the same methods."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "cbmThreshold": {
           "type": "object",
           "title": "Coupling Between Methods",
           "description": "Configure Coupling Between Methods",
-          "documentation": "The metric measure the total number of new/redefined methods to which all the inherited methods are coupled. There is a coupling when one of the given in the IC metric definition conditions holds.",
+          "documentation": "Configure Coupling Between Methods. The metric measures the total number of new or redefined methods to which all the inherited methods are coupled. There is a coupling when at least one of the given in the IC metric definition conditions is held.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 5,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "The methods in this class are not or are hardly coupled, which means they have (close to) no interdependencies. Is this reasonable for your class?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "The methods in this class are coupled to high, which means too many interdependencies, coordination and information flow between them. Try to minimize these dependencies between your methods."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "cboThreshold": {
           "type": "object",
           "title": "Coupling Between Object Classes",
           "description": "Configure Coupling Between Object Classes",
-          "documentation": "The coupling between object classes (CBO) metric represents the number of classes coupled to a given class (efferent couplings and afferent couplings). This coupling can occur through method calls, field accesses, inheritance, arguments, return types, and exceptions.",
+          "documentation": "Configure Coupling Between Object Classes. The metric represents the number of classes coupled to a given class (efferent couplings and afferent couplings). This couplings can occur through method calls, field accesses, inheritance, method arguments, return types, and exceptions.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 5,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "The sum of all class couplings in this class is (close to) zero, which means they have (close to) no interdependencies to other classes. Is this reasonable for your class? Also, refer to afferent/efferent coupling metric."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "The sum of all class couplings in this class is too high, which means too many interdependencies, coordination and information flow between them. Try to minimize these dependencies from this class to other classes. Also, refer to afferent/efferent coupling metric."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "ccThreshold": {
           "type": "object",
-          "title": "McCabe's Cyclomatic Complexity",
-          "description": "Configure McCabe's Cyclomatic Complexity",
-          "documentation": "It is equal to number of different paths in a method (function) plus one. The cyclomatic complexity is defined as:\nCC = E - N + P\nwhere\nE - the number of edges of the graph\nN - the number of nodes of the graph\nP - the number of connected components",
+          "title": "McCabe\'s Cyclomatic Complexity",
+          "description": "Configure McCabe\'s Cyclomatic Complexity",
+          "documentation": "Configure McCabe\'s Cyclomatic Complexity. The metric is equal to number of different paths in a method (function) plus one. The cyclomatic complexity is defined as follows:\n`CC` = `E` – `N` + `P` where\n- `E`: The number of edges of the graph\n- `N`: The number of nodes of the graph\n- `P`: The number of connected components\n\nCC is the only method size metric.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
-              "minimum": 0,
-              "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "description": "Specify the metric\'s lower bound.",
+              "minimum": 1,
+              "default": 1,
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
@@ -1063,470 +1157,694 @@
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This method in the given class has very few different paths to take. It would be allowed to increase its complexity."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This method in the given class is too complex, too many paths are taken (ite-statements). Try to decrease the complexity by delegating functionalities into other methods or classes."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "ceThreshold": {
           "type": "object",
           "title": "Efferent Coupling",
           "description": "Configure Efferent Coupling",
-          "documentation": "A class's efferent couplings is a measure of how many other classes is used by the specific class. Coupling has the same definition in context of Ce as that used for calculating CBO.",
+          "documentation": "Configure Efferent Coupling. The metric represents the number of classes that the measured class is depended upon. Coupling has the same definition in context of Ce as that used for calculating CBO.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class is using too few other classes. Can some functionalities be implemented into other classes and be used?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class is using too many other classes. Can some functionalities be joined by other classes or even be implemented in this specific class?"
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "damThreshold": {
           "type": "object",
           "title": "Data Access Metric",
           "description": "Configure Data Access Metric",
-          "documentation": "This metric is the ratio of the number of private (protected) attributes to the total number of attributes declared in the class. A high value for DAM is desired. (Range 0 to 1)",
+          "documentation": "Configure Data Access Metric. This metric is the ratio of the number of private (protected) attributes to the total number of attributes declared in the class. A high value for DAM is desired (range 0 to 1).",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 1,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class contains very few private (protected) attributes compared to to the total number of attributes. Try to encapsulate your class (make fields private, only access them by methods contained in this specific class if possible)."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class contains many private (protected) attributes compared to to the total number of attributes. Encapsulation is important, but sometimes over-engineering. Is this reasonable?"
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "ditThreshold": {
           "type": "object",
           "title": "Depth Of Inheritance Tree",
           "description": "Configure Depth Of Inheritance Tree",
-          "documentation": "The depth of inheritance tree (DIT) metric provides for each class a measure of the inheritance levels from the object hierarchy top. In Java where all classes inherit Object the minimum value of DIT is 1.",
+          "documentation": "Configure Depth Of Inheritance Tree. The metric provides a measure of the inheritance levels from the object hierarchy top for each class. In Java where all classes inherit Object the minimum value of DIT is 1.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
-              "minimum": 0,
-              "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "description": "Specify the metric\'s lower bound.",
+              "minimum": 1,
+              "default": 1,
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 6,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class has very few superclasses or only one superclass (Object.java). Is inheritance a possible option?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class has many superclasses. Is this much inheritance possible over-engineering? Do certain subclasses have too similar or too few functionalities?"
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "icThreshold": {
           "type": "object",
           "title": "Inheritance Coupling",
           "description": "Configure Inheritance Coupling",
-          "documentation": "This metric provides the number of parent classes to which a given class is coupled. A class is coupled to its parent class if one of its inherited methods functionally dependent on the new or redefined methods in the class. A class is coupled to its parent class if one of the following conditions is satisfied:\n-One of its inherited methods uses a variable (or data member) that is defined in a new/redefined method.\nOne of its inherited methods calls a redefined method.\n-One of its inherited methods is called by a redefined method and uses a parameter that is defined in the redefined method.",
+          "documentation": "Configure Inheritance Coupling. This metric provides the number of parent classes to which a given class is coupled. A class is coupled to its parent class if one of its inherited methods functionally dependent on the new or redefined methods in the class. A class is coupled to its parent class if one of the following conditions is satisfied:\n- One of its inherited methods uses an attribute that is defined in a new or redefined method.\n- One of its inherited methods calls a redefined method.\n- One of its inherited methods is called by a redefined method and uses a parameter that is defined in the redefined method.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 6,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class is coupled to few or no parent classes. Overriding parent methods could be a suitable option here."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class is coupled to many parent classes. Overriding parent methods makes sense, but is not always necessary."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "lcomThreshold": {
           "type": "object",
           "title": "Lack Of Cohesion In Methods",
           "description": "Configure Lack Of Cohesion In Methods",
-          "documentation": "A class's lack of cohesion in methods (LCOM) metric counts the sets of methods in a class that are not related through the sharing of some of the class's fields. The original definition of this metric (which is the one used in ckjm) considers all pairs of a class's methods. In some of these pairs both methods access at least one common field of the class, while in other pairs the two methods to not share any common field accesses. The lack of cohesion in methods is then calculated by subtracting from the number of method pairs that don't share a field access the number of method pairs that do. Note that subsequent definitions of this metric used as a measurement basis the number of disjoint graph components of the class's methods. Others modified the definition of connectedness to include calls between the methods of the class (original definition (1994) definition by Chidamber and Kemerer).",
+          "documentation": "Configure Lack Of Cohesion In Methods. The metric counts the sets of methods in a class that are not related through the sharing of some of the class\'s fields. The original definition of this metric (used here) considers all pairs of a class\'s methods. In some of these pairs both methods access at least one common field of the class, while in other pairs the two methods to not share any common field accesses. The lack of cohesion in methods is then calculated by subtracting from the number of method pairs that don\'t share a field access the number of method pairs that do. Note that subsequent definitions of this metric used as a measurement basis the number of disjoint graph components of the class\'s methods. Others modified the definition of connectedness to include calls between the methods of the class (original definition (1994) definition by Chidamber and Kemerer).",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "The modularisation of this class is too low. Too many methods operate on different attributes."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "The modularisation of this class is quite high. You could think about the necessity if your class is very small."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "lcom3Threshold": {
           "type": "object",
           "title": "Lack Of Cohesion In Methods Henderson-Sellers version",
-          "description": "Configure Lack Of Cohesion In Methods Henderson-Sellers version",
-          "documentation": "LCOM3 varies between 0 and 2.\nm - number of procedures (methods) in class\na - number of variables (attributes in class)\nµ(A) - number of methods that access a variable (attribute)\nThe constructors and static initializations are taking into accounts as separately methods.",
+          "description": "Configure Henderson-Sellers Lack Of Cohesion In Methods",
+          "documentation": "Configure Henderson-Sellers Lack Of Cohesion In Methods. The metric varies between 0 and 2. It Is defined as follows:\n$LCOM3=\\frac{1}{a}\\cdot\\displaystyle\\sum_{j=1} ^{a} \\mu(A_j))-m$ where\n- `m`: Number of procedures (methods) in class\n- `a`: Number of variables (attributes in class)\n- `µ(A)`: Number of methods that access a variable (attribute)\n\nThe constructors and static initializations are taking into accounts as separately methods.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 2,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "The modularisation of this class is too low. Too many methods operate on different attributes."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "The modularisation of this class is quite high. You could think about the necessity if your class is very small."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "locThreshold": {
           "type": "object",
           "title": "Lines Of Code",
           "description": "Configure Lines Of Code",
-          "documentation": "The lines are counted from java binary code and it is the sum of number of fields, number of methods and number of instructions in every method of given class.",
+          "documentation": "Configure Lines Of Code. The metric is based on Java binary code. It is the sum of number of fields, number of methods as well as number of instructions in every method of the investigated class.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class contains very few lines of code. Is it even necessary to put these functionalities into a separate class?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class contains too many lines of code, it could be considered as a \"God Class\". Try to keep only the main functionality in this class, others should be implemented into other (new) classes."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "mfaThreshold": {
           "type": "object",
           "title": "Measure of Functional Abstraction",
           "description": "Configure Measure of Functional Abstraction",
-          "documentation": "This metric is the ratio of the number of methods inherited by a class to the total number of methods accessible by member methods of the class. The constructors and the java.lang.Object (as parent) are ignored. (Range 0 to 1)",
+          "documentation": "Configure Measure of Functional Abstraction. This metric is the ratio of the number of methods inherited by a class to the total number of methods accessible by the member methods of the class. The constructors and the java.lang.Object (as parent) are ignored (range 0 to 1).",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 1,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "The functional abstraction of this class ist quite low. If possible, try to let his class inherit some methods."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "The functional abstraction of this class is very high. Consider refactoring this class into an abstract class if this is not yet the case."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "moaThreshold": {
           "type": "object",
           "title": "Measure of Aggregation",
           "description": "Configure Measure of Aggregation",
-          "documentation": "This metric measures the extent of the part-whole relationship, realized by using attributes. The metric is a count of the number of data declarations (class fields) whose types are user defined classes.",
+          "documentation": "Configure Measure of Aggregation. This metric measures the extent of the part-whole relationship, realized by using attributes. The metric is a count of the number of class fields whose types are user defined classes.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class contains too few class fields. In order to increase class aggregation, also increase the number of fields or merge this class into another."
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class contains too many class fields. Try to inline fields or extract functionalities into other classes."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "nocThreshold": {
           "type": "object",
           "title": "Number Of Children",
           "description": "Configure Number Of Children",
-          "documentation": "A class's number of children (NOC) metric simply measures the number of immediate descendants of the class.",
+          "documentation": "Configure Number Of Children. The metric simply measures the number of immediate descendants of the class.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class has very few or no immediate descendants. Would extending this class be reasonable?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class has too much immediate descendants. Consider using multiple inheritance, i.e. creating subclasses of a subclass."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "npmThreshold": {
           "type": "object",
           "title": "Number of Public Methods for a class",
           "description": "Configure Number of Public Methods for a class",
-          "documentation": "The NPM metric simply counts all the methods in a class that are declared as public. It can be used to measure the size of an API provided by a package.",
+          "documentation": "Configure Number of Public Methods for a class. The metric simply counts all the methods in a class that are declared as public. It can be used to measure the size of an API provided by a package. The metric is known also as Class Interface Size (CIS).",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class uses few or no public methods. Is this intended?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class uses mostly public methods. Try to decrease their visibility to force the information hiding principle."
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "rfcThreshold": {
           "type": "object",
           "title": "Response For A Class",
           "description": "Configure Response For A Class",
-          "documentation": "The metric called the response for a class (RFC) measures the number of different methods that can be executed when an object of that class receives a message (when a method is invoked for that object). Ideally, we would want to find for each method of the class, the methods that class will call, and repeat this for each called method, calculating what is called the transitive closure of the method's call graph. This process can however be both expensive and quite inaccurate. Here, a rough approximation to the response set is calculated by simply inspecting method calls within the class's method bodies. The value of RFC is the sum of number of methods called within the class's method bodies and the number of class's methods. This simplification was also used in the 1994 Chidamber and Kemerer description of the metrics.",
+          "documentation": "Configure Response For A Class. The metric measures the number of different methods that can be executed when an object of that class receives a message. Ideally, we would want to find for each method of the class, the methods that class will call, and repeat this for each called method, calculating what is called the transitive closure of the method call graph. This process can however be both expensive and quite inaccurate. A rough approximation to the response set  is calculated by simply inspecting method calls within the class method bodies. The value of RFC is the sum of number of methods called within the class method bodies and the number of class methods. This simplification was also used in the Chidamber and Kemerer\'s description of the metric.",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class has too few or zero (in-)directly executable methods. Is this class even necessary then?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class is able to (in-)directly execute too many methods. This is a typical smell for a god class. Does your class have one main functionality? Can some functionalities be extracted into other existing or new classes?"
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         },
         "wmcThreshold": {
           "type": "object",
-          "title": "Weighted methods per class",
-          "description": "Configure Weighted methods per class",
-          "documentation": "A class's weighted methods per class WMC metric is simply the sum of the complexities of its methods. As a measure of complexity we can use the cyclomatic complexity, or we can abritrarily assign a complexity value of 1 to each method. The ckjm program assigns a complexity value of 1 to each method, and therefore the value of the WMC is equal to the number of methods in the class.",
+          "title": "Weighted Methods Per Class",
+          "description": "Configure Weighted Methods Per Class",
+          "documentation": "Configure Weighted Methods Per Class. A class\'s weighted methods per class WMC metric is simply the sum of the complexities of its methods. As a measure of complexity we can use the cyclomatic complexity, or we can arbitrarily assign a complexity value of 1 to each method. Here, a complexity value of 1 is assigned to each method, and therefore the value of the WMC is equal to the number of methods in the class. ",
           "properties": {
             "min": {
               "type": "number",
               "title": "Lower Bound",
-              "description": "Specify the metric's lower bound.",
+              "description": "Specify the metric\'s lower bound.",
               "minimum": 0,
               "default": 0,
-              "documentation": "Specify the metric's lower bound."
+              "documentation": "Specify the metric\'s lower bound."
             },
             "noMax": {
               "type": "boolean",
               "title": "No Upper Bound",
               "description": "Select if no upper bound should be enforced for this metric.",
               "documentation": "Select if no upper bound should be enforced for this metric.",
-              "default": true
+              "default": false
             },
             "max": {
               "type": "number",
               "title": "Upper Bound",
-              "description": "Specify the metric's upper bound.",
-              "default": 0,
-              "documentation": "Specify the metric's upper bound."
+              "description": "Specify the metric\'s upper bound.",
+              "default": 100,
+              "documentation": "Specify the metric\'s upper bound."
+            },
+            "suggestionMin": {
+              "type": "string",
+              "title": "Suggestion Upper Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of min threshold.",
+              "default": "This class contains too few or zero methods. Is this class even necessary then?"
+            },
+            "suggestionMax": {
+              "type": "string",
+              "title": "Suggestion Lower Bound",
+              "description": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "documentation": "Specify this metric\'s custom suggestion for violations of max threshold.",
+              "default": "This class contains too many methods. This is a typical smell for a god class. Does your class have one main functionality? Can some functionalities be extracted into other existing or new classes?"
             }
           },
           "required": [
             "min",
             "max",
-            "noMax"
+            "noMax",
+            "suggestionMin",
+            "suggestionMax"
           ]
         }
       },
