@@ -9,7 +9,9 @@
 }
 
 .dataContent {
-    display: flex;
+    display: block;
+    width: 30vw;
+    overflow: auto;
     justify-content: center;
     border-radius: 0.25em;
     background-color: #cecece;
@@ -27,6 +29,15 @@
 }
 
 .demoform {
-    margin: auto;
     padding: 1rem;
+}
+
+@media screen and (max-width: 960px){
+    .dataContent {
+        width: 100%;
+    }
+
+    .demoform{
+        width: 100%;
+    }
 }
