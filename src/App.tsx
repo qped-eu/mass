@@ -47,7 +47,6 @@ const App = () => {
 						<h1 className='App-title'>Welcome to the QPED-project's configurator</h1>
 						<p className='App-intro'>Easily configure our checkers for Quarterfall.</p>
 					</header>
-				</div>
 				<Routes>
 					<Route path='/' element={<MarkdownContent input={home}/>} />
 					<Route path='/documentation' element={<MarkdownContent input={docu}/>} />
@@ -59,6 +58,7 @@ const App = () => {
 					<Route path='/metrics' element={<MarkdownContent input={met}/>} />
 				</Routes>
 				<Footer/>
+				</div>
 			</Router>
     	</Fragment>
   );
