@@ -11,13 +11,10 @@ import {
 	materialCells,
 	materialRenderers,
   } from '@jsonforms/material-renderers';
-  import RatingControl from './RatingControl';
-  import ratingControlTester from './ratingControlTester';
 
 const renderers = [
-	...materialRenderers,
+	...materialRenderers
 	//register custom renderers
-	{ tester: ratingControlTester, renderer: RatingControl },
   ];
 
 const handleDefaultsAjv = createAjv({useDefaults: true});
@@ -43,6 +40,8 @@ function Configurator() {
 	const copyData = () => {
 		navigator.clipboard.writeText(JSON.stringify(data));
 	};
+
+	window.setInterval(() => {console.log(document.getElementById('LeContainer')?.offsetTop);}, 1000)
 	
   return (
     <Grid
@@ -50,6 +49,7 @@ function Configurator() {
 		justifyContent={'center'}
 		spacing={2}
 		className='container'
+		id='LeContainer'
 	>
 		<Grid item xs={8}>
 			<Typography variant={'h4'} className='title'>
