@@ -38,7 +38,7 @@ function Configurator() {
 	};
   
 	const copyData = () => {
-		navigator.clipboard.writeText(JSON.stringify(data));
+		navigator.clipboard.writeText(JSON.stringify(data, null, 2));
 	};
 
 	window.setInterval(() => {console.log(document.getElementById('LeContainer')?.offsetTop);}, 1000)
