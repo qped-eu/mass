@@ -17,6 +17,13 @@ const renderers = [
 	//register custom renderers
   ];
 
+  const config = {
+	restrict: false,
+ 	trim: false,
+ 	showUnfocusedDescription: true,
+ 	hideRequiredAsterisk: false
+  }
+
 const handleDefaultsAjv = createAjv({useDefaults: true});
 const initialData = {
 	"styleSelected": false,
@@ -63,6 +70,7 @@ function Configurator() {
 					data={data}
 					cells={materialCells}
 					onChange={({ errors, data }) => setData(data)}
+					config={config}
 					ajv={handleDefaultsAjv}
 				/>
 			</div>
