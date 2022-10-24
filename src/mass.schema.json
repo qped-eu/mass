@@ -240,38 +240,18 @@
       "description": "Configure the Test Coverage Checker.",
       "documentation": "Configure the Test Coverage Checker.",
       "properties": {
-        "excludeByTypeSet": {
-          "type": "array",
-          "title": "Exclude by Type",
-          "description": "Specify types of methods to be excluded from the coverage analysis.",
-          "documentation": "Specify types of methods to be excluded from the coverage analysis.",
-          "items": {
-            "type": "string",
-            "enum": [
-              "SET",
-              "GET",
-              "PRIVATE",
-              "PROTECTED"
-            ]
-          },
-          "uniqueItems": true
-        },
-        "excludeByNameSet": {
-          "type": "array",
-          "title": "Exclude by Name",
-          "description": "Specify names of classes or methods to be excluded from the coverage analysis.",
-          "documentation": "Specify names of classes or methods to be excluded from the coverage analysis.",
-          "items": {
-            "type": "string"
-          },
-          "uniqueItems": true
-        },
         "privateImplementation": {
           "type": "string",
           "format": "uri",
           "title": "Private Base Implementation",
           "description": "Specify the URL of the ZIP-file containing the private implementation.",
           "documentation": "The private implementation must be provided as a Zip-file. This will be extracted and all contained files will be copied into folder containing the code submitted by a student and possible overwrite parts of their implementation."
+        },
+        "showExtraMisses": {
+          "type": "boolean",
+          "description": "Specify whether to show missed or partially missed lines for which no feedback message is configured.",
+          "default": false,
+          "title": "Show Extra Misses"
         },
         "feedback": {
           "type": "array",
@@ -280,34 +260,64 @@
           "documentation": "Specify the feedback messages per coverage miss.",
           "minItems": 1,
           "items": {
-            "type": "string",
-            "title": "Location of Coverage Miss",
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": "string",
+                "pattern": "\\s*[_a-zA-Z0-9]+\\s*",
+                "title": "Message ID",
+                "description": "You can optionally specify a unique name to this feedback message to define constraints between messages."
+              },
+              "showFor": {
+                "type": "string",
+                "enum": [
+                  "FULLY_MISSED",
+                  "PARTIALLY_MISSED"
+                ],
+                "enumDesc": "Message is applicable if code is fully missed or at least partially missed. For information on partial coverage see [JaCoCo](https://www.jacoco.org/jacoco/trunk/doc/counters.html).",
+                "title": "Kind of Coverage Miss",
+                "default": "PARTIALLY_MISSED",
+                "description": "Specify whether to show the message only when all lines in the range are completely missed or they are at least partially missed. For information on partial coverage see [JaCoCo](https://www.jacoco.org/jacoco/trunk/doc/counters.html)."
+              },
+              "fileName": {
+                "type": "string",
+                "title": "File Name",
+                "description": "Specify the source file containing the lines you refer to. The file must use / as path separator, include the extension (usually .java) and the path must correspond to the package of the contained class.",
+                "pattern": "\\s*[_$a-zA-Z0-9]+(/[_$a-zA-Z0-9]+)*.[a-zA-Z0-9]*\\s*"
+              },
+              "lineRanges": {
+                "type": "string",
+                "pattern": "\\s*\\d+(\\s*-\\s*\\d+)?\\s*(,\\s*\\d+(\\s*-\\s*\\d+)?\\s*)*",
+                "title": "Line Ranges",
+                "description": "Specify relevant missed or partially missed lines as a comma separated list of line numbers or ranges (e.g., 1-3). Line numbers start at 1."
+              },
+              "message": {
+                "type": "string",
+                "title": "Message",
+                "description": "Specify the message to show when miss as configured occurs."
+              },
+              "suppresses": {
+                "type": "string",
+                "description": "Specify which feedback messages should be held back when this message is applicable. Specify a comma separated list of the Message IDs of those feedback messages.",
+                "pattern": "\\s*[_$a-zA-Z0-9]+\\s*(,\\s*[_$a-zA-Z0-9]+\\s*)*",
+                "title": "Suppressed Messages"
+              }
+            },
             "description": "Specify the location of the coverage miss",
-            "documentation": "Specify the feedback messages per coverage miss.\n\nCustom feedback has always a higher priority than default feedback. Possible values: \n\n| Value                                              | Meaning | \n|----------------------------------------------------|--- |  \n| :TEST                                              | Generates Default Test Feedback for all test classes |\n| :COVERAGE                                          | Generates Default Coverage Feedback for all classes|\n| < class name >:TEST                                | Generates default Feedback for a test class|\n| < class name >:COVERAGE                            | Generates default Feedback for a class|\n| < class name >:CUSTOM:< indentifier >:< feedback > | Generates your custom Feedback for a given class and identifier (Index or Method Name)|\n\nExamples:\n\n- Generate default feedback for all test in class ExampleTest1: ```ExampleTest1:TEST```\n- Generate default feedback for one test in class ExampleTest2: ```ExampleTest2:TEST:myTest:```\n- Generate custom feedback for one statement in class Example ```Example:CUSTOM:11:You missed something important in your test, did you fully read the assignment?```",
-            "pattern": "(^([a-zA-Z0-9]*):(TEST|COVERAGE)$|^([a-zA-Z0-9]+:(TEST|COVERAGE|CUSTOM):([a-zA-Z0-9]+):.*)$)"
+            "required": [
+              "lineRanges",
+              "message",
+              "showFor",
+              "fileName"
+            ],
+            "title": "Feedback Messages"
           }
-        },
-        "convention": {
-          "type": "string",
-          "title": "Program Format",
-          "description": "Specify whether the student solution follows plain Java or Maven conventions for locations of base and test classes.",
-          "documentation": "Specify whether the student solution follows plain Java or Maven conventions for locations of base and test classes.\n\n| Convention | Meaning |\n|---|--- | \n| JAVA   | Test classes end with test.<br>Full class name is the total folder path.                                           |\n| MAVEN  | Test Classes are in the folder path test/java.<br>Full class name is the folder path after test/java ore main/java. |\n",
-          "enum": [
-            "JAVA",
-            "MAVEN"
-          ],
-          "default": "JAVA"
-        },
-        "format": {
-          "type": "string",
-          "title": "Feedback Format",
-          "description": "Specify a Velocity template.",
-          "documentation": "Specify a Velocity template.\n\nIt is possible to provide a template to format and enrich your feedback\nwith additional information.\nThe framework velocity is used to format the created feedback.\nFor more information visit the [Coverage Checker's github page](https://github.com/Alucard2112/QPED-O3/blob/master/src/main/java/eu/qped/java/checkers/coverage/doc.md)."
         }
       },
       "required": [
         "convention",
-        "feedback"
+        "feedback",
+        "showExtraMisses"
       ]
     },
     "classSelected": {
