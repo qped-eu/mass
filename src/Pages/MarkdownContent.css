@@ -1,0 +1,9 @@
+.center{
+    justify-content: center;
+    text-align: center;
+}
+
+.flush-left{
+    justify-content: left;
+    text-align: left;
+}
