@@ -5,7 +5,7 @@ import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import Configurator from './Pages/Configurator/Configurator';
 import Footer from './Components/Footer/Footer';
-import MarkdownContent from './Pages/MarkdownContent';
+import MarkdownContent from './Pages/Markdown-Pages/MarkdownContent';
 
 const importMD = function(mdFile:String, setInput:Function){
 	import(`./markdown/${mdFile}`)

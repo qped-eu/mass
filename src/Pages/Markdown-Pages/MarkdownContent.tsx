@@ -1,4 +1,4 @@
-import Markdown from '../Components/Markdown/Markdown';
+import Markdown from '../../Components/Markdown/Markdown';
 import './MarkdownContent.css';
 
 function MarkdownContent({input, center = false} : {input:string, center?:boolean}) {
