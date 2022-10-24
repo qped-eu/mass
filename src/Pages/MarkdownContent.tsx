@@ -1,10 +1,13 @@
 import Markdown from '../Components/Markdown/Markdown';
+import './MarkdownContent.css';
 
-function MarkdownContent({input} : {input:string}) {
+function MarkdownContent({input, center = false} : {input:string, center?:boolean}) {
     return (
-        <Markdown 
-          mdFile={input}
-        />
+        <div className={center ? 'center' : 'flush-left'}>
+          <Markdown 
+            mdFile={input}
+          />
+        </div>
       )
 }
 
