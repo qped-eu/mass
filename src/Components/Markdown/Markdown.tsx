@@ -91,16 +91,7 @@ const Markdown = ({ mdFile }: { mdFile: string, }) => {
 	}
 
 	useEffect(() => {
-		/*import(`../../markdown/${mdFile}`)
-		.then(res => {
-			fetch(res.default)
-			.then(res => res.text())
-			.then(res => setInput(res))
-			.catch(err => console.log(err));
-		})
-		.catch(err => console.log(err));*/
 		scrollTo();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	  }, []);
 
 	  useEffect(() => {scrollTo()}, [location]);

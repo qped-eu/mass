@@ -29,7 +29,7 @@ Options and enter the following data:
 | property            | value                                      |
 |---------------------|--------------------------------------------|
 | Git url             | https://github.com/qped-eu/MASS-checker.git|
-| Git branch          | master                                     |
+| Git branch          | qf                                         |
 | Path                |                                            |
 | Git private SSH key |                                            |
 
