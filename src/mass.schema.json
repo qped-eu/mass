@@ -247,11 +247,17 @@
           "description": "Specify the URL of the ZIP-file containing the private implementation.",
           "documentation": "The private implementation must be provided as a Zip-file. This will be extracted and all contained files will be copied into folder containing the code submitted by a student and possible overwrite parts of their implementation."
         },
-        "showExtraMisses": {
+        "showTestFailures": {
           "type": "boolean",
-          "description": "Specify whether to show missed or partially missed lines for which no feedback message is configured.",
+          "description": "Specify whether to show a description of the failed tests.",
+          "default": true,
+          "title": "Show Test Failures"
+        },
+        "showFullCoverageReport": {
+          "type": "boolean",
+          "description": "Specify whether to show a full report of the test coverage.",
           "default": false,
-          "title": "Show Extra Misses"
+          "title": "Show Test Failures"
         },
         "feedback": {
           "type": "array",
@@ -315,9 +321,9 @@
         }
       },
       "required": [
-        "convention",
         "feedback",
-        "showExtraMisses"
+        "showFullCoverageReport",
+        "showTestFailures"
       ]
     },
     "classSelected": {
