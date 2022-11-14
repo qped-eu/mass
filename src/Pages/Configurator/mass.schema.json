@@ -123,6 +123,14 @@
           "documentation": "Specify a regular expression that method names must match.",
           "default": "[a-z][a-zA-Z0-9]*"
         },
+        "methodParameterNamePattern": {
+          "type": "string",
+          "format": "regex",
+          "title": "Method-Parameter Naming Conventions",
+          "description": "Specify a regular expression that method-parameter names must match.",
+          "documentation": "Specify a regular expression that method-parameter names must match.",
+          "default": "[a-z][a-zA-Z0-9]*"
+        },
         "classNamePattern": {
           "type": "string",
           "format": "regex",
@@ -133,7 +141,7 @@
         }
       }
     },
-    "semanticsSelected": {
+    "semanticSelected": {
       "type": "boolean",
       "title": "Enable Solution Approach Checker",
       "description": "Enable the configuration of the Solution Approach Checker.",
