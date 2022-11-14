@@ -18,7 +18,7 @@
 						},
 						{
 							"type": "Control",
-							"scope": "#/properties/semanticsSelected"
+							"scope": "#/properties/semanticSelected"
 						},
 						{
 							"type": "Control",
@@ -67,7 +67,7 @@
 			"rule": {
 				"effect": "SHOW",
 				"condition": {
-					"scope": "#/properties/semanticsSelected",
+					"scope": "#/properties/semanticSelected",
 					"schema": {
 						"const": true
 					}
