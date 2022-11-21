@@ -1,3 +1,13 @@
 *node_modules
 *build
 *package-lock.json
+.project
+.idea/.gitignore
+.idea/mass-cbockisch.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/libraries/TeachersImplementation.xml
+.settings/.jsdtscope
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.jsdt.ui.superType.name
