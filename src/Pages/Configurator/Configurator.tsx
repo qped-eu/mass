@@ -27,7 +27,7 @@ const renderers = [
 const handleDefaultsAjv = createAjv({useDefaults: true});
 const initialData = {
 	"styleSelected": false,
-	"semanticsSelected": false,
+	"semanticSelected": false,
 	"coverageSelected": false,
 	"classSelected": false,
 	"metricsSelected": false,
