@@ -99,7 +99,7 @@
 			"elements": [
 				{
 					"type": "Control",
-					"scope": "#/properties/class"
+					"scope": "#/properties/classes"
 				}
 			],
 			"rule": {
