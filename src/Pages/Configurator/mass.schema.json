@@ -150,7 +150,7 @@
     },
     "semantic": {
       "type": "object",
-      "title": "Semantic Check Configuration",
+      "title": "Solution Approach Checker Configuration",
       "description": "Configure for the Semantic Checker.",
       "documentation": "Configure for the Semantic Checker.",
       "additionalProperties": false,
