@@ -243,7 +243,7 @@
       "documentation": "Enable the configuration of the Test Coverage Checker.",
       "default": false
     },
-        "coverage": {
+    "coverage": {
       "type": "object",
       "title": "Test Coverage Check Configuration",
       "description": "Configure the Test Coverage Checker.",
@@ -266,7 +266,7 @@
           "type": "boolean",
           "description": "Specify whether to show a full report of the test coverage.",
           "default": false,
-          "title": "Show Test Failures"
+          "title": "Show Full Report"
         },
         "feedback": {
           "type": "array",
