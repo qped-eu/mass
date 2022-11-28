@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkqped_github_pages=self.webpackChunkqped_github_pages||[]).push([[280],{35280:function(e,p,a){e.exports=a.p+"static/media/qped-coverage.1afc101a966d80f84f6d.md"}}]);
