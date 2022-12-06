@@ -45,7 +45,7 @@ function Configurator() {
 	};
   
 	const copyData = () => {
-		navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+		navigator.clipboard.writeText("qf.mass = " + JSON.stringify(data, null, 2));
 	};
 
 	window.setInterval(() => {console.log(document.getElementById('LeContainer')?.offsetTop);}, 1000)
