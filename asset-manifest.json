@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/mass/static/css/main.c97bc8ee.css",
-    "main.js": "/mass/static/js/main.27d32ea2.js",
-    "static/js/571.9e482e83.chunk.js": "/mass/static/js/571.9e482e83.chunk.js",
+    "main.js": "/mass/static/js/main.4aefbf19.js",
+    "static/js/571.dcdb4a4c.chunk.js": "/mass/static/js/571.dcdb4a4c.chunk.js",
     "static/js/785.dd16e393.chunk.js": "/mass/static/js/785.dd16e393.chunk.js",
-    "static/js/280.e8a92a25.chunk.js": "/mass/static/js/280.e8a92a25.chunk.js",
+    "static/js/280.432e34cc.chunk.js": "/mass/static/js/280.432e34cc.chunk.js",
     "static/js/307.515c8169.chunk.js": "/mass/static/js/307.515c8169.chunk.js",
     "static/js/484.060204e1.chunk.js": "/mass/static/js/484.060204e1.chunk.js",
-    "static/js/780.a0ceef2e.chunk.js": "/mass/static/js/780.a0ceef2e.chunk.js",
-    "static/js/954.2b70e083.chunk.js": "/mass/static/js/954.2b70e083.chunk.js",
-    "static/media/mass-doku.md": "/mass/static/media/mass-doku.bb855194e424b0db2ef9.md",
+    "static/js/780.c6136b13.chunk.js": "/mass/static/js/780.c6136b13.chunk.js",
+    "static/js/954.f1e50149.chunk.js": "/mass/static/js/954.f1e50149.chunk.js",
+    "static/media/mass-doku.md": "/mass/static/media/mass-doku.88d352a036eb817c50ad.md",
     "static/media/logo.png": "/mass/static/media/logo.93c1a760e144eb22c332.png",
     "static/media/qped-class.md": "/mass/static/media/qped-class.d94bd38206a1951f1fea.md",
-    "static/media/qped-coverage.md": "/mass/static/media/qped-coverage.fe5928fa4a711f7c4409.md",
+    "static/media/qped-coverage.md": "/mass/static/media/qped-coverage.9ab6a4a5439680ecbdc7.md",
     "static/media/qped-metrics.md": "/mass/static/media/qped-metrics.5e54966245ce07f759c7.md",
-    "static/media/qped-semantics.md": "/mass/static/media/qped-semantics.d04db817c8e91429b019.md",
-    "static/media/qped-style.md": "/mass/static/media/qped-style.5343f884f005705d2bc0.md",
+    "static/media/qped-semantics.md": "/mass/static/media/qped-semantics.3177f02ec5910b0c45cd.md",
+    "static/media/qped-style.md": "/mass/static/media/qped-style.386cf19049a60470c15d.md",
     "static/media/qped-mass.md": "/mass/static/media/qped-mass.4bf1cdb5a6ceec7589bb.md",
     "index.html": "/mass/index.html",
     "main.c97bc8ee.css.map": "/mass/static/css/main.c97bc8ee.css.map",
-    "main.27d32ea2.js.map": "/mass/static/js/main.27d32ea2.js.map"
+    "main.4aefbf19.js.map": "/mass/static/js/main.4aefbf19.js.map"
   },
   "entrypoints": [
     "static/css/main.c97bc8ee.css",
-    "static/js/main.27d32ea2.js"
+    "static/js/main.4aefbf19.js"
   ]
 }

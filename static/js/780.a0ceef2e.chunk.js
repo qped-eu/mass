@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkqped_github_pages=self.webpackChunkqped_github_pages||[]).push([[780],{11780:function(e,s,p){e.exports=p.p+"static/media/qped-semantics.d04db817c8e91429b019.md"}}]);
