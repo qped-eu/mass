@@ -272,3 +272,4 @@ The Quartefall Feedback actions should now look as follows.
 (Actually, the JSON object is copied without any pretty-printing consisting of just one line. For better readability of the screenshot, we have inserted newlines and indentation):
 
 ![Mass configuration Quarterfall Cloud check action finished.](images/cov_quarterfall-finished.png)
+![Screenshot of the Cloud Check Action in Quarterfall.](images/quarterfall_cloudcheck-action.png)

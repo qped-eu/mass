@@ -150,3 +150,4 @@ In this Code action, enter `qf.mass = ` and paste the configuration you just cop
 The Quartefall Feedback actions should now look like this (depending on your method of copying, the JSON object may have not been copied with indentations or line breaks, so we included these for better readability):
 
 ![Mass configuration Quarterfall Cloud check action finished.](images/solution_quarterfall-finished.png)
+![Screenshot of the Cloud Check Action in Quarterfall.](images/quarterfall_cloudcheck-action.png)
