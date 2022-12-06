@@ -128,6 +128,8 @@ This URL is only known to the Feedback action in Quarterfall and cannot be deter
 therefore the implementation will not be accessible to students.
 The ZIP file should contain the source files of the required classes and the folder structure within the ZIP file
 should follow Java conventions (i.e., the default package is the root of the ZIP file and packages are sub folders).
+The ZIP-file should then be uploaded to a file hoster where it is publicly available.
+It can, for instance, be uploaded to github in order to have it accessable from the web.
 For the purpose of this tutorial, we provide an appropriate ZIP file at this URL:
 
 [https://qped-eu.github.io/mass/files/TeachersImplementation.zip](https://qped-eu.github.io/mass/files/TeachersImplementation.zip)
@@ -158,7 +160,7 @@ Now that we have selected the format of the report, we also want to specify feed
 To add a feedback message, click on the **+**-button next to **Feedback Configuration**.
 Your configurator should now look something like this:
 
-![Mass configuration web form - add feedback.](images/cov_web-form-add-feedback.png)
+![Mass configuration web form - add feedback.](images/cov_web-form-add_feedback.png)
 
 First of all, let's explain what just happened:
 We've just added a new entry for feedback.
@@ -210,6 +212,7 @@ Therefore we want to add the following messages:
 - A message that triggers if the odd path is no covered. This should suppress the first message.
 
 If you have entered every value correctly, your configuration should look like this:
+
 ![Mass configuration web form - finished configuration.](images/cov_web-form-feedback-added.png)
 
 ### <a id="coverage-transferring-to-quarterfall"></a>Transferring the Configuration to Quarterfall
