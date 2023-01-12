@@ -55,30 +55,6 @@ const initialData = {
         "message": "",
         "showFor": "PARTIALLY_MISSED",
         "fileName": ""
-      },
-      {
-        "lineRanges": "",
-        "message": "",
-        "showFor": "PARTIALLY_MISSED",
-        "fileName": ""
-      },
-      {
-        "lineRanges": "",
-        "message": "",
-        "showFor": "PARTIALLY_MISSED",
-        "fileName": ""
-      },
-      {
-        "lineRanges": "",
-        "message": "",
-        "showFor": "PARTIALLY_MISSED",
-        "fileName": ""
-      },
-      {
-        "lineRanges": "",
-        "message": "",
-        "showFor": "PARTIALLY_MISSED",
-        "fileName": ""
       }
     ],
     "showFullCoverageReport": false,
