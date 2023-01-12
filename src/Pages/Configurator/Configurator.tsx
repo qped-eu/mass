@@ -2,10 +2,12 @@ import {useState, useMemo} from 'react';
 import { JsonForms } from '@jsonforms/react';
 import { createAjv } from '@jsonforms/core';
 import Grid from '@mui/material/Grid';
+import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import schema from './mass.schema.json';
 import uischema from './mass.uischema.json';
 import './Configurator.css';
@@ -13,7 +15,6 @@ import {
 	materialCells,
 	materialRenderers,
   } from '@jsonforms/material-renderers';
-import React, { useRef } from "react";
 
 const renderers = [
 	...materialRenderers
@@ -261,36 +262,41 @@ function Configurator() {
 				spacing={2}
 			>
 				<Grid item xs>
-					<Button
-						className='actionButton'
-						onClick={copyData}
-						color='primary'
-						variant='contained'
-					>
-						Copy to clipboard
-					</Button>
-				</Grid>
-				<Grid item xs>
-					<Button
-						className='actionButton'
-						onClick={clearData}
-						color='primary'
-						variant='contained'
-					>
-						Reset data
-					</Button>
+				    <Tooltip title="Copy data to clipboard.">
+    					<Button
+    						className='actionButton'
+    						onClick={copyData}
+    						color='primary'
+    						variant='contained'
+    						startIcon={<ContentCopyIcon />}
+    					>
+    					</Button>
+					</Tooltip>
 				</Grid>
                 <Grid item xs>
-                    <Button
-                        className='actionButton'
-                        onClick={pasteData}
-                        color='primary'
-                        variant='contained'
-                        startIcon={<ContentPasteIcon />}
-                    >
-                        Paste data
-                    </Button>
+                    <Tooltip title="Paste data from clipboard.">
+                        <Button
+                            className='actionButton'
+                            onClick={pasteData}
+                            color='primary'
+                            variant='contained'
+                            startIcon={<ContentPasteIcon />}
+                        >
+                        </Button>
+                    </Tooltip>
                 </Grid>
+				<Grid item xs>
+                    <Tooltip title="Reset data to default.">
+    					<Button
+    						className='actionButton'
+    						onClick={clearData}
+    						color='primary'
+    						variant='contained'
+    						startIcon={<RestartAltIcon />}
+    					>
+    					</Button>
+                    </Tooltip>
+				</Grid>
              </Grid>
              <div className='dataContent'>
                 <pre id='boundData'>{stringifiedData}</pre>
