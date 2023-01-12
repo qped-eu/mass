@@ -254,12 +254,14 @@ function Configurator() {
     const [storedData, setStoredData] = useState<string | undefined>(undefined);
 
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+    const [usedInput, setUsedInput] = useState<string | undefined>(undefined);
 
     const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
 
     const clearData = () => {
         setStoredData(undefined);
         var lastUserVersion = JSON.stringify(data, null, 2);
+        setUpdateFailedMessageOpen(false);
         setData(initialData);
         setTimeout(() => {
             setStoredData(lastUserVersion);
@@ -272,22 +274,35 @@ function Configurator() {
     };
 
     const pasteData = () => {
-        setStoredData(undefined);
-        var lastUserVersion = JSON.stringify(data, null, 2);
+        setStoredData(undefined)
+        var lastUserVersion = JSON.stringify(data, null, 2)
+        setUpdateFailedMessageOpen(false);
         navigator.clipboard
             .readText()
             .then((clipText) => {
+                var jsonStartIndex = clipText.indexOf("{")
+                if (jsonStartIndex < 0) {
+                    jsonStartIndex = 0
+                }
+                var jsonEndIndex = clipText.lastIndexOf("}")
+                if (jsonEndIndex < 0) {
+                    jsonEndIndex = clipText.length
+                } else {
+                    jsonEndIndex++
+                }
+                var input = clipText.substring(jsonStartIndex, jsonEndIndex)
+                
                 try {
-                    setData(JSON.parse(clipText))
+                    setData(JSON.parse(input))
                     setTimeout(() => {
-                        setStoredData(lastUserVersion);
-                        setUpdatedMessageOpen(true);
+                        setStoredData(lastUserVersion)
+                        setUpdatedMessageOpen(true)
                     }, 50);
                 } catch (error) {
                     if (error instanceof Error) {
                         setErrorMessage(error.message)
+                        setUsedInput(input);
                         setUpdateFailedMessageOpen(true)
-                        return
                     }
                 }
             });
@@ -413,14 +428,31 @@ function Configurator() {
                   aria-labelledby="scroll-dialog-title"
                   aria-describedby="scroll-dialog-description"
                >
-                  <DialogTitle id="scroll-dialog-title">Error Message</DialogTitle>
+                  <DialogTitle id="scroll-dialog-title">Error Importing Data from Clipboard</DialogTitle>
                   <DialogContent dividers={true}>
                      <DialogContentText
                         id="scroll-dialog-description"
                         ref={descriptionElementRef}
                         tabIndex={-1}
                      >
-                        {errorMessage}
+                     <Typography gutterBottom>
+                        The data you pasted was not a well-formed JSON object. The  error message was:
+                     </Typography>
+                     <Typography gutterBottom>
+                        <pre className='preformatted'>
+                            {errorMessage}
+                        </pre>
+                     </Typography>                     
+                     <Typography gutterBottom>
+                        From the data on the clipboard, only the text between the first opening brace ('{"{"}')
+                        and the last closing brace ('{"}"}') is used. Thus, the text that was attempted to be
+                        parsed as a JSON object from your clipboard was:
+                     </Typography>
+                     <Typography gutterBottom>
+                        <pre className='preformatted'>
+                        {usedInput}
+                        </pre>
+                     </Typography>
                      </DialogContentText>
                   </DialogContent>
                   <DialogActions>

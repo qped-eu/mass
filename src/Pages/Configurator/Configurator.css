@@ -18,6 +18,14 @@
     margin-bottom: 1rem;
 }
 
+.preformatted {
+    display: block;
+    overflow: auto;
+    justify-content: left;
+    border-radius: 0.25em;
+    background-color: #cecece;
+    margin-bottom: 1rem;
+}
 .actionButton{
     display: block !important;
 }
