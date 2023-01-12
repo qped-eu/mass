@@ -7,6 +7,13 @@
   "title": "QPED-MASS Configuration",
   "additionalProperties": false,
   "properties": {
+    "instructorResources": {
+      "type": "string",
+      "format": "uri",
+      "title": "Instructor Resources",
+      "description": "Specify the URL of a ZIP-file containing instructor resources that should be added to the root directory of student resources.",
+      "documentation": "The instructor resources must be provided as a Zip-file. This will be extracted and all contained files will be copied into folder containing the code submitted by a student (and possible overwrite parts of their implementation) before the student solution is compiled. The location of the instructor resources is provided as URL. In addition to the usual protocols (like http) the custom protocol qf is supported. A URL of the form 'qf:label.extension' refers to a file uploaded to the Quarterfall assignment with the specified label and extension."
+    },
     "syntax": {
       "type": "object",
       "title": "Syntax Check Configuration",
@@ -249,13 +256,6 @@
       "description": "Configure the Test Coverage Checker.",
       "documentation": "Configure the Test Coverage Checker.",
       "properties": {
-        "privateImplementation": {
-          "type": "string",
-          "format": "uri",
-          "title": "Private Base Implementation",
-          "description": "Specify the URL of the ZIP-file containing the private implementation.",
-          "documentation": "The private implementation must be provided as a Zip-file. This will be extracted and all contained files will be copied into folder containing the code submitted by a student and possible overwrite parts of their implementation."
-        },
         "showTestFailures": {
           "type": "boolean",
           "description": "Specify whether to show a description of the failed tests.",
@@ -266,7 +266,7 @@
           "type": "boolean",
           "description": "Specify whether to show a full report of the test coverage.",
           "default": false,
-          "title": "Show Full Report"
+          "title": "Show Full Coverage Report"
         },
         "feedback": {
           "type": "array",
@@ -1898,7 +1898,7 @@
   "required": [
     "syntax",
     "styleSelected",
-    "semanticsSelected",
+    "semanticSelected",
     "coverageSelected",
     "classSelected",
     "metricsSelected"

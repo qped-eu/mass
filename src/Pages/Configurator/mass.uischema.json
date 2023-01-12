@@ -5,6 +5,10 @@
 			"type": "Category",
 			"label": "Main Settings",
 			"elements": [
+    			{
+                    "type": "Control",
+                    "scope": "#/properties/instructorResources"
+                },
 				{
 					"type": "Control",
 					"scope": "#/properties/syntax"
