@@ -1898,7 +1898,7 @@
   "required": [
     "syntax",
     "styleSelected",
-    "semanticsSelected",
+    "semanticSelected",
     "coverageSelected",
     "classSelected",
     "metricsSelected"
