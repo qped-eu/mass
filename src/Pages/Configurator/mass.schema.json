@@ -266,7 +266,7 @@
           "type": "boolean",
           "description": "Specify whether to show a full report of the test coverage.",
           "default": false,
-          "title": "Show Full Report"
+          "title": "Show Full Coverage Report"
         },
         "feedback": {
           "type": "array",
