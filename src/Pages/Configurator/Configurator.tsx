@@ -4,6 +4,8 @@ import { createAjv } from '@jsonforms/core';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import schema from './mass.schema.json';
 import uischema from './mass.uischema.json';
 import './Configurator.css';
@@ -11,6 +13,7 @@ import {
 	materialCells,
 	materialRenderers,
   } from '@jsonforms/material-renderers';
+import React, { useRef } from "react";
 
 const renderers = [
 	...materialRenderers
@@ -211,6 +214,14 @@ function Configurator() {
 	const copyData = () => {
 		navigator.clipboard.writeText("qf.mass = " + JSON.stringify(data, null, 2));
 	};
+	
+    const pasteData = () => {
+        navigator.clipboard
+        .readText()
+        .then((clipText) => 
+            setData(JSON.parse(clipText))
+        );
+    };
 
 	window.setInterval(() => {console.log(document.getElementById('LeContainer')?.offsetTop);}, 1000)
 	
@@ -243,9 +254,6 @@ function Configurator() {
 			<Typography variant={'h4'} className='title'>
 				Configuration Data
 			</Typography>
-			<div className='dataContent'>
-				<pre id='boundData'>{stringifiedData}</pre>
-			</div>
 			<Grid
 				container
 				justifyContent={'center'}
@@ -272,7 +280,21 @@ function Configurator() {
 						Reset data
 					</Button>
 				</Grid>
-			</Grid>
+                <Grid item xs>
+                    <Button
+                        className='actionButton'
+                        onClick={pasteData}
+                        color='primary'
+                        variant='contained'
+                        startIcon={<ContentPasteIcon />}
+                    >
+                        Paste data
+                    </Button>
+                </Grid>
+             </Grid>
+             <div className='dataContent'>
+                <pre id='boundData'>{stringifiedData}</pre>
+            </div>
 		</Grid>
 	</Grid>
   )
