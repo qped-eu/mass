@@ -1,13 +1,28 @@
+import * as React from 'react';
 import {useState, useMemo} from 'react';
 import { JsonForms } from '@jsonforms/react';
 import { createAjv } from '@jsonforms/core';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import Dialog, { DialogProps } from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import CloseIcon from '@mui/icons-material/Close';
 import schema from './mass.schema.json';
 import uischema from './mass.uischema.json';
 import './Configurator.css';
@@ -204,32 +219,118 @@ const initialData = {
   }
 };
 
-function Configurator() {
-	const [data, setData] = useState<any>(initialData);
-	const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
+interface Props {
+    /**
+     * Injected by the documentation to work in an iframe.
+     * You won't need it on your project.
+     */
+    window?: () => Window;
+    children: React.ReactElement;
+}
 
-	const clearData = () => {
-		setData(initialData);
-	};
-  
-	const copyData = () => {
-		navigator.clipboard.writeText("qf.mass = " + JSON.stringify(data, null, 2));
-	};
-	
-    const pasteData = () => {
-        navigator.clipboard
-        .readText()
-        .then((clipText) => 
-            setData(JSON.parse(clipText))
-        );
+function ElevationScroll(props: Props) {
+    const { children, window } = props;
+    // Note that you normally won't need to set the window ref as useScrollTrigger
+    // will default to window.
+    // This is only being set here because the demo is in an iframe.
+    const trigger = useScrollTrigger({
+        disableHysteresis: true,
+        threshold: 0,
+        target: window ? window() : undefined,
+    });
+
+    return React.cloneElement(children, {
+        elevation: trigger ? 4 : 0,
+    });
+}
+
+
+
+function Configurator() {
+    const [updatedMessageOpen, setUpdatedMessageOpen] = React.useState(false);
+    const [updateFailedMessageOpen, setUpdateFailedMessageOpen] = React.useState(false);
+
+    const [data, setData] = useState<any>(initialData);
+    const [storedData, setStoredData] = useState<string | undefined>(undefined);
+
+    const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+
+    const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
+
+    const clearData = () => {
+        setStoredData(undefined);
+        var lastUserVersion = JSON.stringify(data, null, 2);
+        setData(initialData);
+        setTimeout(() => {
+            setStoredData(lastUserVersion);
+            setUpdatedMessageOpen(true);
+        }, 50);
     };
 
-	window.setInterval(() => {console.log(document.getElementById('LeContainer')?.offsetTop);}, 1000)
+    const copyData = () => {
+        navigator.clipboard.writeText("qf.mass = " + JSON.stringify(data, null, 2));
+    };
+
+    const pasteData = () => {
+        setStoredData(undefined);
+        var lastUserVersion = JSON.stringify(data, null, 2);
+        navigator.clipboard
+            .readText()
+            .then((clipText) => {
+                try {
+                    setData(JSON.parse(clipText))
+                    setTimeout(() => {
+                        setStoredData(lastUserVersion);
+                        setUpdatedMessageOpen(true);
+                    }, 50);
+                } catch (error) {
+                    if (error instanceof Error) {
+                        setErrorMessage(error.message)
+                        setUpdateFailedMessageOpen(true)
+                        return
+                    }
+                }
+            });
+    };
+
+    const performUndo = () => {
+        if (storedData) {
+            setData(JSON.parse(storedData));
+            setStoredData(undefined)
+        }
+        setUpdatedMessageOpen(false);
+    };
+
+
+
+    const [errorDialogOpen, setErrorDialogOpen] = React.useState(false);
+
+    const handleDialogClose = () => {
+        setErrorDialogOpen(false);
+    };
+
+    const descriptionElementRef = React.useRef<HTMLElement>(null);
+    React.useEffect(() => {
+        if (errorDialogOpen) {
+            const { current: descriptionElement } = descriptionElementRef;
+            if (descriptionElement !== null) {
+                descriptionElement.focus();
+            }
+        }
+    }, [errorDialogOpen]);
+
+    const showErrorDetails = () => {
+        if (errorMessage != undefined) {
+            setErrorDialogOpen(true);
+        }
+    };
+
+	//window.setInterval(() => {console.log(document.getElementById('LeContainer')?.offsetTop);}, 1000)
 	
   return (
     <Grid
 		container
-		justifyContent={'center'}
+		justifyContent={'left'}
 		spacing={2}
 		className='container'
 		id='LeContainer'
@@ -245,64 +346,133 @@ function Configurator() {
 					uischema={uischema}
 					data={data}
 					cells={materialCells}
-					onChange={({ errors, data }) => setData(data)}
+					onChange={({ errors, data }) => {setData(data); if(storedData != undefined) setUpdatedMessageOpen(false)}}
 					config={config}
 					ajv={handleDefaultsAjv}
 				/>
 			</div>
 		</Grid>
-		<Grid item xs>
-			<Typography variant={'h4'} className='title'>
-				Configuration Data
-			</Typography>
-			<Grid
-				container
-				justifyContent={'center'}
-				className='container'
-				spacing={2}
-			>
-				<Grid item xs>
-				    <Tooltip title="Copy data to clipboard.">
-    					<Button
-    						className='actionButton'
-    						onClick={copyData}
-    						color='primary'
-    						variant='contained'
-    						startIcon={<ContentCopyIcon />}
-    					>
-    					</Button>
-					</Tooltip>
-				</Grid>
-                <Grid item xs>
-                    <Tooltip title="Paste data from clipboard.">
+        <Grid item xs>
+            <Box sx={{ width: '100%' }}>
+               <Collapse in={updatedMessageOpen}>
+                  <Alert
+                     action={
+                        <Stack direction="row" spacing={2}>
+                            <Button color="inherit" size="small" onClick={performUndo}>
+                               UNDO
+                            </Button>
+                            <IconButton
+                               aria-label="close"
+                               color="inherit"
+                               size="small"
+                               onClick={() => {
+                                  setUpdatedMessageOpen(false);
+                               }}
+                            >
+                               <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                        </Stack>
+                     }
+                     sx={{ mb: 2 }}
+                  >
+                     Configuration data updated successfully.
+                  </Alert>
+               </Collapse>
+            </Box>
+            <Box sx={{ width: '100%' }}>
+               <Collapse in={updateFailedMessageOpen}>
+                  <Alert
+                     severity="error"
+                     action={
+                        <Stack direction="row" spacing={2}>
+                            <Button color="inherit" size="small" onClick={showErrorDetails}>
+                               Details
+                            </Button>
+                            <IconButton
+                               aria-label="close"
+                               color="inherit"
+                               size="small"
+                               onClick={() => {
+                                  setUpdateFailedMessageOpen(false);
+                               }}
+                            >
+                               <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                        </Stack>
+                     }
+                     sx={{ mb: 2 }}
+                  >
+                     Failed to update data.
+                  </Alert>
+               </Collapse>
+            </Box>
+            <div>
+               <Dialog
+                  open={errorDialogOpen}
+                  onClose={handleDialogClose}
+                  aria-labelledby="scroll-dialog-title"
+                  aria-describedby="scroll-dialog-description"
+               >
+                  <DialogTitle id="scroll-dialog-title">Error Message</DialogTitle>
+                  <DialogContent dividers={true}>
+                     <DialogContentText
+                        id="scroll-dialog-description"
+                        ref={descriptionElementRef}
+                        tabIndex={-1}
+                     >
+                        {errorMessage}
+                     </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                     <Button onClick={handleDialogClose}>OK</Button>
+                  </DialogActions>
+               </Dialog>
+            </div>
+            <ElevationScroll>
+               <AppBar position="static" color='secondary'>
+                  <Toolbar>
+                     <Typography variant={'h6'} className='title' component="div" sx={{ flexGrow: 1 }}>
+                        Configuration Data
+                     </Typography>
+                     <Tooltip title="Copy data to clipboard.">
+                        <Button
+                            className='actionButton'
+                            onClick={copyData}
+                            color='inherit'
+                            startIcon={<ContentCopyIcon />}
+                        >
+                        </Button>
+                     </Tooltip>
+                     <Tooltip title="Paste data from clipboard.">
                         <Button
                             className='actionButton'
                             onClick={pasteData}
-                            color='primary'
-                            variant='contained'
+                            color='inherit'
                             startIcon={<ContentPasteIcon />}
                         >
                         </Button>
-                    </Tooltip>
-                </Grid>
-				<Grid item xs>
-                    <Tooltip title="Reset data to default.">
-    					<Button
-    						className='actionButton'
-    						onClick={clearData}
-    						color='primary'
-    						variant='contained'
-    						startIcon={<RestartAltIcon />}
-    					>
-    					</Button>
-                    </Tooltip>
-				</Grid>
-             </Grid>
-             <div className='dataContent'>
-                <pre id='boundData'>{stringifiedData}</pre>
-            </div>
-		</Grid>
+                     </Tooltip>
+                     <Tooltip title="Reset data to default.">
+                        <Button
+                            className='actionButton'
+                            onClick={clearData}
+                            color='inherit'
+                            startIcon={<RestartAltIcon />}
+                        >
+                        </Button>
+                     </Tooltip>
+                  </Toolbar>
+               </AppBar>
+            </ElevationScroll>
+            <Box component="main" className='dataContent'>
+               <Typography>
+                  <pre id='boundData' style={{ width: '0' }}>{stringifiedData}</pre>
+               </Typography>
+            </Box>
+
+        </Grid>
 	</Grid>
+
   )
 }
 

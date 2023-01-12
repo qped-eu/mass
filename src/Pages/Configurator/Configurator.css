@@ -10,9 +10,9 @@
 
 .dataContent {
     display: block;
-    width: 30vw;
+    height: 60vh;
     overflow: auto;
-    justify-content: center;
+    justify-content: left;
     border-radius: 0.25em;
     background-color: #cecece;
     margin-bottom: 1rem;
