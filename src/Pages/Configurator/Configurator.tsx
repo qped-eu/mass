@@ -14,7 +14,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
-import Dialog, { DialogProps } from '@mui/material/Dialog';
+import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
@@ -335,7 +335,7 @@ function Configurator() {
     }, [errorDialogOpen]);
 
     const showErrorDetails = () => {
-        if (errorMessage != undefined) {
+        if (errorMessage !== undefined) {
             setErrorDialogOpen(true);
         }
     };
@@ -361,7 +361,7 @@ function Configurator() {
 					uischema={uischema}
 					data={data}
 					cells={materialCells}
-					onChange={({ errors, data }) => {setData(data); if(storedData != undefined) setUpdatedMessageOpen(false)}}
+					onChange={({ errors, data }) => {setData(data); if(storedData !== undefined) setUpdatedMessageOpen(false)}}
 					config={config}
 					ajv={handleDefaultsAjv}
 				/>
