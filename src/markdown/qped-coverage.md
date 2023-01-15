@@ -302,3 +302,8 @@ The *Quarterfall* feedback actions should now look as follows.
 
 ![*MASS Configuration* *Quarterfall* ***Cloud Check Action*** finished.](images/cov_quarterfall-finished.png)
 ![Screenshot of the ***Cloud Check Action*** in *Quarterfall*.](images/quarterfall_cloudcheck-action.png)
+
+The assignment created in this tutorial can also be imported in *Quarterfall* by using 
+this share code: `CODAGL`.
+For help on sharing and importing assignments in *Quarterfall*, please refer to the [Assignment Settings 
+help page](https://help.quarterfall.com/article/171-assignment-settings).
