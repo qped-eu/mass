@@ -109,7 +109,7 @@ function Configurator() {
        "classNamePattern": "[A-Z][a-zA-Z0-9_]*"
      },
      "semantic": {},
-     "coverage":{coverage} ,
+     "coverage":coverage ,
      "classes": {},
      "metrics": {
        "amcThreshold": {
@@ -253,7 +253,7 @@ function Configurator() {
     const [updatedMessageOpen, setUpdatedMessageOpen] = React.useState(false);
     const [updateFailedMessageOpen, setUpdateFailedMessageOpen] = React.useState(false);
 
-    const [data, setData] = useState<any>(initialData);
+    const [data, setData] = useState(initialData);
 
     const [storedData, setStoredData] = useState<string | undefined>(undefined);
 
