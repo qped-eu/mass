@@ -344,6 +344,17 @@ function Configurator() {
         }
     };
 
+   function handleHereClick(): void {
+      console.log("heereee");
+      setCoverage({});
+      
+   }
+   React.useEffect(()=>{
+
+    const updatedData = { ...data, coverage: coverage };
+    setData(updatedData);
+   },[coverage]);
+
 	//window.setInterval(() => {console.log(document.getElementById('LeContainer')?.offsetTop);}, 1000)
 	
   return (
@@ -369,6 +380,7 @@ function Configurator() {
 					config={config}
 					ajv={handleDefaultsAjv}
 				/>
+            <Button onClick={handleHereClick}> heeree</Button>
 			</div>
 		</Grid>
         <Grid item xs>
