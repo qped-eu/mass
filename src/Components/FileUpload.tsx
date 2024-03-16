@@ -3,26 +3,26 @@ import JSZip from 'jszip';
 import React, { useState, useEffect } from 'react';
 import Control_MASS_CheckerCoverage from '../Controller/Control_MASS_CheckerCoverage';
 interface FileUploadProps {
-  actualresult:any;
-  setActualResult:any; // Define the type of the prop you want to pass
+  actualresult: any;
+  setActualResult: any; // Define the type of the prop you want to pass
 }
 const FileUpload: React.FC<FileUploadProps> = (props) => {
 
   const [currentFile, setCurrentFile] = useState<File | null>(null);
   const [isReplacingOld, setReplacingOld] = useState<boolean>(false);
-  
+
   useEffect(() => {
     if (currentFile) {
-      JSZip.loadAsync(currentFile) 
-      .then((zip) => {
+      JSZip.loadAsync(currentFile)
+        .then((zip) => {
           buildConfigFromJavaFiles(zip, isReplacingOld);
-          });      
+        });
     }
   }, [currentFile]);
 
 
- const buildConfigFromJavaFiles = async (files: any, isReplacingOld: boolean) => {
-    var cc : Control_MASS_CheckerCoverage = new Control_MASS_CheckerCoverage();
+  const buildConfigFromJavaFiles = async (files: any, isReplacingOld: boolean) => {
+    var cc: Control_MASS_CheckerCoverage = new Control_MASS_CheckerCoverage();
     var isStillReplacingOld = isReplacingOld;
     var relativePaths: String[] = [];
     var currentFiles: any = [];
@@ -34,14 +34,14 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
         currentFiles.push(currentFile);
         fileIndex++;
       });
-      for(let i=0; i<fileIndex; i++){
-        if(relativePaths[i].includes("/.") || currentFiles[i].dir) {
-          i=i+1;
+      for (let i = 0; i < fileIndex; i++) {
+        if (relativePaths[i].includes("/.") || currentFiles[i].dir) {
+          i = i + 1;
         }
 
-        if(i<fileIndex && currentFiles[i].name.endsWith(".java")) {
+        if (i < fileIndex && currentFiles[i].name.endsWith(".java")) {
           let fileContent = await files.file(currentFiles[i].name).async("string");
-          cc.buildConfigFromJavaFile(currentFiles[i], fileContent, isStillReplacingOld,props.setActualResult);
+          cc.buildConfigFromJavaFile(currentFiles[i], fileContent, isStillReplacingOld, props.setActualResult);
           isStillReplacingOld = true;
         }
       }
@@ -85,11 +85,11 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
       </div>
       <label htmlFor="projectFile">
         <div className="boxUpload">
-          <input 
-            type="file" 
-            name="projectFile" 
-            id="projectFile" 
-            className="none"               
+          <input
+            type="file"
+            name="projectFile"
+            id="projectFile"
+            className="none"
             onChange={onSelectFile}
             accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"
           />
@@ -108,9 +108,9 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
         <p className="error uil uil-minus-circle none">Upload rejected</p>
       </div>
 
-      <div> 
-               <h2>{currentFile?.name}</h2>
-            </div>
+      <div>
+        <h2>{currentFile?.name}</h2>
+      </div>
     </div>
   );
 };
