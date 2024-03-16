@@ -107,6 +107,10 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
         <p className="allowed uil uil-check-circle none">Upload succeed</p>
         <p className="error uil uil-minus-circle none">Upload rejected</p>
       </div>
+
+      <div> 
+               <h2>{currentFile?.name}</h2>
+            </div>
     </div>
   );
 };
