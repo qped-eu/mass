@@ -2,7 +2,11 @@ import { readFile } from 'fs';
 import JSZip from 'jszip';
 import React, { useState, useEffect } from 'react';
 import Control_MASS_CheckerCoverage from '../Controller/Control_MASS_CheckerCoverage';
-const FileUpload: React.FC = () => {
+interface FileUploadProps {
+  actualresult:any;
+  setActualResult:any; // Define the type of the prop you want to pass
+}
+const FileUpload: React.FC<FileUploadProps> = (props) => {
 
   const [currentFile, setCurrentFile] = useState<File | null>(null);
   const [isReplacingOld, setReplacingOld] = useState<boolean>(false);
@@ -16,7 +20,6 @@ const FileUpload: React.FC = () => {
           });      
     }
   }, [currentFile]);
-  const [result,setResult]= useState(null);
 
 
  const buildConfigFromJavaFiles = async (files: any, isReplacingOld: boolean) => {
@@ -40,7 +43,7 @@ const FileUpload: React.FC = () => {
       console.log("resultState");
         if(i<fileIndex && currentFiles[i].name.endsWith(".java")) {
           let fileContent = await files.file(currentFiles[i].name).async("string");
-          cc.buildConfigFromJavaFile(currentFiles[i], fileContent, isStillReplacingOld,setResult);
+          cc.buildConfigFromJavaFile(currentFiles[i], fileContent, isStillReplacingOld,props.setActualResult);
           isStillReplacingOld = true;
         }
       }
@@ -108,7 +111,7 @@ const FileUpload: React.FC = () => {
       </label>
       <div className="boxContainer none">
         
-        <ul id="filehierarchy_tree" className="filehierarchy_tree">{result}</ul>
+        <ul id="filehierarchy_tree" className="filehierarchy_tree">{props.actualresult}</ul>
       </div>
       <div className="boxInfos">
         <p className="allowed uil uil-check-circle none">Upload succeed</p>
@@ -116,7 +119,7 @@ const FileUpload: React.FC = () => {
       </div>
       <div>
         <h1>Result</h1>
-        <h2>{result}</h2>
+        <h2>{props.actualresult}</h2>
       </div>
     </div>
   );

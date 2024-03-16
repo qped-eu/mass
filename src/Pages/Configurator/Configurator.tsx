@@ -251,7 +251,9 @@ function Configurator() {
      }
    };
    
+
     const [updatedMessageOpen, setUpdatedMessageOpen] = React.useState(false);
+    const [coverageResult,setCoverageResult]= useState("");
     const [updateFailedMessageOpen, setUpdateFailedMessageOpen] = React.useState(false);
 
     const [data, setData] = useState(initialData);
@@ -381,7 +383,7 @@ function Configurator() {
 					config={config}
 					ajv={handleDefaultsAjv}
 				/>
-            <FileUpload></FileUpload>
+            <FileUpload actualresult={coverageResult} setActualResult={setCoverageResult}></FileUpload>
 			</div>
 		</Grid>
         <Grid item xs>
@@ -516,6 +518,12 @@ function Configurator() {
             <Box component="main" className='dataContent'>
                <Typography>
                   <pre id='boundData' style={{ width: '0' }}>{stringifiedData}</pre>
+               </Typography>
+            </Box>
+
+            <Box component="main" className='dataContent'>
+               <Typography>
+                  <pre id='boundData' style={{ width: '0' }}>{coverageResult}</pre>
                </Typography>
             </Box>
 
