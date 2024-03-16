@@ -83,10 +83,6 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
           </div>
         </div>
       </div>
-      <div className="inputSearch">
-        <input type="url" id="searchUrlZip" placeholder="Enter URL to download project files" />
-        <i className="uil uil-search-plus"></i>
-      </div>
       <label htmlFor="projectFile">
         <div className="boxUpload">
           <input 
@@ -107,17 +103,9 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
           <ul id="file-list"></ul>
         </div>
       </label>
-      <div className="boxContainer none">
-        
-        <ul id="filehierarchy_tree" className="filehierarchy_tree">{props.actualresult}</ul>
-      </div>
       <div className="boxInfos">
         <p className="allowed uil uil-check-circle none">Upload succeed</p>
         <p className="error uil uil-minus-circle none">Upload rejected</p>
-      </div>
-      <div>
-        <h1>Result</h1>
-        <h2>{props.actualresult}</h2>
       </div>
     </div>
   );

@@ -527,12 +527,6 @@ function Configurator() {
             </ElevationScroll>
             <Box component="main" className='dataContent'>
                <Typography>
-                  <pre id='boundData' style={{ width: '0' }}>{stringifiedData}</pre>
-               </Typography>
-            </Box>
-
-            <Box component="main" className='dataContent'>
-               <Typography>
                   <pre id='boundData' style={{ width: '0' }}>{JSON.stringify(combinedResult, null, 2)}</pre>
                </Typography>
             </Box>
