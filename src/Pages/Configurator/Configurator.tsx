@@ -252,7 +252,7 @@ function Configurator() {
 
     const [data, setData] = useState(initialData);
    
-    const [combinedResult,setCombinedResult]=useState(initialData);
+    const [combinedResult,setCombinedResult]=useState(JSON.stringify(initialData, null, 2));
 
     React.useEffect(()=>
     {
@@ -262,7 +262,7 @@ function Configurator() {
       res.coverage.feedback=cov.coverage.feedback;
       console.log(res.coverage.feedback);
       
-      setCombinedResult(res);
+      setCombinedResult(JSON.stringify(res, null, 2));
     },[data,coverageResult])
     const [storedData, setStoredData] = useState<string | undefined>(undefined);
 
@@ -515,7 +515,7 @@ function Configurator() {
             </ElevationScroll>
             <Box component="main" className='dataContent'>
                <Typography>
-                  <pre id='boundData' style={{ width: '0' }}>{JSON.stringify(combinedResult, null, 2)}</pre>
+                  <pre id='boundData' style={{ width: '0' }}>{combinedResult}</pre>
                </Typography>
             </Box>
 
