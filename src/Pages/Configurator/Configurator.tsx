@@ -258,6 +258,7 @@ function Configurator() {
       let cov=JSON.parse(coverageResult);
 
       res.coverage.feedback=cov.coverage.feedback;
+      res.coverageSelected=cov.coverageSelected;
       console.log(res.coverage.feedback);
       
       setCombinedResult(JSON.stringify(res, null, 2));
