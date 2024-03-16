@@ -23,7 +23,6 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
     const keyWordStartCov: string = '@mass_cvStart(';
     const keyWordEndCov: string = '@mass_cvEnd(';
 
-    console.log("resultState1");
       // Split the file content into lines
       const lines = fileContent.split('\n');
       // Iterate through each line
@@ -49,8 +48,6 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
               );
             }
           }
-
-      console.log("resultState2");
           if (line.includes(keyWordEndCov)) {
             //fetch id
             let startParams = line.substring(line.indexOf(keyWordEndCov));
@@ -145,7 +142,6 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
         }
       }
 
-      console.log("resultState3");
       /* Update line ranges
        * For each feedback in this.feedback : Delete next lineRange from array of lineRanges
        * if the end of the current linerange in array of lineranges of current feedback is not null, 
@@ -166,7 +162,6 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
           }
         }
       }
-      console.log("resultState4");
       this.updateResult(isReplacingOld,resultState);
   }
 
@@ -236,8 +231,6 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
     
     resultTxt["coverageSelected"] = true;
     setState(new MASSHandler().formatConfigResult(JSON.stringify(resultTxt), 1));
-    console.log("Henaa")
-    console.log(new MASSHandler().formatConfigResult(JSON.stringify(resultTxt), 1));
   }
 
 }

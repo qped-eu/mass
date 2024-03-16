@@ -15,7 +15,6 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
     if (currentFile) {
       JSZip.loadAsync(currentFile) 
       .then((zip) => {
-          console.log(zip)
           buildConfigFromJavaFiles(zip, isReplacingOld);
           });      
     }
@@ -40,7 +39,6 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
           i=i+1;
         }
 
-      console.log("resultState");
         if(i<fileIndex && currentFiles[i].name.endsWith(".java")) {
           let fileContent = await files.file(currentFiles[i].name).async("string");
           cc.buildConfigFromJavaFile(currentFiles[i], fileContent, isStillReplacingOld,props.setActualResult);

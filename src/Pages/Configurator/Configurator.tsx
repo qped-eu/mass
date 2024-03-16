@@ -253,17 +253,30 @@ function Configurator() {
    
 
     const [updatedMessageOpen, setUpdatedMessageOpen] = React.useState(false);
-    const [coverageResult,setCoverageResult]= useState("");
+    const [coverageResult,setCoverageResult]= useState(JSON.stringify(initialData));
     const [updateFailedMessageOpen, setUpdateFailedMessageOpen] = React.useState(false);
 
     const [data, setData] = useState(initialData);
+   
+    const [combinedResult,setCombinedResult]=useState(initialData);
 
+    React.useEffect(()=>
+    {
+      console.log("Change Happened");
+      let res=data;
+      let cov=JSON.parse(coverageResult);
+
+      res.coverage.feedback=cov.coverage.feedback;
+
+      setCombinedResult(res);
+    },[data,coverageResult])
     const [storedData, setStoredData] = useState<string | undefined>(undefined);
 
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
     const [usedInput, setUsedInput] = useState<string | undefined>(undefined);
 
     const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
+    const stringifiedCombinedResult = useMemo(() => JSON.stringify(combinedResult, null, 2), [combinedResult]);
 
     const clearData = () => {
         setStoredData(undefined);
@@ -348,7 +361,6 @@ function Configurator() {
     };
 
    function handleHereClick(): void {
-      console.log("heereee");
       setCoverage({});
       
    }
@@ -358,8 +370,6 @@ function Configurator() {
     setData(updatedData);
    },[coverage]);
 
-	//window.setInterval(() => {console.log(document.getElementById('LeContainer')?.offsetTop);}, 1000)
-	
   return (
     <Grid
 		container
@@ -523,7 +533,7 @@ function Configurator() {
 
             <Box component="main" className='dataContent'>
                <Typography>
-                  <pre id='boundData' style={{ width: '0' }}>{coverageResult}</pre>
+                  <pre id='boundData' style={{ width: '0' }}>{JSON.stringify(combinedResult, null, 2)}</pre>
                </Typography>
             </Box>
 
