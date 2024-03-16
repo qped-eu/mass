@@ -80,25 +80,6 @@
 		},
 		{
 			"type": "Category",
-			"label": "Test Coverage Checker",
-			"elements": [
-				{
-					"type": "Control",
-					"scope": "#/properties/coverage"
-				}
-			],
-			"rule": {
-				"effect": "SHOW",
-				"condition": {
-					"scope": "#/properties/coverageSelected",
-					"schema": {
-						"const": true
-					}
-				}
-			}
-		},
-		{
-			"type": "Category",
 			"label": "Class Info Checker",
 			"elements": [
 				{
