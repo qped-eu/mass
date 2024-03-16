@@ -94,11 +94,8 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
             accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"
           />
           <i className="uil uil-upload"></i>
-          <p>
-            {' '}
-            <b>Drop a file or a zip-archive here</b>{' '}
-          </p>
-          <p> Alternatively, you can select a file by</p>
+
+          <p> you can select a file by</p>
           <p> clicking here</p>
           <ul id="file-list"></ul>
         </div>
