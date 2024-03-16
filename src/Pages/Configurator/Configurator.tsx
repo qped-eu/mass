@@ -75,12 +75,6 @@ function ElevationScroll(props: Props) {
 
 const initialCoverage= {
    "feedback": [
-     {
-       "lineRanges": "",
-       "message": "",
-       "showFor": "PARTIALLY_MISSED",
-       "fileName": ""
-     }
    ],
    "showFullCoverageReport": false,
    "showTestFailures": true
@@ -262,12 +256,12 @@ function Configurator() {
 
     React.useEffect(()=>
     {
-      console.log("Change Happened");
       let res=data;
       let cov=JSON.parse(coverageResult);
 
       res.coverage.feedback=cov.coverage.feedback;
-
+      console.log(res.coverage.feedback);
+      
       setCombinedResult(res);
     },[data,coverageResult])
     const [storedData, setStoredData] = useState<string | undefined>(undefined);
@@ -364,12 +358,6 @@ function Configurator() {
       setCoverage({});
       
    }
-   React.useEffect(()=>{
-
-    const updatedData = { ...data, coverage: coverage };
-    setData(updatedData);
-   },[coverage]);
-
   return (
     <Grid
 		container
