@@ -1,20 +1,5 @@
-html {
-  font-size: 16px;
-}
-
-.App {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 0em;
-}
-
-.App-logo {
-  margin-top: 0px;
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-  margin-bottom: 8px;
-}
 @import url("root.css");
+@import url("uniconsLine.css");
 @import url("FileHierarchy.css");
 @import url("JSDragDropTree.css");
 img.App-logo {
@@ -568,28 +553,5 @@ label[for=projectFile] {
   }
   .dashboard .top .sidebar-toggle {
     display: none;
-  }
-}
-
-.App-header {
-  background-color: #222;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }

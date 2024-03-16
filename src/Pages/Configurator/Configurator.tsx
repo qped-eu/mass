@@ -30,6 +30,7 @@ import {
 	materialCells,
 	materialRenderers,
   } from '@jsonforms/material-renderers';
+import FileUpload from '../../Components/FileUpload';
 
 const renderers = [
 	...materialRenderers
@@ -380,7 +381,7 @@ function Configurator() {
 					config={config}
 					ajv={handleDefaultsAjv}
 				/>
-            <Button onClick={handleHereClick}> heeree</Button>
+            <FileUpload></FileUpload>
 			</div>
 		</Grid>
         <Grid item xs>

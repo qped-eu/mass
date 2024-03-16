@@ -1,0 +1,50 @@
+@import url("root.css");
+.filehierarchy_tree,
+#floatingContainer {
+  margin: 0px;
+  padding: 0px;
+}
+
+.filehierarchy_tree ul {
+  /* Sub menu groups */
+  margin-left: 20px; /* Left spacing */
+  padding-left: 0px;
+  display: none; /* Initially hide sub nodes */
+}
+
+#floatingContainer ul {
+  margin-left: 20px; /* Left spacing */
+  padding-left: 0px;
+}
+
+.filehierarchy_tree li,
+#floatingContainer li {
+  /* Nodes */
+  list-style-type: none;
+  vertical-align: middle;
+}
+
+.filehierarchy_tree li a,
+#floatingContainer li a {
+  /* Node links */
+  color: var(--text-color);
+  text-decoration: none;
+  font-family: arial;
+  font-size: 0.8em;
+  padding-left: 1px;
+  line-height: 13px;
+  margin-left: 2px;
+}
+
+.filehierarchy_tree li a.highlightedNodeItem {
+  color: #fff;
+  background-color: gray;
+}
+
+.filehierarchy_tree input.folderTreeTextBox {
+  /* Css for the text input - rename item */
+  font-size: 10px;
+  margin: 0px;
+  padding: 0px;
+  height: 12px;
+}
