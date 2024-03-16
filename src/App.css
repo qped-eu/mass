@@ -93,6 +93,7 @@ div.overview_result {
   min-height: 500px;
 }
 div.overview_result div.box {
+  
   height: 100%;
 }
 div.overview_result .title {
