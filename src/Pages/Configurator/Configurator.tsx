@@ -73,14 +73,7 @@ function ElevationScroll(props: Props) {
 }
 
 
-const initialCoverage= {
-   "feedback": [
-   ],
-   "showFullCoverageReport": false,
-   "showTestFailures": true
- };
 function Configurator() {
-   const [coverage,setCoverage] =useState<any>(initialCoverage);
    const initialData = {
      "syntax": {
        "level": "BEGINNER"
@@ -104,7 +97,12 @@ function Configurator() {
        "classNamePattern": "[A-Z][a-zA-Z0-9_]*"
      },
      "semantic": {},
-     "coverage":coverage ,
+     "coverage":{
+      "feedback": [
+      ],
+      "showFullCoverageReport": false,
+      "showTestFailures": true
+    } ,
      "classes": {},
      "metrics": {
        "amcThreshold": {
@@ -269,14 +267,12 @@ function Configurator() {
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
     const [usedInput, setUsedInput] = useState<string | undefined>(undefined);
 
-    const stringifiedData = useMemo(() => JSON.stringify(data, null, 2), [data]);
-    const stringifiedCombinedResult = useMemo(() => JSON.stringify(combinedResult, null, 2), [combinedResult]);
-
     const clearData = () => {
         setStoredData(undefined);
         var lastUserVersion = JSON.stringify(data, null, 2);
         setUpdateFailedMessageOpen(false);
         setData(initialData);
+        setCombinedResult(JSON.stringify(initialData,null,2));
         setTimeout(() => {
             setStoredData(lastUserVersion);
          
@@ -285,12 +281,12 @@ function Configurator() {
     };
 
     const copyData = () => {
-        navigator.clipboard.writeText("qf.mass = " + JSON.stringify(data, null, 2));
+        navigator.clipboard.writeText("qf.mass = " + combinedResult);
     };
 
     const pasteData = () => {
         setStoredData(undefined)
-        var lastUserVersion = JSON.stringify(data, null, 2)
+        var lastUserVersion = JSON.stringify(combinedResult, null, 2)
         setUpdateFailedMessageOpen(false);
         navigator.clipboard
             .readText()
@@ -308,7 +304,7 @@ function Configurator() {
                 var input = clipText.substring(jsonStartIndex, jsonEndIndex)
                 
                 try {
-                    setData(JSON.parse(input))
+                    setCombinedResult(input)
                     setTimeout(() => {
                         setStoredData(lastUserVersion)
                         setUpdatedMessageOpen(true)
@@ -325,7 +321,7 @@ function Configurator() {
 
     const performUndo = () => {
         if (storedData) {
-            setData(JSON.parse(storedData));
+            setCombinedResult(storedData);
             setStoredData(undefined)
         }
         setUpdatedMessageOpen(false);
@@ -354,10 +350,6 @@ function Configurator() {
         }
     };
 
-   function handleHereClick(): void {
-      setCoverage({});
-      
-   }
   return (
     <Grid
 		container
