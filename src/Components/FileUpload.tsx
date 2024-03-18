@@ -62,7 +62,7 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
       <div className="title table">
         <div className="table_cell tab_head_title">
           <i className="uil uil-game-structure"></i>
-          <span className="text">PROJECT STRUCTURE</span>
+          <span className="text"></span>
         </div>
         <div className="table_cell tab_head_options">
           <a title="Add a folder in project">
@@ -95,8 +95,11 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
           />
           <i className="uil uil-upload"></i>
 
-          <p> you can select a file by</p>
+          <p> you can select a .zip file by</p>
           <p> clicking here</p>
+          <p>
+            test coverage will be generated automatically
+          </p>
           <ul id="file-list"></ul>
         </div>
       </label>

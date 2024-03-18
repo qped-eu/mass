@@ -253,7 +253,7 @@ function Configurator() {
    const [combinedResult, setCombinedResult] = useState(JSON.stringify(initialData, null, 2));
 
    React.useEffect(() => {
-      let res = data;
+      let res = JSON.parse(JSON.stringify(data));
       if (data.coverageSelected) {
 
          let cov = JSON.parse(coverageResult);
@@ -309,7 +309,10 @@ function Configurator() {
             var input = clipText.substring(jsonStartIndex, jsonEndIndex)
 
             try {
-               setCombinedResult(input)
+
+               setCombinedResult(input);
+               setData(JSON.parse(input));
+               setCoverageResult(input);
                setTimeout(() => {
                   setStoredData(lastUserVersion)
                   setUpdatedMessageOpen(true)
