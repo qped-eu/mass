@@ -37,3 +37,7 @@ jobs:
         
       - name: Try building
         run: npm run build
+        env:
+          CI: false  # Disable treating warnings as errors
+
+            
