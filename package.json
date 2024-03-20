@@ -37,7 +37,10 @@
     "@types/react-syntax-highlighter": "^15.5.4",
     "cypress": "^6.1.0",
     "react-scripts": "^5.0.1",
-    "start-server-and-test": "^1.11.6"
+    "start-server-and-test": "^1.11.6",
+    "@babel/plugin-transform-private-property-in-object": "^7.16.0"
+    
+
   },
   "scripts": {
     "start": "react-scripts start",
