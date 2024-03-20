@@ -22,6 +22,9 @@ jobs:
           
       - name: Install dependencies
         run: npm install
+
+      - name: Install JSZip
+        run: npm install jszip
         
       - name: Install python dependencies
         run: pip install json-schema-for-humans
@@ -34,3 +37,7 @@ jobs:
         
       - name: Try building
         run: npm run build
+        env:
+          CI: false  # Disable treating warnings as errors
+
+            

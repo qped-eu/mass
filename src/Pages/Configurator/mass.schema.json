@@ -267,70 +267,10 @@
           "description": "Specify whether to show a full report of the test coverage.",
           "default": false,
           "title": "Show Full Coverage Report"
-        },
-        "feedback": {
-          "type": "array",
-          "title": "Feedback Configuration",
-          "description": "Specify the feedback messages per coverage miss.",
-          "documentation": "Specify the feedback messages per coverage miss.",
-          "minItems": 1,
-          "items": {
-            "type": "object",
-            "properties": {
-              "ID": {
-                "type": "string",
-                "pattern": "\\s*[_a-zA-Z0-9]+\\s*",
-                "title": "Message ID",
-                "description": "You can optionally specify a unique name to this feedback message to define constraints between messages."
-              },
-              "showFor": {
-                "type": "string",
-                "enum": [
-                  "FULLY_MISSED",
-                  "PARTIALLY_MISSED"
-                ],
-                "enumDesc": "Message is applicable if code is fully missed or at least partially missed. For information on partial coverage see [JaCoCo](https://www.jacoco.org/jacoco/trunk/doc/counters.html).",
-                "title": "Kind of Coverage Miss",
-                "default": "PARTIALLY_MISSED",
-                "description": "Specify whether to show the message only when all lines in the range are completely missed or they are at least partially missed. For information on partial coverage see [JaCoCo](https://www.jacoco.org/jacoco/trunk/doc/counters.html)."
-              },
-              "fileName": {
-                "type": "string",
-                "title": "File Name",
-                "description": "Specify the source file containing the lines you refer to. The file must use / as path separator, include the extension (usually .java) and the path must correspond to the package of the contained class.",
-                "pattern": "\\s*[_$a-zA-Z0-9]+(/[_$a-zA-Z0-9]+)*.[a-zA-Z0-9]*\\s*"
-              },
-              "lineRanges": {
-                "type": "string",
-                "pattern": "\\s*\\d+(\\s*-\\s*\\d+)?\\s*(,\\s*\\d+(\\s*-\\s*\\d+)?\\s*)*",
-                "title": "Line Ranges",
-                "description": "Specify relevant missed or partially missed lines as a comma separated list of line numbers or ranges (e.g., 1-3). Line numbers start at 1."
-              },
-              "message": {
-                "type": "string",
-                "title": "Message",
-                "description": "Specify the message to show when miss as configured occurs."
-              },
-              "suppresses": {
-                "type": "string",
-                "description": "Specify which feedback messages should be held back when this message is applicable. Specify a comma separated list of the Message IDs of those feedback messages.",
-                "pattern": "\\s*[_$a-zA-Z0-9]+\\s*(,\\s*[_$a-zA-Z0-9]+\\s*)*",
-                "title": "Suppressed Messages"
-              }
-            },
-            "description": "Specify the location of the coverage miss",
-            "required": [
-              "lineRanges",
-              "message",
-              "showFor",
-              "fileName"
-            ],
-            "title": "Feedback Messages"
-          }
+        
         }
       },
       "required": [
-        "feedback",
         "showFullCoverageReport",
         "showTestFailures"
       ]
