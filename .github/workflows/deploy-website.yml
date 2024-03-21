@@ -22,6 +22,9 @@ jobs:
           
       - name: Install dependencies
         run: npm install
+
+      - name: Install JSZip
+        run: npm install jszip
         
       - name: Install github pages
         run: npm install gh-pages --save-dev
