@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { JsonForms } from '@jsonforms/react';
 import { createAjv } from '@jsonforms/core';
 import Grid from '@mui/material/Grid';
