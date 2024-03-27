@@ -30,7 +30,7 @@ import {
    materialCells,
    materialRenderers,
 } from '@jsonforms/material-renderers';
-import FileUpload from '../../Components/FileUpload';
+import FileUpload from '../../Components/FileUpload/FileUpload';
 
 const renderers = [
    ...materialRenderers
