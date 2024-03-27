@@ -54,7 +54,7 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
             startParams = startParams.substring(startParams.indexOf('"') + 1);
             let msgId = startParams.substring(0, startParams.lastIndexOf(')') - 1);
             while (msgId.lastIndexOf(')') >= 0) {
-              if (msgId.lastIndexOf(')') != msgId.lastIndexOf('\)') + 1) {
+              if (msgId.lastIndexOf(')') !== msgId.lastIndexOf(')') + 1) {
                 msgId = msgId.substring(0, msgId.lastIndexOf(')') - 1);
                 msgId = msgId.substring(0, msgId.lastIndexOf('"') - 1);
               } else
@@ -62,15 +62,15 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
             }
             // Find the previous non-empty Java instruction line
             let previousInstructionLine = line.trim().startsWith('//') ? lineNumber : lineNumber + 1;
-            while (previousInstructionLine != lineNumber && previousInstructionLine > 0) {
-              if (lines[previousInstructionLine].trim() != '')
+            while (previousInstructionLine !== lineNumber && previousInstructionLine > 0) {
+              if (lines[previousInstructionLine].trim() !== '')
                 break;
               previousInstructionLine--;
             }
             //update CheckerCoverageFeedbacks[msgId]
             if (this.feedback.hasOwnProperty(msgId)) {
               for(let i=(this.feedback[msgId].lineRanges as any).length-1; i>=0; i--){
-                if( (this.feedback[msgId].lineRanges)[i].getEnd() == null ){
+                if( (this.feedback[msgId].lineRanges)[i].getEnd() === null ){
                   (this.feedback[msgId].lineRanges as any)[i].setEnd(previousInstructionLine);
                   break;
                 }
@@ -116,7 +116,7 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
             startParams = startParams.substring(startParams.indexOf('"') + 1);
             let msgId = startParams.substring(0, startParams.lastIndexOf(')') - 1);
             while (msgId.lastIndexOf(')') >= 0) {
-              if (msgId.lastIndexOf(')') != msgId.lastIndexOf('\)') + 1) {
+              if (msgId.lastIndexOf(')') !== msgId.lastIndexOf(')') + 1) {
                 msgId = msgId.substring(0, msgId.lastIndexOf(')') - 1);
                 msgId = msgId.substring(0, msgId.lastIndexOf('"') - 1);
               } else
@@ -124,8 +124,8 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
             }
             // Find the previous non-empty Java instruction line
             let previousInstructionLine = line.trim().startsWith('/*') ? lineNumber : lineNumber + 1;
-            while (previousInstructionLine != lineNumber && previousInstructionLine > 0) {
-              if (lines[previousInstructionLine].trim() != '')
+            while (previousInstructionLine !== lineNumber && previousInstructionLine > 0) {
+              if (lines[previousInstructionLine].trim() !== '')
                 break;
               previousInstructionLine--;
             }
@@ -153,7 +153,7 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
         for (let j=0; j<(this.feedback[fbKey].lineRanges as any).length; j++) {
           let currentRangeEnd = ((this.feedback[fbKey]).lineRanges[j]).getEnd();
           let currentRangeStart = ((this.feedback[fbKey]).lineRanges[j]).getStart();
-          if(highestRangesEnds!=null){
+          if(highestRangesEnds !== null){
             if(currentRangeStart <= highestRangesEnds || (currentRangeEnd != null && currentRangeEnd <= highestRangesEnds)){
               (this.feedback[fbKey].lineRanges as any).splice(j,1);
             }
@@ -226,6 +226,7 @@ export default class Control_MASS_CheckerCoverage extends MASS_CheckerCoverage{
       coverageString.trim();
       resultTxt["coverage"] = JSON.parse(coverageString);
     } else {
+      console.log(this.getStringFeedbackConfig());
       resultTxt["coverage"]["feedback"].push( JSON.parse(this.getStringFeedbackConfig()) );
     }
     

@@ -95,10 +95,10 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
           />
           <i className="uil uil-upload"></i>
 
-          <p> you can select a .zip file by</p>
+          <p> You can select a .zip file by</p>
           <p> clicking here</p>
           <p>
-            test coverage will be generated automatically
+            Test Coverage configuration will be generated automatically
           </p>
           <ul id="file-list"></ul>
         </div>
