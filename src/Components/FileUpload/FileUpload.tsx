@@ -1,7 +1,10 @@
 
 import JSZip from 'jszip';
+import './FileHierarchy.css';
+import './JSDragDropTree.css';
+import './root.css';
 import React, { useState, useEffect } from 'react';
-import Control_MASS_CheckerCoverage from '../Controller/Control_MASS_CheckerCoverage';
+import Control_MASS_CheckerCoverage from '../../Controller/Control_MASS_CheckerCoverage';
 interface FileUploadProps {
   actualresult: any;
   setActualResult: any; // Define the type of the prop you want to pass
@@ -58,7 +61,7 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
 
 
   return (
-    <div className="box">
+    <div className="box" id='boundingBox'>
       <div className="title table">
         <div className="table_cell tab_head_title">
           <i className="uil uil-game-structure"></i>
@@ -95,10 +98,10 @@ const FileUpload: React.FC<FileUploadProps> = (props) => {
           />
           <i className="uil uil-upload"></i>
 
-          <p> you can select a .zip file by</p>
+          <p> You can select a .zip file by</p>
           <p> clicking here</p>
           <p>
-            test coverage will be generated automatically
+            Test Coverage configuration will be generated automatically
           </p>
           <ul id="file-list"></ul>
         </div>

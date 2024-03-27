@@ -37,9 +37,9 @@ export default class MASS_CheckerCoverage {
     for (let fbKey in this.feedback) {
       //@ts-ignore 
       buildedFeedback += this.feedback[fbKey as string].buildPartFeedbackBlock();
-      buildedFeedback += fbKey == fbKeys[fbKeys.length - 1] ? "" : ",\n    ";
+      buildedFeedback += fbKey === fbKeys[fbKeys.length - 1] ? "" : ",\n    ";
     }
-    return buildedFeedback;
+    return "["+buildedFeedback+"]";
   }
 
 
@@ -54,7 +54,7 @@ export default class MASS_CheckerCoverage {
     let arrayParams: any[] = [];
     while (paramsConcat.indexOf('",') >= 0) {
       currPartConcatParam += paramsConcat.substring(0, paramsConcat.indexOf('",'));
-      if ((paramsConcat.indexOf('\",') != -1 && (paramsConcat.indexOf('",') == paramsConcat.indexOf('\",') + 1)) || (paramsConcat.indexOf('\\",') != -1 && (paramsConcat.indexOf('",') == paramsConcat.indexOf('\\",') + 2))) {
+      if ((paramsConcat.indexOf('",') !== -1 && (paramsConcat.indexOf('",') === paramsConcat.indexOf('",') + 1)) || (paramsConcat.indexOf('",') !== -1 && (paramsConcat.indexOf('",') === paramsConcat.indexOf('",') + 2))) {
         paramsConcat = paramsConcat.substring(paramsConcat.indexOf('",') + 2);
       } else {
         arrayParams.push(currPartConcatParam);
@@ -69,13 +69,13 @@ export default class MASS_CheckerCoverage {
     arrayParams[0] = arrayParams[0].replaceAll(/\s/g, '');
     //message : arrayParams[1];
     //coverageMiss : arrayParams[2] 
-    arrayParams[2] = arrayParams[2].replaceAll(/\s/g, '') == CoverageMiss.FULLY_MISSED.toString() ? CoverageMiss.FULLY_MISSED : CoverageMiss.PARTIALLY_MISSED;
+    arrayParams[2] = arrayParams[2].replaceAll(/\s/g, '') === CoverageMiss.FULLY_MISSED.toString() ? CoverageMiss.FULLY_MISSED : CoverageMiss.PARTIALLY_MISSED;
     //supMessages : arrayParams[3]
     arrayParams[3] = arrayParams[3].replaceAll(/\s/g, '').split(',');
     // Find the next non-empty Java instruction line
     let nextInstructionLine: number = line.trim().startsWith(commentStartString) ? kwLastCharLineNumber + 2 : kwLastCharLineNumber + 1;
-    while (nextInstructionLine != kwLastCharLineNumber && nextInstructionLine < lines.length) {
-      if (lines[nextInstructionLine].trim() != '')
+    while (nextInstructionLine !== kwLastCharLineNumber && nextInstructionLine < lines.length) {
+      if (lines[nextInstructionLine].trim() !== '')
         break;
       nextInstructionLine++;
     }

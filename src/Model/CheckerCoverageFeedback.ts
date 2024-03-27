@@ -27,8 +27,8 @@ export default class CheckerCoverageFeedback{
             } 
         }
         let lineRangeKeyValue = this.lineRanges == null ? '"lineRanges": "",\n        ' : '"lineRanges": "'+ lineRangeValue + '",\n        ';
-        let supKeyValue = this.suppresses.length == 0 ? "" : '"suppresses": "'+ this.suppresses.join() +'"\n      ';
-        let fName =  this.suppresses.length == 0 ? '"fileName": "'+ this.filename +'"\n      ' : '"fileName": "'+ this.filename +'",\n        ';
+        let supKeyValue = this.suppresses.length === 0 ? "" : '"suppresses": "'+ this.suppresses.join() +'"\n      ';
+        let fName =  this.suppresses.length === 0 ? '"fileName": "'+ this.filename +'"\n      ' : '"fileName": "'+ this.filename +'",\n        ';
         return '{\n        ' +
                 '"ID": "'+ this.ID + '",\n        ' +
                 lineRangeKeyValue+

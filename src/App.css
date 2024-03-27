@@ -14,15 +14,13 @@ html {
   height: 80px;
   margin-bottom: 8px;
 }
-@import url("root.css");
-@import url("FileHierarchy.css");
-@import url("JSDragDropTree.css");
+
 img.App-logo {
   -webkit-animation: App-logo-spin 20s linear infinite;
   animation: App-logo-spin 20s linear infinite;
   display: block;
-  height: 25px;
-  margin: 0;
+  height: 55px;
+  margin: auto;
   box-sizing: inherit;
   overflow: clip;
 }

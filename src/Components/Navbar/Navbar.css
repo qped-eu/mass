@@ -126,6 +126,7 @@
   .nav-item{
     justify-content: flex-start;
     text-align: flex-start;
+    color: var(--highlightCol);
   }
 
   .nav-links {
@@ -135,6 +136,7 @@
     text-align: end;
     height: calc(100% - 1rem - 4px);
     width: 100%;
+    color: white; 
     cursor: pointer;
   }
 
@@ -200,6 +202,7 @@
     line-height: 80px;
     height: 100%;
     right: 0;
+    color: var(--highlightCol);
   }
   
   .nav-links:hover {
@@ -226,6 +229,7 @@
 
   .mobile-nav-link{
     padding: 0 20px;
+    color: white;
   }
 
   .mobile-menu-cancel{
